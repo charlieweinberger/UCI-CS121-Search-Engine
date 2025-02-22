@@ -1,0 +1,1 @@
+# create the inverted index along with the given tokens

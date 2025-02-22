@@ -21,3 +21,10 @@ closely related functions. This helps in keeping track of your progress,
 debugging, and also dividing work amongst teammates if you’re in a group.
 • We recommend you use GitHub as a mechanism to work with your team
 members on this project, but you are not required to do so.
+
+### Instructions to run the code
+
+```bash
+cd python
+python main.py
+````

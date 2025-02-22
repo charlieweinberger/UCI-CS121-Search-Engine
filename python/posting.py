@@ -1,0 +1,1 @@
+# A signle posting, which points to the next as well as the document it is associated with and the frequency of the term in the document

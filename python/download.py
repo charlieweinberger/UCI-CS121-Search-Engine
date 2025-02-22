@@ -1,0 +1,1 @@
+# getting the json file and just downloading it and redturning it as a class or something so it is easy to use

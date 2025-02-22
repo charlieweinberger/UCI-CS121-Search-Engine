@@ -1,1 +1,4 @@
 /developer
+/rust/target
+/rust/Cargo.lock
+assignment.pdf
