@@ -41,4 +41,8 @@ impl Postings {
             }
         }
     }
+
+    pub fn get_postings(&self) -> &Vec<Posting> {
+        &self.postings
+    }
 }

@@ -13,7 +13,7 @@ impl Tokenizer {
             .collect::<HashSet<String>>();
         Tokenizer { stopwords }
     }
-    pub fn tokernizer(&self, token: &str) -> Vec<String> {
+    pub fn tokenize(&self, token: &str) -> Vec<String> {
         let pattern = Regex::new(r"[^a-zA-Z0-9]+").unwrap();
         pattern
             .split(token)
