@@ -27,4 +27,10 @@ members on this project, but you are not required to do so.
 ```bash
 cd python
 python main.py
-````
+```
+
+### Deliverables
+
+- The number of indexed documents;
+- The number of unique words;
+- The total size (in KB) of your index on disk.
