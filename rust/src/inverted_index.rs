@@ -36,6 +36,14 @@ impl InvertedIndex {
     pub fn get_ordered_keys(&self) -> Vec<String> {
         self.ordered_keys.iter().cloned().collect()
     }
+    pub fn merge(&mut self, other: InvertedIndex) {
+        for (term, postings) in other.index {
+            let self_postings = self.index.entry(term).or_insert(Postings::new());
+            for posting in postings.get_postings() {
+                self_postings.update_frequency(posting.doc_id);
+            }
+        }
+    }
 }
 
 //  *This might also help us with multithreading if we wish to make it multithreaded

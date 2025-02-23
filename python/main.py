@@ -48,7 +48,7 @@ def main():
             content = process_document(doc_path)
             InvertedIndex.add_document(content)
             doc_id_counter += 1
-        save_path = f"indexes/batch_{batch_count}.json"
+        save_path = f"indexes/batch_{batch_count}.txt"
         save.save_inverted_index(InvertedIndex, save_path)
 
 
