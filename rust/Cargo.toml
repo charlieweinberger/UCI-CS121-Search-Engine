@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+porter-stemmer = "0.1.2"
+regex = "1.11.1"
+serde = "1.0.218"
