@@ -1,7 +1,6 @@
 # save the inverted index to a file
 import os
 from indexer import InvertedIndex
-import json
 
 
 def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
@@ -12,36 +11,22 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
         output_path: Path where to save the index
     """
     # Convert index to serializable format
-    index_data = {}
     dictionary = inverted_index.dictionary.dictionary
-    for key in inverted_index.dictionary.keys:
-        postings = dictionary[key]
-        index_data[key] = [
-            {"doc_id": posting.doc_id, "term_freq": posting.frequency}
-            for posting in postings.postings
-        ]
-
     # Subtract 1 since current_doc_id is next available ID
-    num_documents = inverted_index.current_doc_id - 1
-    num_unique_tokens = len(inverted_index.dictionary.dictionary)
-    # Create output dictionary with statistics
-    output = {
-        "statistics": {
-            "num_documents": num_documents,
-            "num_unique_tokens": num_unique_tokens,
-        },
-        "index": index_data
-    }
-
-    # Save to file
+    num_documents = inverted_index.current_doc_id
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(output, f, indent=2)
-
+        for token in inverted_index.dictionary.keys:
+            postings = dictionary[token].postings
+            # Create a string for the postings list: "docID:termFreq"
+            postings_str = ",".join(f"{posting.doc_id}:{posting.frequency}" for posting in postings)
+            # Write a line: "token docID1:termFreq1 docID2:termFreq2 ..."
+            f.write(f"{token} {postings_str}\n")
     # Calculate and add file size in KB
     file_size_kb = os.path.getsize(output_path) / 1024
 
     # Print statistics
     print("Index saved successfully:")
     print(f"Number of indexed documents: {num_documents}")
-    print(f"Number of unique tokens: {num_unique_tokens}")
+    print(f"Number of unique tokens: {len(dictionary)}")
     print(f"Index size on disk: {file_size_kb:.2f} KB")

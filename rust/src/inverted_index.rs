@@ -3,7 +3,7 @@ use serde_json::{json, Value};
 use crate::postings::Postings;
 use crate::tokenizer::Tokenizer;
 use std::{
-    collections::{BinaryHeap, HashMap},
+    collections::{BTreeSet, HashMap},
     fs::File,
     io::Write,
 };
@@ -11,7 +11,7 @@ use std::{
 #[allow(dead_code)]
 pub struct InvertedIndex {
     index: HashMap<String, Postings>,
-    ordered_keys: BinaryHeap<String>,
+    ordered_keys: BTreeSet<String>,
 }
 
 #[allow(dead_code)]
@@ -19,14 +19,14 @@ impl InvertedIndex {
     pub fn new() -> InvertedIndex {
         InvertedIndex {
             index: HashMap::new(),
-            ordered_keys: BinaryHeap::new(),
+            ordered_keys: BTreeSet::new(),
         }
     }
 
     pub fn insert(&mut self, term: String, doc_id: u32) {
         let postings = self.index.entry(term.clone()).or_insert(Postings::new());
         postings.update_frequency(doc_id);
-        self.ordered_keys.push(term);
+        self.ordered_keys.insert(term);
     }
 
     pub fn get_postings(&self, term: &str) -> Option<&Postings> {
@@ -77,45 +77,31 @@ impl InvertedIndexSplit {
     }
 
     pub fn write_to_disk(&self, location: String) -> std::io::Result<()> {
-        // Helper function to convert an InvertedIndex to JSON
-        fn index_to_json(index: &InvertedIndex) -> Value {
-            let mut entries = Vec::new();
+        // Helper function to convert an InvertedIndex to text format
+        fn write_index_to_file(index: &InvertedIndex, path: &str) -> std::io::Result<()> {
+            let mut file = File::create(path)?;
             for term in index.get_ordered_keys() {
                 if let Some(postings) = index.get_postings(&term) {
-                    let posting_pairs: Vec<_> = postings
+                    let postings_str: String = postings
                         .get_postings()
                         .iter()
-                        .map(|post| vec![post.doc_id, post.term_freq])
-                        .collect();
+                        .map(|post| format!("({}|{})", post.doc_id, post.term_freq))
+                        .collect::<Vec<_>>()
+                        .join(",");
 
-                    entries.push(json!({
-                        "term": term,
-                        "postings": posting_pairs
-                    }));
+                    writeln!(file, "{}: {}", term, postings_str)?;
                 }
             }
-            json!(entries)
+            Ok(())
         }
 
-        // Write each index to its own file
-        let write_index = |filename: &str, index: &InvertedIndex| -> std::io::Result<()> {
-            std::fs::create_dir_all(&location)?;
-            let json_data = index_to_json(index);
-            let mut file = File::create(format!("{}/{}", location, filename))?;
-            let formatted = serde_json::to_string_pretty(&json_data)?;
-            file.write_all(formatted.as_bytes())?;
-            Ok(())
-        };
+        std::fs::create_dir_all(&location)?;
 
-        write_index("a_f.json", &self.a_f)?;
-        write_index("g_p.json", &self.g_p)?;
-        write_index("q_z.json", &self.q_z)?;
-        write_index("0_9.json", &self.zero_nine)?;
+        write_index_to_file(&self.a_f, &format!("{}/a_f.txt", location))?;
+        write_index_to_file(&self.g_p, &format!("{}/g_p.txt", location))?;
+        write_index_to_file(&self.q_z, &format!("{}/q_z.txt", location))?;
+        write_index_to_file(&self.zero_nine, &format!("{}/0_9.txt", location))?;
 
         Ok(())
     }
 }
-
-// ? Example:
-// a_f.json -> [ {term: "apple", postings: [[1,2], [3,4], []]} ]
-// where 1 is the doc id and 2 is the frequency of the term in THAT document

@@ -3,7 +3,6 @@
 from typing import Self, Dict, List, Tuple
 import heapq
 
-
 class SinglePosting:
     def __init__(self, doc_id: int, frequency: int):
         self.doc_id: int = doc_id
@@ -76,8 +75,8 @@ class Dictionary:
         # add the word to the dictionary with the default value of a Posting with the word and empty list of postings
         if word not in self.dictionary:
             self.dictionary[word] = Postings(word)
+            heapq.heappush(self.keys, word)
         self.dictionary[word].add_posting(doc_id, frequency)
-        heapq.heappush(self.keys, word)
 
     def update_frequency(self, word: str, doc_id: int, frequency_increment: int):
         # ! This adds the word if not there, might cause confusing behaviour

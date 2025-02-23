@@ -3,8 +3,8 @@ import posting
 import tokenizer
 
 class InvertedIndex:
-    def __init__(self):
-        self.current_doc_id: int = 1
+    def __init__(self, current_doc_id: int = 1):
+        self.current_doc_id: int = current_doc_id
         # ? We want both the postings and the dictionary keys to be in the sorted order for faster retrieval, also we cannot expect 
         # ? the hash of every word to be different so many we do something where like each dictionary points to a list of words of that alphabet alone
         self.dictionary: posting.Dictionary = posting.Dictionary()

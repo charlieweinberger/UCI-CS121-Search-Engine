@@ -6,26 +6,21 @@ from typing import List
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-from nltk.tokenize import TweetTokenizer as NLTKTokenizer
 
 
 class Tokenizer:
     def __init__(self):
-        self.tokenizer = NLTKTokenizer()
+        self.tokenizer = r'[A-Za-z0-9]+'
         self.stop_words = set(stopwords.words('english'))
         self.porter_stemmer = PorterStemmer()
 
     # We cannot convert tokens int a set ever since we would lose count of how many times it shows up
     def tokenize(self, text: str) -> List[str]:
         # split the input text into tokens
-        tokens = self.tokenizer.tokenize(text.lower())
+        tokens = nltk.regexp_tokenize(text, self.tokenizer)
         # remove stop words
         tokens = [self.porter_stemmer.stem(word, to_lowercase=True) for word in tokens if word.lower()
-                  not in self.stop_words]
-
-        #  ? We could potentially down the route achieve a porter stemmer using something like a dictionary we get online and seeing hte stemmed values
-        #  ? and then if the dict fails use the porter stemmer available in nltk
-        tokens = list(filter(lambda x: x.isalnum(), tokens))
+                  not in self.stop_words and len(word) > 2]
         return tokens
 
 
