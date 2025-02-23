@@ -15,3 +15,6 @@
   - [ ] Ensure search reads postings from disk, not memory
 - [ ] Searcher
 - [ ] ensure speed is less than 300ms
+- [ ] Potentially making the indexing and the querying process parallel/multi-threaded
+- [ ] Implement a ranking algorithm
+- [ ] Implement a spell checker
