@@ -14,21 +14,22 @@ def generator_files(path: str):
         for file in files:
             yield os.path.join(root, file)
 
+
 class Document:
     def __init__(self, file_path: str):
         self.data = download_json(file_path)
         self.file_path = file_path
         self.url = self.data['url']
-        self.content = self.data['content']
+        self.content = self.get_only_text(self.data['content'])
 
     # * In important Note, verify the dom structure validity
     def verify_content_HTML(self):
         try:
-            parser = BeautifulSoup(self.content, 'html.parser')
+            BeautifulSoup.BeautifulSoup(self.data['content'], 'html.parser')
             return True
         except:
             return False
 
-    def get_only_text(self):
-        parser = BeautifulSoup(self.content, 'html.parser')
+    def get_only_text(self, content: str) -> str:
+        parser = BeautifulSoup.BeautifulSoup(content, 'html.parser')
         return parser.get_text()

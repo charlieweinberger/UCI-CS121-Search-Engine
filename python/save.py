@@ -12,14 +12,14 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
     """
     # Convert index to serializable format
     index_data = {}
-    for token, postings in inverted_index.dictionary.items():
+    for (token, postings) in inverted_index.dictionary.dictionary.items():
         index_data[token] = [
-            {"doc_id": posting.doc_id, "term_freq": posting.term_freq}
-            for posting in postings
+            {"doc_id": posting.doc_id, "term_freq": posting.frequency}
+            for posting in postings.postings
         ]
 
     num_documents = inverted_index.current_doc_id - 1  # Subtract 1 since current_doc_id is next available ID
-    num_unique_tokens = len(inverted_index.dictionary)
+    num_unique_tokens = len(inverted_index.dictionary.dictionary)
     # Create output dictionary with statistics
     output = {
         "statistics": {
