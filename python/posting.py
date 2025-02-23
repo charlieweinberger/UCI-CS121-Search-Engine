@@ -30,7 +30,7 @@ class Postings:
         self.postings: List[SinglePosting] = []
         self.size: int = 0
         # ? for later perhaps adding a skip index for each posting list
-        self.skip_index: Tuple[int, int] = [] # (doc_id, index)
+        self.skip_index: Tuple[int, int] = []  # (doc_id, index)
         # ? We could perhaps remove this since the dictionary manages this and we want to save every single bit possible
         self.word: str = word
 
@@ -42,10 +42,19 @@ class Postings:
         heapq.heappush(self.postings, new_posting)
 
     def update_frequency(self, doc_id: int, frequency_increment: int):
-        for posting in self.postings:
-            if posting.doc_id == doc_id:
-                posting.update_frequency(frequency_increment)
+        left, right = 0, len(self.postings) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+            if self.postings[mid].doc_id == doc_id:
+                self.postings[mid].update_frequency(frequency_increment)
                 return
+            elif self.postings[mid].doc_id < doc_id:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        # If we get here, the doc_id wasn't found
         # ! This adds the posting if not there, might cause confusing behaviour
         self.add_posting(doc_id, frequency_increment)
 

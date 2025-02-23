@@ -3,6 +3,7 @@ import os
 from indexer import InvertedIndex
 import json
 
+
 def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
     """
     Save inverted index to a file along with statistics
@@ -12,13 +13,16 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
     """
     # Convert index to serializable format
     index_data = {}
-    for (token, postings) in inverted_index.dictionary.dictionary.items():
-        index_data[token] = [
+    dictionary = inverted_index.dictionary.dictionary
+    for key in inverted_index.dictionary.keys:
+        postings = dictionary[key]
+        index_data[key] = [
             {"doc_id": posting.doc_id, "term_freq": posting.frequency}
             for posting in postings.postings
         ]
 
-    num_documents = inverted_index.current_doc_id - 1  # Subtract 1 since current_doc_id is next available ID
+    # Subtract 1 since current_doc_id is next available ID
+    num_documents = inverted_index.current_doc_id - 1
     num_unique_tokens = len(inverted_index.dictionary.dictionary)
     # Create output dictionary with statistics
     output = {
