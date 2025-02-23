@@ -63,18 +63,29 @@ class Postings:
 class Dictionary:
     def __init__(self):
         self.dictionary = {}
+        self.keys = []
 
     def add_posting(self, word: str, doc_id: int, frequency: int):
         # if word not in self.dictionary:
         # add the word to the dictionary with the default value of a Posting with the word and empty list of postings
 
-        self.dictionary.get(word, Postings(word)).add_posting(doc_id, frequency)
+        self.dictionary.get(word, Postings(
+            word)).add_posting(doc_id, frequency)
+        heapq.heappush(self.keys, word)
         self.dictionary[word].add_posting(doc_id, frequency)
 
     def update_frequency(self, word: str, doc_id: int, frequency_increment: int):
         # ! This adds the word if not there, might cause confusing behaviour
-        self.dictionary.get(word, Postings(word)).update_frequency(doc_id, frequency_increment)
-        self.dictionary[word].update_frequency(doc_id, frequency_increment)
+        if word not in self.dictionary:
+            self.add_posting(word, doc_id, frequency_increment)
+        else:
+            self.dictionary[word].update_frequency(doc_id, frequency_increment)
+
+    def add_token(self, token: str, doc_id: int):
+        if token not in self.dictionary:
+            self.add_posting(token, doc_id, 1)
+        else:
+            self.update_frequency(token, doc_id, 1)
 
     def __str__(self):
         return str(self.dictionary)
