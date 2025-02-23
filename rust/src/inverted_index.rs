@@ -76,7 +76,7 @@ impl InvertedIndexSplit {
         }
     }
 
-    pub fn write_to_disk(&self) -> std::io::Result<()> {
+    pub fn write_to_disk(&self, location: String) -> std::io::Result<()> {
         // Helper function to convert an InvertedIndex to JSON
         fn index_to_json(index: &InvertedIndex) -> Value {
             let mut entries = Vec::new();
@@ -99,8 +99,9 @@ impl InvertedIndexSplit {
 
         // Write each index to its own file
         let write_index = |filename: &str, index: &InvertedIndex| -> std::io::Result<()> {
+            std::fs::create_dir_all(&location)?;
             let json_data = index_to_json(index);
-            let mut file = File::create(filename)?;
+            let mut file = File::create(format!("{}/{}", location, filename))?;
             let formatted = serde_json::to_string_pretty(&json_data)?;
             file.write_all(formatted.as_bytes())?;
             Ok(())
