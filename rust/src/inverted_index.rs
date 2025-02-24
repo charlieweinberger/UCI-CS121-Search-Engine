@@ -44,7 +44,7 @@ impl InvertedIndex {
                 .entry(term.clone())
                 .or_insert(Postings::new(term));
             for posting in postings.get_postings() {
-                self_postings.update_frequency(posting.doc_id);
+                self_postings.update_frequency(posting.1.doc_id);
             }
         }
     }
@@ -98,7 +98,7 @@ impl InvertedIndexSplit {
                     let postings_str: String = postings
                         .get_postings()
                         .iter()
-                        .map(|post| format!("{}|{}", post.doc_id, post.term_freq))
+                        .map(|post| format!("{}|{}", post.1.doc_id, post.1.term_freq))
                         .collect::<Vec<_>>()
                         .join(",");
 

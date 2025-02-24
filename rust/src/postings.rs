@@ -1,11 +1,11 @@
-use std::f32::consts::E;
+use std::collections::BTreeMap;
 
 use crate::single_posting::Posting;
 
 #[derive(Clone)]
 pub struct Postings {
     pub word: String,
-    postings: Vec<Posting>,
+    postings: BTreeMap<u32, Posting>,
     skip_list: Vec<SkipList>,
 }
 
@@ -19,35 +19,31 @@ impl Postings {
     pub fn new(term: String) -> Postings {
         Postings {
             word: term,
-            postings: Vec::new(),
+            postings: BTreeMap::new(),
             skip_list: Vec::new(),
         }
     }
 
     pub fn push(&mut self, posting: Posting) {
         // Find the position where the new posting should be inserted
-        let insert_pos = self
-            .postings
-            .binary_search_by_key(&posting.doc_id, |p| p.doc_id)
-            .unwrap_or_else(|pos| pos);
-        // Insert the posting at the correct position
-        self.postings.insert(insert_pos, posting);
+        self.postings.insert(posting.doc_id, posting);
     }
-
+    // Tested with using binary heap instead of vec, timing shows that it takes 200 more seconds at a batch size of 10k
+    // which makes sense since you have to drain, you can really insert, though I should try a btreemap
     pub fn update_frequency(&mut self, doc_id: u32) {
-        let pos = self.postings.binary_search_by_key(&doc_id, |p| p.doc_id);
-        match pos {
-            Ok(pos) => {
-                self.postings[pos].increment_freq();
-            }
-            Err(_) => {
-                self.push(Posting::new(doc_id, 1));
-            }
+        if let Some(posting) = self.postings.get_mut(&doc_id) {
+            posting.increment_freq();
+        } else {
+            self.push(Posting::new(doc_id, 1));
         }
     }
 
-    pub fn get_postings(&self) -> &Vec<Posting> {
+    pub fn get_postings(&self) -> &BTreeMap<u32, Posting> {
         &self.postings
+    }
+
+    pub fn get_postings_mut(&mut self) -> &mut BTreeMap<u32, Posting> {
+        &mut self.postings
     }
 
     pub fn load_postings(line: &str) -> Result<Postings, &'static str> {
@@ -70,20 +66,8 @@ impl Postings {
         if self.word != other.word {
             panic!("Merging two different terms");
         }
-        let mut i = 0;
-        let mut j = 0;
-        while i < self.postings.len() && j < other.postings.len() {
-            if self.postings[i].doc_id < other.postings[j].doc_id {
-                i += 1;
-            } else if self.postings[i].doc_id > other.postings[j].doc_id {
-                self.postings.insert(i, other.postings[j].clone());
-                i += 1;
-                j += 1;
-            }
-        }
-        while j < other.postings.len() {
-            self.postings.push(other.postings[j].clone());
-            j += 1;
+        for (doc_id, posting) in other.postings {
+            self.postings.insert(doc_id, posting);
         }
     }
 
@@ -92,6 +76,7 @@ impl Postings {
         result.push_str(&self.word);
         result.push(':');
         for posting in &self.postings {
+            let posting = posting.1;
             result.push_str(&format!("{}|{},", posting.doc_id, posting.term_freq));
         }
         result.pop();

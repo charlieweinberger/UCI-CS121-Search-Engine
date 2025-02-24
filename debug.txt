@@ -1,0 +1,47 @@
+Python:
+    Index saved successfully:
+    Number of indexed documents: 5000
+    Number of unique tokens: 643716
+    Index size on disk: 25814.232421875 KB
+    359.3252775669098
+    Index saved successfully:
+    Number of indexed documents: 10000
+    Number of unique tokens: 664153
+    Index size on disk: 32265.9521484375 KB
+    420.1395559310913
+    Index saved successfully:
+    Number of indexed documents: 15000
+    Number of unique tokens: 674010
+    Index size on disk: 45474.884765625 KB
+    583.7973709106445
+    Index saved successfully:
+    Number of indexed documents: 20000
+    Number of unique tokens: 805009
+    Index size on disk: 54413.0556640625 KB
+    1030.8687326908112
+    Index saved successfully:
+    Number of indexed documents: 25000
+    Number of unique tokens: 833431
+    Index size on disk: 59392.3525390625 KB
+    1556.334186553955
+    Index saved successfully:
+    Number of indexed documents: 30000
+    Number of unique tokens: 915297
+    Index size on disk: 65467.2587890625 KB
+    1669.7926614284515
+
+
+Rust:
+    Non Release:
+        Successfully written batch to disk
+        Processed 5000 documents in 506 seconds
+        Successfully written batch to disk
+        Processed 10000 documents in 556 seconds
+        Successfully written batch to disk
+        Processed 15000 documents in 637 seconds
+        Successfully written batch to disk
+        Processed 20000 documents in 1077 seconds
+        Successfully written batch to disk
+        Processed 25000 documents in 1601 seconds
+        Successfully written batch to disk
+        Processed 30000 documents in 1715 seconds

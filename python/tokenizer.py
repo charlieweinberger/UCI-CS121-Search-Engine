@@ -11,15 +11,14 @@ from nltk.stem import PorterStemmer
 class Tokenizer:
     def __init__(self):
         self.tokenizer = r'[A-Za-z0-9]+'
-        self.stop_words = set(stopwords.words('english'))
         self.porter_stemmer = PorterStemmer()
 
     # We cannot convert tokens int a set ever since we would lose count of how many times it shows up
     def tokenize(self, text: str) -> List[str]:
         # split the input text into tokens
         tokens = nltk.regexp_tokenize(text, self.tokenizer)
-        tokens = [self.porter_stemmer.stem(word, to_lowercase=True) for word in tokens if word.lower()
-                  not in self.stop_words and len(word) > 2]
+        tokens = [self.porter_stemmer.stem(
+            word, to_lowercase=True) for word in tokens if word.lower()]
         return tokens
 
 
