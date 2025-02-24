@@ -12,8 +12,8 @@ impl Tokenizer {
         pattern
             .split(token)
             .map(|s| s.to_lowercase())
-            .filter(|s| !self.stop_words(s))
             .map(|s| self.porter_stemmer(&s))
+            .filter(|s| !s.is_empty())
             .collect::<Vec<String>>()
     }
 
