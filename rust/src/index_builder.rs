@@ -1,16 +1,16 @@
 use std::collections::HashMap;
-use std::fs;
+use std::{fs, time};
 use crate::inverted_index;
 use serde::Deserialize;
 
 const PATH: &str = "../developer/DEV/";
-const BATCH_SIZE: u32 = 10000; // Define the batch size
+pub const BATCH_SIZE: u32 = 5000; // Define the batch size
 
 pub fn main() {
     let mut doc_id = 1;
     let mut id_book: HashMap<u32, String> = HashMap::new();
     let mut inverted_indexes = inverted_index::InvertedIndexSplit::new();
-
+    let time = time::Instant::now();
     for dir_entry in fs::read_dir(PATH).unwrap() {
         let dir = dir_entry.unwrap();
         if dir.path().is_dir() {
@@ -34,6 +34,7 @@ pub fn main() {
                             Err(e) => println!("Error writing to disk: {}", e),
                         }
                         inverted_indexes = inverted_index::InvertedIndexSplit::new();
+                        println!("Processed {} documents in {} seconds", doc_id, time.elapsed().as_secs());
                     }
                     doc_id += 1;
                 }

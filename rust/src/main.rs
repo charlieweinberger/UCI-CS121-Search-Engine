@@ -1,7 +1,3 @@
-use postings::Postings;
-use std::fs;
-use std::io::{BufRead, BufReader, LineWriter, Seek, Write};
-
 pub mod inverted_index;
 pub mod postings;
 pub mod single_posting;
@@ -11,7 +7,7 @@ pub mod lazy_merger;
 
 fn main() {
     // ! BUILD INDEX
-    // index_builder::main();
+    index_builder::main();
     // ! MERGE BATCHES
     // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
     // lazy_merger::main();

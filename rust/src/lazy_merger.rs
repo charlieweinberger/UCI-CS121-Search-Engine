@@ -1,9 +1,8 @@
 use std::fs;
 use std::io::{BufRead, BufReader, LineWriter, Write};
 use crate::postings::Postings;
+use crate::index_builder::BATCH_SIZE;
 
-
-const BATCH_SIZE: u32 = 10000;
 
 pub fn main() {
     fs::create_dir_all("inverted_index/merged").unwrap_or_default();

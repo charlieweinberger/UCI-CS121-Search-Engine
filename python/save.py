@@ -1,10 +1,12 @@
 # save the inverted index to a file
 import os
 from indexer import InvertedIndex
+import time
 
 total_documents = 0
 total_tokens = set()
 total_size = 0
+current = time.time()
 
 
 def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
@@ -29,7 +31,7 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
             f.write(f"{token} {postings_str}\n")
     # Calculate and add file size in KB
     file_size_kb = os.path.getsize(output_path) / 1024
-    global total_documents, total_tokens, total_size
+    global total_documents, total_tokens, total_size, current
     total_documents = num_documents
     total_tokens.update(inverted_index.dictionary.keys)
     total_size += file_size_kb
@@ -38,3 +40,4 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
     print(f"Number of indexed documents: {total_documents}")
     print(f"Number of unique tokens: {len(total_tokens)}")
     print(f"Index size on disk: {total_size} KB")
+    print(time.time() - current)

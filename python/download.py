@@ -36,7 +36,6 @@ class Document:
             elements = parser.find_all(tag)
             for element in elements:
                 important_text.append(element.get_text().strip())
-        print(important_text)
         # Add important text 5 times at the end, separated by spaces
         if important_text:
             important_string = ' '.join(important_text)
