@@ -112,4 +112,13 @@ impl InvertedIndexSplit {
 
         Ok(())
     }
+
+    pub fn merge_indexes(&mut self, other: InvertedIndexSplit) -> InvertedIndexSplit {
+        let mut merged = InvertedIndexSplit::new();
+        merged.a_f.merge(other.a_f);
+        merged.g_p.merge(other.g_p);
+        merged.q_z.merge(other.q_z);
+        merged.zero_nine.merge(other.zero_nine);
+        merged
+    }
 }

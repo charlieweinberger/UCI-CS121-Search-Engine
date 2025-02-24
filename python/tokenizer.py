@@ -10,7 +10,7 @@ from nltk.stem import PorterStemmer
 
 class Tokenizer:
     def __init__(self):
-        self.tokenizer = r'[^A-Za-z0-9]+$'
+        self.tokenizer = r'[A-Za-z0-9]+'
         self.stop_words = set(stopwords.words('english'))
         self.porter_stemmer = PorterStemmer()
 
@@ -18,7 +18,6 @@ class Tokenizer:
     def tokenize(self, text: str) -> List[str]:
         # split the input text into tokens
         tokens = nltk.regexp_tokenize(text, self.tokenizer)
-        # remove stop words
         tokens = [self.porter_stemmer.stem(word, to_lowercase=True) for word in tokens if word.lower()
                   not in self.stop_words and len(word) > 2]
         return tokens
@@ -29,7 +28,10 @@ if __name__ == "__main__":
     tokenizer = Tokenizer()
     text = "This is a simple text."
     text2 = "THIS IS  A simpler TEXT WITH MORE WORDS."
+    text3 = "aren't loop"
     tokens = tokenizer.tokenize(text)
     print(tokens)
     tokens = tokenizer.tokenize(text2)
+    print(tokens)
+    tokens = tokenizer.tokenize(text3)
     print(tokens)
