@@ -1,6 +1,8 @@
+use postings::Postings;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
+use std::io::{BufRead, Seek, Write};
 
 pub mod inverted_index;
 pub mod postings;
@@ -59,6 +61,86 @@ fn main() {
         if let Err(e) = fs::write("id_book.json", serialized) {
             println!("Error writing id_book to file: {}", e);
         }
+    }
+
+    // ! MERGE BATCHES
+    // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
+    // Create directory for merged index if it doesn't exist
+    fs::create_dir_all("inverted_index/merged").unwrap_or_default();
+    // Merge all batches into a single file
+    let mut readers = Vec::new();
+    let mut lines = Vec::new();
+
+    // Open all files
+    for i in 0..((doc_id - 1) / BATCH_SIZE + 1) {
+        for words in ["a_f", "g_p", "q_z", "0_9"].iter() {
+            if let Ok(file) = fs::File::open(format!("inverted_index/{}/{}.txt", i, words)) {
+                // like in python, this is creating a buffer  reader for each file and appending it
+                // (other solution is storing each file and reading using a trait and custom reader from my own buffer but thats to complex for now)
+                readers.push(std::io::BufReader::new(file));
+                // for each reader there is the line buffer
+                lines.push(String::new());
+            }
+        }
+    }
+
+    let mut merged_file = fs::File::create("inverted_index/merged/complete.txt").unwrap();
+    let mut active_indices: Vec<usize> = (0..readers.len()).collect();
+    let mut needs_new_line = vec![true; readers.len()]; // Cache for whether a reader needs a new line
+
+    while !active_indices.is_empty() {
+        // Read lines and get valid postings
+        let mut current_postings = Vec::new();
+
+        for &idx in &active_indices {
+            if needs_new_line[idx] {
+                lines[idx].clear();
+                // read_line returns the number of bytes read, 0 if EOF
+                if readers[idx].read_line(&mut lines[idx]).unwrap() > 0 {
+                    if let Ok(posting) = Postings::load_postings(&lines[idx]) {
+                        current_postings.push((idx, posting));
+                    }
+                }
+            } else if let Ok(posting) = Postings::load_postings(&lines[idx]) {
+                current_postings.push((idx, posting));
+            }
+        }
+        if current_postings.is_empty() {
+            break;
+        }
+
+        current_postings.sort_by(|a, b| a.1.word.cmp(&b.1.word));
+        let smallest_term = current_postings[0].1.word.clone();
+
+        // merge all postings with smallest term
+        let mut merged = Postings::new(smallest_term.clone());
+        let mut to_remove = Vec::new();
+
+        for (reader_idx, posting) in current_postings {
+            if posting.word == smallest_term {
+                merged.merge(posting);
+                needs_new_line[reader_idx] = true;
+                lines[reader_idx].clear();
+                if readers[reader_idx]
+                    .read_line(&mut lines[reader_idx])
+                    .unwrap()
+                    == 0
+                {
+                    to_remove.push(reader_idx);
+                }
+            } else {
+                needs_new_line[reader_idx] = false;
+            }
+        }
+
+        // Write merged posting
+        merged_file
+            .write_all(merged.save_postings().as_bytes())
+            .unwrap();
+        merged_file.write_all(b"\n").unwrap();
+
+        // Remove completed readers
+        active_indices.retain(|&idx| !to_remove.contains(&idx));
     }
 }
 

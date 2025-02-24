@@ -1,5 +1,3 @@
-use serde_json::{json, Value};
-
 use crate::postings::Postings;
 use crate::tokenizer::Tokenizer;
 use std::{
@@ -8,7 +6,7 @@ use std::{
     io::Write,
 };
 
-#[allow(dead_code)]
+#[derive(Clone)]
 pub struct InvertedIndex {
     index: HashMap<String, Postings>,
     ordered_keys: BTreeSet<String>,
@@ -24,7 +22,10 @@ impl InvertedIndex {
     }
 
     pub fn insert(&mut self, term: String, doc_id: u32) {
-        let postings = self.index.entry(term.clone()).or_insert(Postings::new());
+        let postings = self
+            .index
+            .entry(term.clone())
+            .or_insert(Postings::new(term.clone()));
         postings.update_frequency(doc_id);
         self.ordered_keys.insert(term);
     }
@@ -38,7 +39,10 @@ impl InvertedIndex {
     }
     pub fn merge(&mut self, other: InvertedIndex) {
         for (term, postings) in other.index {
-            let self_postings = self.index.entry(term).or_insert(Postings::new());
+            let self_postings = self
+                .index
+                .entry(term.clone())
+                .or_insert(Postings::new(term));
             for posting in postings.get_postings() {
                 self_postings.update_frequency(posting.doc_id);
             }
@@ -93,7 +97,7 @@ impl InvertedIndexSplit {
                     let postings_str: String = postings
                         .get_postings()
                         .iter()
-                        .map(|post| format!("({}|{})", post.doc_id, post.term_freq))
+                        .map(|post| format!("{}|{}", post.doc_id, post.term_freq))
                         .collect::<Vec<_>>()
                         .join(",");
 
@@ -111,14 +115,5 @@ impl InvertedIndexSplit {
         write_index_to_file(&self.zero_nine, &format!("{}/0_9.txt", location))?;
 
         Ok(())
-    }
-
-    pub fn merge_indexes(&mut self, other: InvertedIndexSplit) -> InvertedIndexSplit {
-        let mut merged = InvertedIndexSplit::new();
-        merged.a_f.merge(other.a_f);
-        merged.g_p.merge(other.g_p);
-        merged.q_z.merge(other.q_z);
-        merged.zero_nine.merge(other.zero_nine);
-        merged
     }
 }

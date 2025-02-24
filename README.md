@@ -24,6 +24,8 @@ members on this project, but you are not required to do so.
 
 ### Instructions to run the code
 
+Please run the python version of the code since the rust version is unstable and incomplete!
+
 Make the partial index using:
 
 ```bash

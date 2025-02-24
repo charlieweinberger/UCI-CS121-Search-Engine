@@ -1,17 +1,11 @@
 use porter_stemmer::stem;
 use regex::Regex;
-use std::collections::HashSet;
 pub struct Tokenizer {
-    pub stopwords: HashSet<String>,
 }
 
 impl Tokenizer {
     pub fn new() -> Tokenizer {
-        let stopwords = include_str!("../data/stopwords.txt")
-            .lines()
-            .map(|s| s.to_string())
-            .collect::<HashSet<String>>();
-        Tokenizer { stopwords }
+        Tokenizer { }
     }
     pub fn tokenize(&self, token: &str) -> Vec<String> {
         let pattern = Regex::new(r"[^a-zA-Z0-9]+").unwrap();
@@ -27,10 +21,4 @@ impl Tokenizer {
         stem(token)
     }
 
-    pub fn stop_words(&self, token: &str) -> bool {
-        if token.len() <= 2 {
-            return true;
-        }
-        self.stopwords.contains(token)
-    }
 }

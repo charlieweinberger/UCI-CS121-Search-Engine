@@ -24,5 +24,22 @@ class Document:
         self.content = self.get_only_text(self.data['content'])
 
     def get_only_text(self, content: str) -> str:
-        parser = BeautifulSoup.BeautifulSoup(content, 'html.parser', from_encoding=self.encoding)
-        return parser.get_text()
+        parser = BeautifulSoup.BeautifulSoup(
+            content, 'html.parser', from_encoding=self.encoding)
+        text = parser.get_text()
+
+        # Get important text from relevant tags
+        important_tags = ['b', 'strong', 'h1', 'h2', 'h3', 'title']
+        important_text = []
+
+        for tag in important_tags:
+            elements = parser.find_all(tag)
+            for element in elements:
+                important_text.append(element.get_text().strip())
+        print(important_text)
+        # Add important text 5 times at the end, separated by spaces
+        if important_text:
+            important_string = ' '.join(important_text)
+            text = text + ' ' + ' '.join([important_string] * 5)
+
+        return text
