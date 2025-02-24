@@ -2,6 +2,7 @@ from io import TextIOWrapper
 import os
 from typing import List
 from posting import Postings
+import json
 
 
 def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
@@ -69,3 +70,18 @@ if __name__ == "__main__":
                 readers[idx].close()
                 active_indices.remove(idx)
     final_file_appender.close()
+
+    # also making the phone book of getting the docid to file location
+    current_path = "../developer/DEV"
+    batches = []
+    for root, _, files in os.walk(current_path):
+        batches.extend([os.path.join(root, file) for file in files])
+
+    # Create mapping of docid to file location
+    docid_to_file = {}
+    for i, file_path in enumerate(sorted(batches), 1):
+        docid_to_file[i] = file_path
+
+    # Write the mapping to phonebook.json
+    with open('phonebook.json', 'w', encoding='utf-8') as f:
+        json.dump(docid_to_file, f, indent=2)
