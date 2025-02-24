@@ -1,14 +1,14 @@
-use std::collections::HashMap;
-use std::{fs, time};
 use crate::inverted_index;
 use serde::Deserialize;
+use std::collections::HashMap;
+use std::{fs, time};
 
 const PATH: &str = "../developer/DEV/";
-pub const BATCH_SIZE: u32 = 5000; // Define the batch size
+pub const BATCH_SIZE: u16 = 5000; // Define the batch size
 
 pub fn main() {
     let mut doc_id = 1;
-    let mut id_book: HashMap<u32, String> = HashMap::new();
+    let mut id_book: HashMap<u16, String> = HashMap::new();
     let mut inverted_indexes = inverted_index::InvertedIndexSplit::new();
     let time = time::Instant::now();
     for dir_entry in fs::read_dir(PATH).unwrap() {
@@ -34,7 +34,11 @@ pub fn main() {
                             Err(e) => println!("Error writing to disk: {}", e),
                         }
                         inverted_indexes = inverted_index::InvertedIndexSplit::new();
-                        println!("Processed {} documents in {} seconds", doc_id, time.elapsed().as_secs());
+                        println!(
+                            "Processed {} documents in {} seconds",
+                            doc_id,
+                            time.elapsed().as_secs()
+                        );
                     }
                     doc_id += 1;
                 }
@@ -67,7 +71,7 @@ struct Document {
 }
 
 fn get_only_text_from_html(content: &str, encoding: String) -> String {
-    let ascii_content = if encoding.to_lowercase().contains("ascii") {
+    let ascii_content: String = if encoding.to_lowercase().contains("ascii") {
         content.chars().filter(|c| c.is_ascii()).collect::<String>()
     } else {
         match encoding.to_lowercase().as_str() {

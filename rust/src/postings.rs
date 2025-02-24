@@ -5,14 +5,14 @@ use crate::single_posting::Posting;
 #[derive(Clone)]
 pub struct Postings {
     pub word: String,
-    postings: BTreeMap<u32, Posting>,
+    postings: BTreeMap<u16, Posting>,
     skip_list: Vec<SkipList>,
 }
 
 #[derive(Clone)]
 pub struct SkipList {
-    doc_id: u32,
-    index: u32,
+    doc_id: u16,
+    index: u16,
 }
 
 impl Postings {
@@ -30,7 +30,7 @@ impl Postings {
     }
     // Tested with using binary heap instead of vec, timing shows that it takes 200 more seconds at a batch size of 10k
     // which makes sense since you have to drain, you can really insert, though I should try a btreemap
-    pub fn update_frequency(&mut self, doc_id: u32) {
+    pub fn update_frequency(&mut self, doc_id: u16) {
         if let Some(posting) = self.postings.get_mut(&doc_id) {
             posting.increment_freq();
         } else {
@@ -38,11 +38,11 @@ impl Postings {
         }
     }
 
-    pub fn get_postings(&self) -> &BTreeMap<u32, Posting> {
+    pub fn get_postings(&self) -> &BTreeMap<u16, Posting> {
         &self.postings
     }
 
-    pub fn get_postings_mut(&mut self) -> &mut BTreeMap<u32, Posting> {
+    pub fn get_postings_mut(&mut self) -> &mut BTreeMap<u16, Posting> {
         &mut self.postings
     }
 
@@ -55,8 +55,8 @@ impl Postings {
         for single_posting in postings_str.split(",") {
             let (doc_id, term_frequency) = single_posting.split_once("|").unwrap();
             postings.push(Posting::new(
-                doc_id.trim().parse::<u32>().unwrap(),
-                term_frequency.trim().parse::<u32>().unwrap(),
+                doc_id.trim().parse::<u16>().unwrap(),
+                term_frequency.trim().parse::<u16>().unwrap(),
             ));
         }
         return Ok(postings);

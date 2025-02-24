@@ -1,7 +1,7 @@
 #[derive(Debug, Clone)]
 pub struct Posting {
-    pub doc_id: u32,
-    pub term_freq: u32,
+    pub doc_id: u16,
+    pub term_freq: u16,
 }
 
 impl Ord for Posting {
@@ -28,7 +28,7 @@ impl PartialEq for Posting {
 
 #[allow(dead_code)]
 impl Posting {
-    pub fn new(doc_id: u32, term_freq: u32) -> Posting {
+    pub fn new(doc_id: u16, term_freq: u16) -> Posting {
         Posting { doc_id, term_freq }
     }
 

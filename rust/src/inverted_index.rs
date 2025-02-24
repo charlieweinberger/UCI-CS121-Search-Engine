@@ -21,7 +21,7 @@ impl InvertedIndex {
         }
     }
 
-    pub fn insert(&mut self, term: String, doc_id: u32) {
+    pub fn insert(&mut self, term: String, doc_id: u16) {
         let postings = self
             .index
             .entry(term.clone())
@@ -74,7 +74,7 @@ impl InvertedIndexSplit {
         }
     }
 
-    pub fn add_document(&mut self, doc_id: u32, content: &str) {
+    pub fn add_document(&mut self, doc_id: u16, content: &str) {
         for term in self.tokenizer.tokenize(content) {
             let term = term.to_lowercase();
 

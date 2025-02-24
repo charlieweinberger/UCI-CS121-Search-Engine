@@ -30,6 +30,8 @@ Python:
     Index size on disk: 65467.2587890625 KB
     1669.7926614284515
 
+    FINAL: 
+    2584s : 43.06666666666667 minutes
 
 Rust:
     Non Release:
