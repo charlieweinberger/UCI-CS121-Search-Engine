@@ -37,6 +37,7 @@ class Postings:
         new_posting = SinglePosting(doc_id, frequency)
         # using a minheap to maintain the order of the postings,
         # the nice thing about heapq, it is a min heap by default and keeps the data structure as a list, so we can index it and use it as a list
+        # Complexity: O(log n) for push and O(1) for pop
         heapq.heappush(self.postings, new_posting)
 
     def update_frequency(self, doc_id: int, frequency_increment: int):
