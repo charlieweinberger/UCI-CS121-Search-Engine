@@ -10,7 +10,7 @@ from nltk.stem import PorterStemmer
 
 class Tokenizer:
     def __init__(self):
-        self.tokenizer = r'[A-Za-z0-9]+'
+        self.tokenizer = r'[^A-Za-z0-9]+$'
         self.stop_words = set(stopwords.words('english'))
         self.porter_stemmer = PorterStemmer()
 

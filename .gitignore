@@ -2,5 +2,7 @@
 /rust/target
 /rust/Cargo.lock
 assignment.pdf
-/python/
+/python/final_index.txt
+/python/indexes
+/python/__pycache__
 /rust/inverted_index/

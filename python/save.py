@@ -2,6 +2,10 @@
 import os
 from indexer import InvertedIndex
 
+total_documents = 0
+total_tokens = set()
+total_size = 0
+
 
 def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
     """
@@ -19,14 +23,18 @@ def save_inverted_index(inverted_index: InvertedIndex, output_path: str):
         for token in inverted_index.dictionary.keys:
             postings = dictionary[token].postings
             # Create a string for the postings list: "docID:termFreq"
-            postings_str = ",".join(f"{posting.doc_id}:{posting.frequency}" for posting in postings)
+            postings_str = ",".join(
+                f"{posting.doc_id}:{posting.frequency}" for posting in postings)
             # Write a line: "token docID1:termFreq1 docID2:termFreq2 ..."
             f.write(f"{token} {postings_str}\n")
     # Calculate and add file size in KB
     file_size_kb = os.path.getsize(output_path) / 1024
-
+    global total_documents, total_tokens, total_size
+    total_documents = num_documents
+    total_tokens.update(inverted_index.dictionary.keys)
+    total_size += file_size_kb
     # Print statistics
     print("Index saved successfully:")
-    print(f"Number of indexed documents: {num_documents}")
-    print(f"Number of unique tokens: {len(dictionary)}")
-    print(f"Index size on disk: {file_size_kb:.2f} KB")
+    print(f"Number of indexed documents: {total_documents}")
+    print(f"Number of unique tokens: {len(total_tokens)}")
+    print(f"Index size on disk: {total_size} KB")

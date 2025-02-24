@@ -3,6 +3,7 @@
 from typing import Self, Dict, List, Tuple
 import heapq
 
+
 class SinglePosting:
     def __init__(self, doc_id: int, frequency: int):
         self.doc_id: int = doc_id
@@ -58,10 +59,53 @@ class Postings:
         self.add_posting(doc_id, frequency_increment)
 
     def __str__(self):
-        return f"word: {self.word}, postings: {self.postings}"
+        string = f"{self.word} "
+        for posting in self.postings:
+            string += f"{posting.doc_id}:{posting.frequency}, "
+        string = string[:-2]
+        return string
 
     def __len__(self):
         return self.size
+
+    @staticmethod
+    def construct_postings(line: str) -> Self:
+        # line is of the form "Token docID1:termFreq1, docID2:termFreq2, ..."
+        token, postings = line.split(" ", 1)
+        new_posting = Postings(token)
+        for posting in postings.split(","):
+            doc_id, frequency = posting.split(":")
+            new_posting.add_posting(int(doc_id), int(frequency))
+        return new_posting
+
+    def merge_postings(self, other: Self) -> Self:
+        # merge two posting lists
+        if self.word != other.word:
+            raise ValueError(
+                f"Cannot merge postings of different words: {self.word} and {other.word}")
+        new_postings = Postings(self.word)
+        i, j = 0, 0
+        while i < len(self.postings) and j < len(other.postings):
+            # doc_id will never be the same in two postings since the batches operate on different documents
+            if self.postings[i] < other.postings[j]:
+                new_postings.add_posting(
+                    self.postings[i].doc_id, self.postings[i].frequency)
+                i += 1
+            else:
+                new_postings.add_posting(
+                    other.postings[j].doc_id, other.postings[j].frequency)
+                j += 1
+        # add the remaining postings if self is bigger
+        while i < len(self.postings):
+            new_postings.add_posting(
+                self.postings[i].doc_id, self.postings[i].frequency)
+            i += 1
+        # same but other
+        while j < len(other.postings):
+            new_postings.add_posting(
+                other.postings[j].doc_id, other.postings[j].frequency)
+            j += 1
+        return new_postings
 
 
 class Dictionary:

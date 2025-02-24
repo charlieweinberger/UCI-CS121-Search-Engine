@@ -1,6 +1,5 @@
 use crate::single_posting::Posting;
 
-#[allow(dead_code)]
 pub struct Postings {
     postings: Vec<Posting>,
     skip_list: Vec<SkipList>,
