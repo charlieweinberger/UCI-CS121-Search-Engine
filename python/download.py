@@ -20,16 +20,9 @@ class Document:
         self.data = download_json(file_path)
         self.file_path = file_path
         self.url = self.data['url']
+        self.encoding = self.data['encoding']
         self.content = self.get_only_text(self.data['content'])
 
-    # * In important Note, verify the dom structure validity
-    def verify_content_HTML(self):
-        try:
-            BeautifulSoup.BeautifulSoup(self.data['content'], 'html.parser')
-            return True
-        except:
-            return False
-
     def get_only_text(self, content: str) -> str:
-        parser = BeautifulSoup.BeautifulSoup(content, 'html.parser')
+        parser = BeautifulSoup.BeautifulSoup(content, 'html.parser', from_encoding=self.encoding)
         return parser.get_text()

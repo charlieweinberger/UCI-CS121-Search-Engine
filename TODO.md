@@ -1,10 +1,10 @@
 # TODO
 
-- [ ] Make Report
+- [X] Make Report
 
-  - [ ] The number of indexed documents
-  - [ ] The number of unique words
-  - [ ] The total size on hard disk in KB
+  - [X] The number of indexed documents
+  - [X] The number of unique words
+  - [X] The total size on hard disk in KB
 
 - [ ] Indexer
   - [ ] Our Cloud VM doesn't have enough memory to hold the entire index in memory.

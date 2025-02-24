@@ -1,5 +1,3 @@
-# A signle posting, which points to the next as well as the document it is associated with and the frequency of the term in the document
-
 from typing import Self, Dict, List, Tuple
 import heapq
 
@@ -59,25 +57,79 @@ class Postings:
         self.add_posting(doc_id, frequency_increment)
 
     def __str__(self):
-        return f"word: {self.word}, postings: {self.postings}"
+        string = f"{self.word} "
+        for posting in self.postings:
+            string += f"{posting.doc_id}:{posting.frequency}, "
+        string = string[:-2]
+        return string
 
     def __len__(self):
         return self.size
+
+    @staticmethod
+    def construct_postings(line: str) -> Self:
+        # line is of the form "Token docID1:termFreq1, docID2:termFreq2, ..."
+        token, postings = line.split(" ", 1)
+        new_posting = Postings(token)
+        for posting in postings.split(","):
+            doc_id, frequency = posting.split(":")
+            new_posting.add_posting(int(doc_id), int(frequency))
+        return new_posting
+
+    def merge_postings(self, other: Self) -> Self:
+        # merge two posting lists
+        if self.word != other.word:
+            raise ValueError(
+                f"Cannot merge postings of different words: {self.word} and {other.word}")
+        new_postings = Postings(self.word)
+        i, j = 0, 0
+        while i < len(self.postings) and j < len(other.postings):
+            # doc_id will never be the same in two postings since the batches operate on different documents
+            if self.postings[i] < other.postings[j]:
+                new_postings.add_posting(
+                    self.postings[i].doc_id, self.postings[i].frequency)
+                i += 1
+            else:
+                new_postings.add_posting(
+                    other.postings[j].doc_id, other.postings[j].frequency)
+                j += 1
+        # add the remaining postings if self is bigger
+        while i < len(self.postings):
+            new_postings.add_posting(
+                self.postings[i].doc_id, self.postings[i].frequency)
+            i += 1
+        # same but other
+        while j < len(other.postings):
+            new_postings.add_posting(
+                other.postings[j].doc_id, other.postings[j].frequency)
+            j += 1
+        return new_postings
 
 
 class Dictionary:
     def __init__(self):
         self.dictionary: Dict[str, Postings] = {}
         # ? We want to maintain the keys in a sorted order for faster retrieval
-        self.keys: str = []
+        self.keys: List[str] = []
 
     def add_posting(self, word: str, doc_id: int, frequency: int):
-        # if word not in self.dictionary:
-        # add the word to the dictionary with the default value of a Posting with the word and empty list of postings
         if word not in self.dictionary:
             self.dictionary[word] = Postings(word)
+            # Insert the word in the correct position to maintain sorted order
+            self._insert_key(word)
         self.dictionary[word].add_posting(doc_id, frequency)
-        heapq.heappush(self.keys, word)
+
+    def _insert_key(self, word: str):
+        # Binary search to find insertion point
+        left, right = 0, len(self.keys)
+        while left < right:
+            mid = (left + right) // 2
+            if self.keys[mid] < word:
+                left = mid + 1
+            else:
+                right = mid
+        self.keys.insert(left, word)
+
 
     def update_frequency(self, word: str, doc_id: int, frequency_increment: int):
         # ! This adds the word if not there, might cause confusing behaviour

@@ -24,10 +24,21 @@ members on this project, but you are not required to do so.
 
 ### Instructions to run the code
 
+Make the partial index using:
+
 ```bash
 cd python
 python main.py
 ```
+
+Combine the partial indexes using:
+
+```bash
+python lazy_merger.py
+```
+
+The rust version: is incomplete and only makes 
+
 
 ### Deliverables
 
