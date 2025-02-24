@@ -59,8 +59,8 @@ impl Postings {
         for single_posting in postings_str.split(",") {
             let (doc_id, term_frequency) = single_posting.split_once("|").unwrap();
             postings.push(Posting::new(
-                doc_id.parse::<u32>().unwrap(),
-                term_frequency.parse::<u32>().unwrap(),
+                doc_id.trim().parse::<u32>().unwrap(),
+                term_frequency.trim().parse::<u32>().unwrap(),
             ));
         }
         return Ok(postings);
