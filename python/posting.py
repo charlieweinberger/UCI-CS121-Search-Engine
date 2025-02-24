@@ -1,5 +1,3 @@
-# A signle posting, which points to the next as well as the document it is associated with and the frequency of the term in the document
-
 from typing import Self, Dict, List, Tuple
 import heapq
 
@@ -112,15 +110,26 @@ class Dictionary:
     def __init__(self):
         self.dictionary: Dict[str, Postings] = {}
         # ? We want to maintain the keys in a sorted order for faster retrieval
-        self.keys: str = []
+        self.keys: List[str] = []
 
     def add_posting(self, word: str, doc_id: int, frequency: int):
-        # if word not in self.dictionary:
-        # add the word to the dictionary with the default value of a Posting with the word and empty list of postings
         if word not in self.dictionary:
             self.dictionary[word] = Postings(word)
-            heapq.heappush(self.keys, word)
+            # Insert the word in the correct position to maintain sorted order
+            self._insert_key(word)
         self.dictionary[word].add_posting(doc_id, frequency)
+
+    def _insert_key(self, word: str):
+        # Binary search to find insertion point
+        left, right = 0, len(self.keys)
+        while left < right:
+            mid = (left + right) // 2
+            if self.keys[mid] < word:
+                left = mid + 1
+            else:
+                right = mid
+        self.keys.insert(left, word)
+
 
     def update_frequency(self, word: str, doc_id: int, frequency_increment: int):
         # ! This adds the word if not there, might cause confusing behaviour
