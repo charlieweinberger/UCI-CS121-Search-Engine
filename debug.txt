@@ -30,10 +30,11 @@ Python:
     Index size on disk: 65467.2587890625 KB
     1669.7926614284515
 
-    FINAL: 
+    FINAL:
     2584s : 43.06666666666667 minutes
 
 Rust:
+    # catches up to python really fast, just has a cold start for some reason?
     Non Release:
         Successfully written batch to disk
         Processed 5000 documents in 506 seconds
@@ -47,3 +48,10 @@ Rust:
         Processed 25000 documents in 1601 seconds
         Successfully written batch to disk
         Processed 30000 documents in 1715 seconds
+
+
+
+    Release: 
+        BTREEMAP instead of vec binary search:  Processed 5000 documents in 60 seconds
+        Vec binary search: 44s
+        BTreeMap instead of hashmap: 55s

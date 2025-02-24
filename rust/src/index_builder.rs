@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::{fs, time};
 
 const PATH: &str = "../developer/DEV/";
-pub const BATCH_SIZE: u16 = 5000; // Define the batch size
+pub const BATCH_SIZE: u16 = 10000; // Define the batch size
 
 pub fn main() {
     let mut doc_id = 1;
