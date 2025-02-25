@@ -8,10 +8,10 @@
 
 - [ ] Indexer
   - [ ] Our Cloud VM doesn't have enough memory to hold the entire index in memory.
-  - [ ] Offload inverted index to disk at least 3 times during construction
-  - [ ] Create partial indexes during construction
-  - [ ] Merge partial indexes at the end
-  - [ ] Optional: Split merged index into files by term ranges
+  - [X] Offload inverted index to disk at least 3 times during construction
+  - [X] Create partial indexes during construction
+  - [X] Merge partial indexes at the end
+  - [X] Optional: Split merged index into files by term ranges
   - [ ] Ensure search reads postings from disk, not memory
 - [ ] Searcher
 - [ ] ensure speed is less than 300ms
