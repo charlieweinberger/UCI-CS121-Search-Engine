@@ -7,7 +7,7 @@ pub mod lazy_merger;
 
 fn main() {
     // ! BUILD INDEX
-    index_builder::main();
+    let _ = index_builder::main();
     // ! MERGE BATCHES
     // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
     // lazy_merger::main();
