@@ -1,8 +1,7 @@
-use std::f32::consts::E;
-
 use crate::single_posting::Posting;
 
 #[derive(Clone)]
+#[allow(dead_code)]
 pub struct Postings {
     pub word: String,
     postings: Vec<Posting>,
@@ -10,6 +9,7 @@ pub struct Postings {
 }
 
 #[derive(Clone)]
+#[allow(dead_code)]
 pub struct SkipList {
     doc_id: u16,
     index: u16,
