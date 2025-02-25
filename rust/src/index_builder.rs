@@ -107,7 +107,7 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             // Spawn a new thread
             let filepath_clone = filepath.clone();
-            let handle = thread::spawn(async move || {
+            let handle = thread::spawn(move || {
                 if let Err(e) = process_document(filepath_clone, tx_clone, id_book_clone, doc_id) {
                     eprintln!("Error processing document: {}", e);
                 }
