@@ -1,7 +1,6 @@
 use crate::single_posting::Posting;
 
 #[derive(Clone)]
-#[allow(dead_code)]
 pub struct Postings {
     pub word: String,
     postings: Vec<Posting>,
@@ -9,7 +8,6 @@ pub struct Postings {
 }
 
 #[derive(Clone)]
-#[allow(dead_code)]
 pub struct SkipList {
     doc_id: u16,
     index: u16,
@@ -95,6 +93,41 @@ impl Postings {
             result.push_str(&format!("{}|{},", posting.doc_id, posting.term_freq));
         }
         result.pop();
+        result
+    }
+
+    pub fn build_skip_list(&mut self) {
+        let mut skip_list = Vec::with_capacity(5);
+        let postings_length = self.postings.len();
+        // Create a skip list with 5 entries
+        if postings_length >= 5 {
+            let step = postings_length / 5;
+            for i in 0..5 {
+                skip_list.push(SkipList {
+                    doc_id: self.postings[i * step].doc_id,
+                    index: (i * step) as u16,
+                });
+            }
+        } else {
+            // If less than 5 elements, just add what we have
+            for i in 0..postings_length {
+                skip_list.push(SkipList {
+                    doc_id: self.postings[i].doc_id,
+                    index: i as u16,
+                });
+            }
+        }
+        self.skip_list = skip_list;
+    }
+
+    pub fn skip_list_to_file(&self) -> String {
+        let result = self
+            .skip_list
+            .iter()
+            .map(|x| format!("{}|{}", x.doc_id, x.index))
+            .collect::<Vec<String>>()
+            .join(",");
+
         result
     }
 }
