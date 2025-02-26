@@ -10,9 +10,9 @@ pub fn main() {
     let doc_id = 55393;
     let batch_count = (doc_id - 1) / BATCH_SIZE + 1;
     let word_ranges = ["0_9", "a_f", "g_p", "q_z"]; // Reordered to process numbers first
-    let merged_file = fs::File::create("inverted_index/merged/complete.txt").unwrap();
+    let merged_file = fs::File::create("inverted_index/merged/0.txt").unwrap();
     let mut final_file_appender = LineWriter::new(merged_file);
-
+    let mut current_first_char = '0';
     for &words in word_ranges.iter() {
         readers.clear();
         readers.reserve(batch_count as usize);
@@ -64,7 +64,11 @@ pub fn main() {
                     to_advance.push(idx);
                 }
             }
-
+            if smallest.chars().next().unwrap() != current_first_char {
+                current_first_char = smallest.chars().next().unwrap();
+                final_file_appender.flush().unwrap();
+                final_file_appender = LineWriter::new(fs::File::create(format!("inverted_index/merged/{}.txt", current_first_char)).unwrap());
+            }
             final_file_appender
                 .write_all((new_posting.save_postings() + "\n").as_bytes())
                 .unwrap();
