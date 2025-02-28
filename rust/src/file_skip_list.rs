@@ -1,8 +1,10 @@
 use std::{
     fs::File,
-    io::{BufRead, BufReader, Read, Seek, Write},
+    io::{BufRead, BufReader, Read, Seek, SeekFrom, Write},
     path::{Path, PathBuf},
 };
+
+use crate::postings::Postings;
 
 pub const MERGED_INDEX_DIR: &str = "inverted_index/merged";
 const PARTITION: u16 = 100;
@@ -129,5 +131,98 @@ impl FileSkip {
         }
 
         skip_list
+    }
+
+    // ? Could clean this up and even use binary search in finding the correct skip list
+    pub fn find_skip_entry(skip_list: &FileSkipList, word: String) -> WordOffsetRange {
+        if skip_list.is_empty() || word < skip_list[0].word {
+            return WordOffsetRange::Invalid;
+        }
+
+        let mut prev_offset = 0;
+
+        for i in 0..skip_list.len() {
+            let skip = &skip_list[i];
+
+            if skip.word == word {
+                return WordOffsetRange::Exact(skip.byte_offset);
+            }
+
+            if skip.word < word {
+                prev_offset = skip.byte_offset;
+                continue;
+            } else if skip.word > word {
+                if i == 0 {
+                    return WordOffsetRange::Invalid;
+                }
+                return WordOffsetRange::Between(prev_offset, skip.byte_offset);
+            }
+
+            prev_offset = skip.byte_offset;
+        }
+
+        // the word must be after the last entry
+        println!("Word is after the last entry in the skip list");
+        WordOffsetRange::After(prev_offset)
+    }
+}
+pub enum WordOffsetRange {
+    Invalid,
+    Exact(u64),        // Word is an exact match
+    Between(u64, u64), // Word is between two offsets
+    After(u64),        // Word is after the last entry in the skip list
+}
+
+pub fn get_postings_from_offset_range(
+    file: &File,
+    offset_range: WordOffsetRange,
+    word: &str,
+) -> Postings {
+    let mut reader = BufReader::new(file);
+    let mut postings = Vec::new();
+
+    match offset_range {
+        // if we found the exact word, read the line and load the postings
+        WordOffsetRange::Exact(offset) => {
+            reader.seek(SeekFrom::Start(offset)).unwrap();
+            let mut line = String::new();
+            reader.read_line(&mut line).unwrap();
+            postings = Postings::load_postings(&line).unwrap().postings;
+        }
+        WordOffsetRange::Between(start_offset, end_offset) => {
+            // read from start_offset to end_offset and load the postings
+            reader.seek(SeekFrom::Start(start_offset)).unwrap();
+            let mut line = String::new();
+            // read line by line until we reach the end_offset
+            while reader.stream_position().unwrap() < end_offset {
+                reader.read_line(&mut line).unwrap();
+                if let Ok(posting) = Postings::load_postings(&line) {
+                    if posting.word == word {
+                        postings.extend(posting.postings);
+                    }
+                }
+                line.clear();
+            }
+        }
+        // if the word is after the last entry in the skip list, read from the offset to the end of the file
+        WordOffsetRange::After(offset) => {
+            reader.seek(SeekFrom::Start(offset)).unwrap();
+            let mut line = String::new();
+            while reader.read_line(&mut line).unwrap() > 0 {
+                if let Ok(posting) = Postings::load_postings(&line) {
+                    if posting.word == word {
+                        postings.extend(posting.postings);
+                    }
+                }
+                line.clear();
+            }
+        }
+        _ => {}
+    }
+
+    Postings {
+        word: word.to_string(),
+        postings,
+        skip_list: Vec::new(),
     }
 }

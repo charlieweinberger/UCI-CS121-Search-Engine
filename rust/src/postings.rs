@@ -3,8 +3,8 @@ use crate::single_posting::Posting;
 #[derive(Clone)]
 pub struct Postings {
     pub word: String,
-    postings: Vec<Posting>,
-    skip_list: Vec<SkipList>,
+    pub postings: Vec<Posting>,
+    pub skip_list: Vec<SkipList>,
 }
 
 #[derive(Clone)]
@@ -96,6 +96,7 @@ impl Postings {
         result
     }
 
+    // ? Unused for now since if you are going to load the entire postlist into memory, you dont need skip list
     pub fn build_skip_list(&mut self) {
         let mut skip_list = Vec::with_capacity(5);
         let postings_length = self.postings.len();
@@ -120,6 +121,7 @@ impl Postings {
         self.skip_list = skip_list;
     }
 
+    // ? Unused for now since if you are going to load the entire postlist into memory, you dont need skip list
     pub fn skip_list_to_file(&self) -> String {
         let result = self
             .skip_list
