@@ -39,8 +39,7 @@ Combine the partial indexes using:
 python lazy_merger.py
 ```
 
-The rust version: is incomplete and only makes 
-
+The rust version: is incomplete and only makes
 
 ### Deliverables
 

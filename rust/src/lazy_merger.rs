@@ -1,95 +1,115 @@
+use crate::index_builder::BATCH_SIZE;
+use crate::postings::Postings;
 use std::fs;
 use std::io::{BufRead, BufReader, LineWriter, Write};
-use crate::postings::Postings;
-use crate::index_builder::BATCH_SIZE;
+use std::path::PathBuf;
 
-
+use crate::file_skip_list::{FileSkip, MERGED_INDEX_DIR};
 pub fn main() {
-    fs::create_dir_all("inverted_index/merged").unwrap_or_default();
-    let mut readers = Vec::new();
+    fs::create_dir_all(MERGED_INDEX_DIR).unwrap_or_default();
     let doc_id = 55393;
     let batch_count = (doc_id - 1) / BATCH_SIZE + 1;
-    let word_ranges = ["0_9", "a_f", "g_p", "q_z"]; // Reordered to process numbers first
-    let merged_file = fs::File::create("inverted_index/merged/complete.txt").unwrap();
-    let mut final_file_appender = LineWriter::new(merged_file);
+    let word_ranges = ["0_9", "a_f", "g_p", "q_z"];
+    // first character is null
+    let mut current_first_char = '\0';
+    let mut final_file_appender: Option<LineWriter<fs::File>> = None;
 
-    for &words in word_ranges.iter() {
-        readers.clear();
-        readers.reserve(batch_count as usize);
+    for &words in &word_ranges {
+        // Open all available files for this word range
+        let mut readers = Vec::with_capacity(batch_count as usize);
+
+        // Open all available files for this word range
         for i in 0..batch_count {
-            if let Ok(file) = fs::File::open(format!("inverted_index/{}/{}.txt", i, words)) {
+            let filepath = format!("inverted_index/{}/{}.txt", i, words);
+            if let Ok(file) = fs::File::open(&filepath) {
                 readers.push((BufReader::new(file), String::new()));
             }
         }
 
-        let mut lines: Vec<String> = readers
-            .iter_mut()
-            .map(|(reader, _)| {
-                let mut line = String::new();
-                reader.read_line(&mut line).unwrap_or(0);
-                line
-            })
-            .collect();
+        if readers.is_empty() {
+            continue;
+        }
 
-        let mut active_indices: Vec<usize> = (0..readers.len()).collect();
+        // initialize every single posting with a line from the respective files, if available else remove it
+        let mut postings_with_indices = Vec::with_capacity(readers.len());
+        for (i, (reader, _)) in readers.iter_mut().enumerate() {
+            let mut line = String::new();
+            if reader.read_line(&mut line).unwrap_or(0) > 0 && !line.trim().is_empty() {
+                if let Ok(posting) = Postings::load_postings(&line) {
+                    postings_with_indices.push((posting, i));
+                }
+            }
+        }
 
-        while !active_indices.is_empty() {
-            // Filter out empty lines (end of file)
-            let current_indices: Vec<usize> = active_indices
-                .iter()
-                .filter(|&i| !lines[*i].trim().is_empty())
-                .cloned()
-                .collect();
+        while !postings_with_indices.is_empty() {
+            // find smallest word
+            postings_with_indices.sort_unstable_by(|a, b| a.0.word.cmp(&b.0.word));
+            let smallest_word = postings_with_indices[0].0.word.clone();
 
-            if current_indices.is_empty() {
-                break;
+            // first character check - create new file if needed
+            let first_char = smallest_word.chars().next().unwrap_or('0');
+            if first_char != current_first_char {
+                if let Some(writer) = final_file_appender.as_mut() {
+                    writer.flush().unwrap();
+                }
+                // Build and write skip list for previous character unless its starting character of null
+                if current_first_char != '\0' {
+                    // build a skip list on that file
+                    let skip_list_path =
+                        PathBuf::from(format!("{}/{}.txt", MERGED_INDEX_DIR, current_first_char));
+                    let file_skip_list = FileSkip::build_skip_list(skip_list_path);
+                    FileSkip::write_skip_list(&file_skip_list);
+                }
+                // append the postings to the new file
+                current_first_char = first_char;
+                let file_path = format!("{}/{}.txt", MERGED_INDEX_DIR, current_first_char);
+                final_file_appender = Some(LineWriter::new(fs::File::create(file_path).unwrap()));
             }
 
-            // get all valid postings
-            let postings: Vec<Postings> = current_indices
-                .iter()
-                .map(|&i| Postings::load_postings(&lines[i]).unwrap())
-                .collect();
+            // merge all postings with the smallest word
+            let mut merged_posting = Postings::new(smallest_word);
+            let mut indices_to_update = Vec::new();
 
-            // get the smallest key
-            let smallest = get_smallest_key(&postings);
-            let mut new_posting = Postings::new(smallest.clone());
-
-            // Track which readers need to move to next line
-            let mut to_advance: Vec<usize> = Vec::new();
-            for &idx in &current_indices {
-                let posting = Postings::load_postings(&lines[idx]).unwrap();
-                if posting.word == smallest {
-                    new_posting.merge(posting);
-                    to_advance.push(idx);
+            let mut i = 0;
+            // merge all postings with the smallest word
+            while i < postings_with_indices.len() {
+                if postings_with_indices[i].0.word == merged_posting.word {
+                    merged_posting.merge(postings_with_indices[i].0.clone());
+                    indices_to_update.push(postings_with_indices[i].1);
+                    postings_with_indices.remove(i);
+                } else {
+                    i += 1;
                 }
             }
 
-            final_file_appender
-                .write_all((new_posting.save_postings() + "\n").as_bytes())
-                .unwrap();
+            // Write merged posting
+            if let Some(writer) = final_file_appender.as_mut() {
+                writer
+                    .write_all((merged_posting.save_postings() + "\n").as_bytes())
+                    .unwrap();
+            }
 
-            // Move to next line for relevant readers
-            for idx in to_advance {
+            // Read next lines for updated readers
+            for &idx in &indices_to_update {
                 let mut line = String::new();
-                let bytes_read = readers[idx].0.read_line(&mut line).unwrap_or(0);
-                lines[idx] = line;
-                if bytes_read == 0 {
-                    // Reader reached end
-                    active_indices.retain(|&x| x != idx);
+                if readers[idx].0.read_line(&mut line).unwrap_or(0) > 0 && !line.trim().is_empty() {
+                    if let Ok(posting) = Postings::load_postings(&line) {
+                        postings_with_indices.push((posting, idx));
+                    }
                 }
             }
         }
     }
-}
 
-fn get_smallest_key(postings: &Vec<Postings>) -> String {
-    let mut smallest = postings[0].word.clone();
-    for posting in postings {
-        if posting.word < smallest {
-            smallest = posting.word.clone();
-        }
+    // Flush and create skip list for the last file
+    if let Some(writer) = final_file_appender.as_mut() {
+        writer.flush().unwrap();
     }
-    smallest
-}
 
+    if current_first_char != '\0' {
+        let skip_list_path =
+            PathBuf::from(format!("{}/{}.txt", MERGED_INDEX_DIR, current_first_char));
+        let file_skip_list = FileSkip::build_skip_list(skip_list_path);
+        FileSkip::write_skip_list(&file_skip_list);
+    }
+}
