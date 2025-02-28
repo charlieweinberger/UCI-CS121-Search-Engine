@@ -4,6 +4,7 @@ pub mod single_posting;
 pub mod tokenizer;
 pub mod index_builder;
 pub mod lazy_merger;
+pub mod file_skip_list;
 
 fn main() {
     // ! BUILD INDEX
