@@ -4,7 +4,14 @@ from typing import List
 from posting import Postings
 import json
 
-
+def get_file_for_word(word: str)->str:
+    first_char = word[0].lower()
+    if first_char.isalpha():
+        return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
+    elif first_char.isdigit():
+        return os.path.join(OUTPUT_DIR, "0-9.txt")
+    return os.path.join(OUTPUT_DIR, "other.txt")
+    
 def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
     # * /indexes/batch_{number}.txt
     return [open(os.path.join(BASEPATH, batch), 'r', encoding='utf-8')
@@ -21,8 +28,11 @@ def get_smallest_key(postings: List[Postings]) -> str:
 
 BASEPATH = "./indexes"
 FINAL_INDEX = "final_index.txt"
+OUTPUT_DIR = "./merged_indexes"
 
 if __name__ == "__main__":
+    # * Create the output directory if it doesn't exist
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     # go through all the files in indexes folder and merge them into one
     batches = []
     # * /indexes/batch_{number}.txt
@@ -30,8 +40,9 @@ if __name__ == "__main__":
         batches.extend(files)
     # now make a reader object but dont read the file yet
     readers = list_of_needed_files(batches)
-    final_file_appender = open(FINAL_INDEX, 'a+', encoding='utf-8')
-
+    file_handlers = {}
+    # final_file_appender = open(FINAL_INDEX, 'a+', encoding='utf-8')
+    
     # from each reader take a line, see the first token(word),
     # compare it to all others, merge the smaller one first,
     # move to the next line and compare and repeat till all files have
@@ -61,16 +72,24 @@ if __name__ == "__main__":
                 new_posting = new_posting.merge_postings(posting)
                 to_advance.append(idx)
 
-        final_file_appender.write(str(new_posting) + "\n")
-
+        # Get the output file for the smallest word
+        output_file = get_file_for_word(smallest)
+        if output_file not in file_handlers:
+            file_handlers[output_file] = open(output_file, 'a+', encoding='utf-8')
+        
+        file_handlers[output_file].write(str(new_posting) + "\n")
+        
         # Move to next line for relevant readers
         for idx in to_advance:
             lines[idx] = readers[idx].readline()
             if not lines[idx].strip():  # Reader reached end
                 readers[idx].close()
                 active_indices.remove(idx)
-    final_file_appender.close()
-
+    
+    # Close all file handlers
+    for handler in file_handlers.values():
+        handler.close()
+    
     # also making the phone book of getting the docid to file location
     current_path = "../developer/DEV"
     batches = []
