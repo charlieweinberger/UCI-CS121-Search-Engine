@@ -5,12 +5,13 @@ from posting import Postings
 import json
 
 def get_file_for_word(word: str)->str:
+    """Chooses the file to write the word to based on the first character of the word."""
     first_char = word[0].lower()
     if first_char.isalpha():
         return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
     elif first_char.isdigit():
         return os.path.join(OUTPUT_DIR, "0-9.txt")
-    return os.path.join(OUTPUT_DIR, "other.txt")
+    # should never have a word starting with a special character or space
     
 def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
     # * /indexes/batch_{number}.txt
@@ -74,6 +75,7 @@ if __name__ == "__main__":
 
         # Get the output file for the smallest word
         output_file = get_file_for_word(smallest)
+        # * Write the merged posting to the appropriate file
         if output_file not in file_handlers:
             file_handlers[output_file] = open(output_file, 'a+', encoding='utf-8')
         
