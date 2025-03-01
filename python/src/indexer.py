@@ -1,6 +1,6 @@
 # create the inverted index along with the given tokens
 import posting
-import python.src.tokenizer as tokenizer
+import tokenizer
 
 class InvertedIndex:
     def __init__(self, current_doc_id: int = 1):
