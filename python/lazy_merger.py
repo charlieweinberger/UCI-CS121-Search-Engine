@@ -31,6 +31,8 @@ def get_smallest_key(postings: List[Postings]) -> str:
 BASEPATH = "./indexes"
 FINAL_INDEX = "final_index.txt"
 OUTPUT_DIR = "./merged_indexes"
+PHONEBOOK_PATH = "phonebook.json"
+
 
 if __name__ == "__main__":
     # * Create the output directory if it doesn't exist
