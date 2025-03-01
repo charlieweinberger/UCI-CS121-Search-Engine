@@ -47,6 +47,9 @@ class SearchEngine:
         self.tokens = []
     
     def get_query(self):
+        """
+        Get the query from the user through the console.
+        """
         self.query = input("Enter your query: ").strip()
         tokenizer = Tokenizer()
         self.tokens = tokenizer.tokenize(self.query)
@@ -64,6 +67,7 @@ class SearchEngine:
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
                 candidates[doc_id].update_score(token, frequency)
+        # Filter candidates to only those that match all query tokens
         valid_candidates = get_valid_candidates(candidates, self.tokens)
         
         print(f"Found {len(valid_candidates)}")
@@ -71,7 +75,9 @@ class SearchEngine:
             print("Matching Documents:")
             for i, candidate in enumerate(valid_candidates):
                 print(f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.score}")
+        # Time
         print(f"Search completed in {time.time() - start_time:.2f} seconds.")
+        
 def get_valid_candidates(candidates, query_tokens):
     valid_candidates = []
     for c in candidates.values():
