@@ -4,7 +4,7 @@ import indexer
 import save
 
 # ! current path of the folder for me is /developer/DEV, change for your self
-CURRENT_PATH = "../../developer/DEV"
+CURRENT_PATH = "../developer/DEV"
 
 
 def main():
