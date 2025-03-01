@@ -1,0 +1,4 @@
+__pycache__/
+indexes/
+final_index.txt
+phonebook.json
