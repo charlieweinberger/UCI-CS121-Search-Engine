@@ -21,9 +21,13 @@ def get_postings(token):
                     for posting in parts[1:]:
                         doc_id, freq = map(int, posting.split(':'))
                         postings[doc_id] = freq
+                    break # stop after finding the token
     return postings
 
 class Candidate:
+    """
+    A candidate document for a query.
+    """
     def __init__(self, doc_id):
         self.doc_id = doc_id
         self.tokens_matched = {}
@@ -33,12 +37,11 @@ class Candidate:
     
     def has_all_tokens(self, query_tokens):
         return all(token in self.tokens_matched for token in query_tokens)
-    # def calculate_score(self, total_tokens):
-    #     for token in self.tokens:
-    #         if token in total_tokens:
-    #             self.score += total_tokens[token]
 
 class SearchEngine:
+    """
+    A search engine that takes a query and returns the matching documents.
+    """
     def __init__(self):
         self.query = ""
         self.tokens = []
@@ -60,7 +63,7 @@ class SearchEngine:
             for doc_id, frequency in postings.items():
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
-                candidates[doc_id].update_tokens(token, frequency)
+                candidates[doc_id].update_score(token, frequency)
         valid_candidates = get_valid_candidates(candidates, self.tokens)
         
         print(f"Found {len(valid_candidates)}")
