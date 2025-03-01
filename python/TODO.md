@@ -5,10 +5,11 @@
 Postings : (docID, frequency of that word in the docid)
 Dictionary: word -> Postings
 
-- [ ] Let's for now use the `python` indexes, so build the index using main, and before running lazy merger, make it so that lazy merger merges the postings in the dictionaries but into files starting from (0-9) and (a-z) .txt like a long one of them (if you run the rust version you might be able to see what i mean)
+- [X] Let's for now use the `python` indexes, so build the index using main, and before running lazy merger, make it so that lazy merger merges the postings in the dictionaries but into files starting from (0-9) and (a-z) .txt like a long one of them (if you run the rust version you might be able to see what i mean)
+- [X] Within lazy_merger, replaced final_index with a new dir to merged_indexes
 - [ ] Make sure that the phonebook.json made also lines up with those indexes and load that in memory if possible since you are going to be using that for DOCID to URL mapping
-- [ ] Get User input from console initially and make it so that it tokenizes the word using our tokenizer class
-- [ ] after tokenizing all your queries, make a candidates hashmap of type [docid, (tokens matched)]
-- [ ] Make a class/function to take a token and search for it in the inverted index (so like take the first letter of each query and then in that file search for the token) and retrieve the postings list
-- [ ] Do that for all tokens and check if all tokens are matched and then print all the results
+- [X] Get User input from console initially and make it so that it tokenizes the word using our tokenizer class
+- [X] after tokenizing all your queries, make a candidates hashmap of type [docid, (tokens matched)]
+- [X] Make a class/function to take a token and search for it in the inverted index (so like take the first letter of each query and then in that file search for the token) and retrieve the postings list
+- [X] Do that for all tokens and check if all tokens are matched and then print all the results
 
