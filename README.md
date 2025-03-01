@@ -30,13 +30,13 @@ Make the partial index using:
 
 ```bash
 cd python
-python main.py
+python src/main.py
 ```
 
 Combine the partial indexes using:
 
 ```bash
-python lazy_merger.py
+python src/lazy_merger.py
 ```
 
 The rust version: is incomplete and only makes
