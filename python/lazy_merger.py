@@ -20,6 +20,7 @@ def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
 
 
 def get_smallest_key(postings: List[Postings]) -> str:
+    """Get the smallest key from a list of postings."""
     smallest = postings[0].word
     for posting in postings:
         if posting.word < smallest:
