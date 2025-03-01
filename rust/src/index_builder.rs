@@ -155,7 +155,7 @@ pub fn main() {
     let mut sorted_entries: Vec<_> = id_book_locked.iter().collect();
     sorted_entries.sort_by_key(|&(k, _)| k);
 
-    match fs::File::create("id_book.txt") {
+    match fs::File::create("inverted_index/id_book.txt") {
         Ok(mut file) => {
             for (id, (url, filepath)) in sorted_entries {
                 if let Err(e) = writeln!(file, "{} | {}", url, filepath) {
