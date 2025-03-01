@@ -10,6 +10,15 @@ impl IDBookElement {
     pub fn new(id: u16, url: String, path: PathBuf) -> Self {
         Self { id, url, path }
     }
+
+    pub fn get_domain(&self) -> String {
+        let parts: Vec<&str> = self.url.splitn(4, '/').collect();
+        if parts.len() >= 3 {
+            format!("{}//{}", parts[0], parts[2])
+        } else {
+            self.url.to_string()
+        }
+    }
 }
 
 pub fn main() {
