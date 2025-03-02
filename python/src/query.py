@@ -19,7 +19,7 @@ def get_postings(token):
                 parts = line.strip().split()
                 if parts[0] == token:
                     for posting in parts[1:]:
-                        doc_id, freq = map(int, posting.split(':'))
+                        doc_id, freq = map(int, posting.removesuffix(',').split(':'))
                         postings[doc_id] = freq
                     break # stop after finding the token
     return postings
