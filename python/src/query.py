@@ -74,7 +74,7 @@ class SearchEngine:
         if valid_candidates:
             print("Matching Documents:")
             for i, candidate in enumerate(valid_candidates):
-                print(f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.score}")
+                print(f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
         # Time
         print(f"Search completed in {time.time() - start_time:.2f} seconds.")
         
