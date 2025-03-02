@@ -10,18 +10,18 @@ pub mod id_book;
 
 fn main() {
     // ! BUILD INDEX
-    // index_builder::main();
+    index_builder::main();
     // ! MERGE BATCHES
     // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
-    // lazy_merger::main();
+    lazy_merger::main();
 
     // ! Comes searching and ranking now
 
     println!("Welcome to the Search Engine!");
-    let mut search_engine = query::SearchEngine::new();
-    loop {
-        search_engine.get_query();
-        search_engine.search();
-    }
+    // let mut search_engine = query::SearchEngine::new();
+    // loop {
+    //     search_engine.get_query();
+    //     search_engine.search();
+    // }
     // TODO: Implement search and ranking logic using the query
 }
