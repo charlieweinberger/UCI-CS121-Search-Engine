@@ -66,16 +66,9 @@ impl SearchEngine {
         // then filter candidates that only have all the tokens
         let mut boolean_and_candidates: HashMap<&u16, &u16> =
             candidates[0].doc_ids.iter().collect();
-        println!("Found {} documents", boolean_and_candidates.len());
         for candidate in candidates.iter().skip(1) {
             boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
-            println!(
-                "Filtered down to {} documents",
-                boolean_and_candidates.len()
-            );
         }
-
-        println!("Found {} documents", boolean_and_candidates.len());
 
         // Sort candidates by score (term frequency) in descending order
         let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
