@@ -4,6 +4,7 @@ use std::{
     io::{self, Write},
 };
 
+use crate::id_book::IDBookElement;
 use crate::{file_skip_list, tokenizer::Tokenizer};
 use std::fs::File;
 
@@ -36,7 +37,6 @@ impl SearchEngine {
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
         let mut candidates: HashMap<u16, Candidate> = HashMap::new();
-        // two docids shouldnt have two candidates
 
         for token in &self.tokens {
             // get the first letter of the token to determine which file to read
@@ -66,31 +66,20 @@ impl SearchEngine {
             }
         }
 
-        // calculate scores for all candidates
-        for candidate in candidates.values_mut() {
-            candidate.calculate_score(&self.tokens);
-        }
+        // Filter results for boolean AND retrieval
+        let all_candidates: Vec<&Candidate> = candidates.values().collect();
+        let valid_candidates = get_valid_candidates(all_candidates, &self.tokens);
 
-        // Convert HashMap into a vector for sorting
-        let mut results: Vec<&Candidate> = candidates.values().collect();
-        // Sort by score in descending order
-        results.sort_by(|a, b| {
-            b.score
-                .partial_cmp(&a.score)
-                .unwrap_or(std::cmp::Ordering::Equal)
-        });
+        // Sort by document ID
+        let mut results = valid_candidates;
+        results.sort_by_key(|c| c.doc_id);
 
-        // display results with the biggest scores
         println!("Found {} matching documents", results.len());
         if !results.is_empty() {
-            println!("Top results:");
+            println!("Results (boolean AND):");
             for (i, candidate) in results.iter().take(10).enumerate() {
-                println!(
-                    "{}. Document ID: {}, Score: {:.2}",
-                    i + 1,
-                    candidate.doc_id,
-                    candidate.score
-                );
+                let url = IDBookElement::get_doc_from_id(candidate.doc_id).url;
+                println!("{}. Document ID: {} at {}", i + 1, url, candidate.doc_id);
             }
         }
 
