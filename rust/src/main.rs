@@ -6,6 +6,7 @@ pub mod postings;
 pub mod query;
 pub mod single_posting;
 pub mod tokenizer;
+pub mod id_book;
 
 fn main() {
     // ! BUILD INDEX
@@ -18,11 +19,9 @@ fn main() {
 
     println!("Welcome to the Search Engine!");
     let mut search_engine = query::SearchEngine::new();
-
     loop {
         search_engine.get_query();
         search_engine.search();
     }
-
     // TODO: Implement search and ranking logic using the query
 }

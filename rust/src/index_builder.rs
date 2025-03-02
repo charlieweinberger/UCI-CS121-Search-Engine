@@ -9,6 +9,7 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time;
 const PATH: &str = "../developer/DEV/";
+pub const IDBOOK_PATH: &str = "inverted_index/id_book.txt";
 pub const BATCH_SIZE: u16 = 5000; // Define the batch size
 #[derive(Debug, Deserialize)]
 
@@ -99,7 +100,6 @@ pub fn main() {
             });
 
             handles.push(handle);
-
         }
     }
     // Drop the original sender to signal the end of sending
@@ -155,10 +155,17 @@ pub fn main() {
     let mut sorted_entries: Vec<_> = id_book_locked.iter().collect();
     sorted_entries.sort_by_key(|&(k, _)| k);
 
-    match fs::File::create("id_book.txt") {
+    match fs::File::create(IDBOOK_PATH) {
         Ok(mut file) => {
             for (id, (url, filepath)) in sorted_entries {
-                if let Err(e) = writeln!(file, "{} | {}", url, filepath) {
+                let mut line = format!("{} | {}", url, filepath);
+                if line.len() >= 399 {
+                    line.truncate(399);
+                } else {
+                    line.push_str(&" ".repeat(399 - line.len()));
+                }
+                // making the line exactly 400 characters long for easy random-access reading (writeln! adds a newline)
+                if let Err(e) = writeln!(file, "{}", line) {
                     println!("Error writing line for doc_id {}: {}", id, e);
                 }
             }
