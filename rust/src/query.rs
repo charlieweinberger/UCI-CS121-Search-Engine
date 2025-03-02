@@ -36,9 +36,8 @@ impl SearchEngine {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
-        let mut candidates: HashMap<u16, Candidate> = HashMap::new();
-
-        for token in &self.tokens {
+        let mut candidates = Vec::with_capacity(self.tokens.len());
+        for (index, token) in self.tokens.iter().enumerate() {
             // get the first letter of the token to determine which file to read
             if let Some(first_char) = token.chars().next() {
                 // go to the file_skip list of the first character
@@ -47,91 +46,68 @@ impl SearchEngine {
                 let offset_range =
                     file_skip_list::FileSkip::find_skip_entry(&skiplist, token.to_string());
                 let file_path = format!("inverted_index/merged/{}.txt", first_char);
-
+                candidates.push(Candidate::new(token.to_string()));
                 if let Ok(file) = File::open(&file_path) {
                     // get the postings from the file and update the scorings of the candidates
                     let postings =
                         file_skip_list::get_postings_from_offset_range(&file, offset_range, token);
-
+                    let candidate = candidates.get_mut(index).unwrap();
                     // Update candidates with the postings data
                     for single_posting in postings.postings {
-                        let candidate = candidates
-                            .entry(single_posting.doc_id)
-                            .or_insert_with(|| Candidate::new(single_posting.doc_id));
-                        candidate.update_score(token, single_posting.term_freq);
+                        candidate.update_score(single_posting.doc_id, single_posting.term_freq);
                     }
                 } else {
                     println!("Warning: Could not open index file for '{}'", first_char);
                 }
             }
         }
-
-        // Filter results for boolean AND retrieval
-        let all_candidates: Vec<&Candidate> = candidates.values().collect();
-        let valid_candidates = get_valid_candidates(all_candidates, &self.tokens);
-
-        // Sort by document ID
-        let mut results = valid_candidates;
-        results.sort_by_key(|c| c.doc_id);
-
-        println!("Found {} matching documents", results.len());
-        if !results.is_empty() {
-            println!("Results (boolean AND):");
-            for (i, candidate) in results.iter().take(10).enumerate() {
-                let url = IDBookElement::get_doc_from_id(candidate.doc_id).url;
-                println!("{}. Document ID: {} at {}", i + 1, url, candidate.doc_id);
-            }
+        // sort the candidates by the number of documents they appear in with smallest first
+        candidates.sort_by(|a, b| a.doc_ids.len().cmp(&b.doc_ids.len()));
+        // then filter candidates that only have all the tokens
+        let mut boolean_and_candidates: HashMap<&u16, &u16> =
+            candidates[0].doc_ids.iter().collect();
+        println!("Found {} documents", boolean_and_candidates.len());
+        for candidate in candidates.iter().skip(1) {
+            boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
+            println!(
+                "Filtered down to {} documents",
+                boolean_and_candidates.len()
+            );
         }
 
+        println!("Found {} documents", boolean_and_candidates.len());
+
+        // Sort candidates by score (term frequency) in descending order
+        let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
+        sorted_candidates.sort_by(|a, b| b.1.cmp(a.1));
+
+        for (doc_id, term_freq) in sorted_candidates.iter().take(5) {
+            let doc = IDBookElement::get_doc_from_id(**doc_id);
+            println!(
+                "{}|> {}: {} (Score: {})",
+                doc_id,
+                doc.url,
+                doc.path.display(),
+                term_freq
+            );
+        }
         println!("Search took: {}ms", time.elapsed().as_millis());
     }
 }
 
 pub struct Candidate {
-    pub doc_id: u16,
-    pub score: f32,
-    pub tokens: HashMap<String, u16>, // currently a boolean query
+    pub term: String,
+    pub doc_ids: HashMap<u16, u16>, // for each doc_id, the term frequency
 }
 
 impl Candidate {
-    pub fn new(doc_id: u16) -> Self {
+    pub fn new(token: String) -> Self {
         Self {
-            doc_id,
-            score: 0.0,
-            tokens: HashMap::new(),
+            term: token,
+            doc_ids: HashMap::new(),
         }
     }
-
-    pub fn update_score(&mut self, token: &str, count: u16) {
-        self.tokens.insert(token.to_string(), count);
+    pub fn update_score(&mut self, doc_id: u16, term_freq: u16) {
+        self.doc_ids.insert(doc_id, term_freq);
     }
-
-    pub fn calculate_score(&mut self, query: &Vec<String>) {
-        for token in query {
-            if let Some(&count) = self.tokens.get(token) {
-                self.score += count as f32;
-            }
-        }
-    }
-}
-
-// ? Boolean Candidates, pushing only if every token is present in the candidate
-pub fn get_valid_candidates<'a>(
-    candidates: Vec<&'a Candidate>,
-    query: &'a Vec<String>,
-) -> Vec<&'a Candidate> {
-    let mut valid_candidates = Vec::new();
-    for candidate in candidates {
-        let mut valid = true;
-        for token in query {
-            if !candidate.tokens.contains_key(token) {
-                valid = false;
-                break;
-            }
-        }
-        if valid {
-            valid_candidates.push(candidate);
-        }
-    }
-    valid_candidates
 }

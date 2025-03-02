@@ -35,7 +35,7 @@ impl IDBookElement {
         // skip 400  * (id - 1) bytes
         let mut reader = std::io::BufReader::new(buffer);
         reader
-            .seek(std::io::SeekFrom::Start(400 * (id as u64)))
+            .seek(std::io::SeekFrom::Start(400 * (id as u64 - 1)))
             .unwrap();
         let mut line = String::new();
         reader.read_line(&mut line).unwrap();
