@@ -43,38 +43,34 @@ impl SearchEngine {
         // create a thread for each token to search for the token in the inverted index
         let mut handles = vec![];
 
-        for (index, token) in self.tokens.iter().enumerate() {
-            let token = token.clone();
+        for token in self.tokens.iter() {
             let candidates = Arc::clone(&candidates);
             // spawn a thread for each token
+            // cloning since the "token" would otherwise be consumed by the thread and that reference lifetime could only work if it were static!
+            let token = token.clone();
             let handle = thread::spawn(move || {
                 // get the first letter of the token to determine which file to read
-                if let Some(first_char) = token.chars().next() {
-                    // go to the file_skip list of the first character
-                    let skiplist = file_skip_list::FileSkip::read_skip_list(first_char);
-                    // get which BYTE range it is in between
-                    let offset_range =
-                        file_skip_list::FileSkip::find_skip_entry(&skiplist, token.to_string());
-                    let file_path = format!("inverted_index/merged/{}.txt", first_char);
+                let first_char = token.chars().next().clone().unwrap();
+                // go to the file_skip list of the first character
+                let skiplist = file_skip_list::FileSkip::read_skip_list(first_char);
+                // get which BYTE range it is in between
+                let offset_range = file_skip_list::FileSkip::find_skip_entry(&skiplist, &token);
+                let file_path = format!("inverted_index/merged/{}.txt", first_char);
 
-                    let mut candidate = Candidate::new(token.to_string());
-                    if let Ok(file) = File::open(&file_path) {
-                        // get the postings from the file and update the scorings of the candidates
-                        let postings = file_skip_list::get_postings_from_offset_range(
-                            &file,
-                            offset_range,
-                            &token,
-                        );
-                        // Update candidates with the postings data
-                        for single_posting in postings.postings {
-                            candidate.update_score(single_posting.doc_id, single_posting.term_freq);
-                        }
-                    } else {
-                        println!("Warning: Could not open index file for '{}'", first_char);
+                let mut candidate = Candidate::new(token.to_string());
+                if let Ok(file) = File::open(&file_path) {
+                    // get the postings from the file and update the scorings of the candidates
+                    let postings =
+                        file_skip_list::get_postings_from_offset_range(&file, offset_range, &token);
+                    // Update candidates with the postings data
+                    for single_posting in postings.postings {
+                        candidate.update_score(single_posting.doc_id, single_posting.term_freq);
                     }
-                    let mut candidates = candidates.lock().unwrap();
-                    candidates.push(candidate);
+                } else {
+                    println!("Warning: Could not open index file for '{}'", first_char);
                 }
+                let mut candidates = candidates.lock().unwrap();
+                candidates.push(candidate);
             });
             handles.push(handle);
         }

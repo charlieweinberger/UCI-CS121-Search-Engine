@@ -134,8 +134,8 @@ impl FileSkip {
     }
 
     // ? Could clean this up and even use binary search in finding the correct skip list
-    pub fn find_skip_entry(skip_list: &FileSkipList, word: String) -> WordOffsetRange {
-        if skip_list.is_empty() || word < skip_list[0].word {
+    pub fn find_skip_entry(skip_list: &FileSkipList, word: &String) -> WordOffsetRange {
+        if skip_list.is_empty() || word < &skip_list[0].word {
             return WordOffsetRange::Invalid;
         }
 
@@ -144,14 +144,14 @@ impl FileSkip {
         for i in 0..skip_list.len() {
             let skip = &skip_list[i];
 
-            if skip.word == word {
+            if &skip.word == word {
                 return WordOffsetRange::Exact(skip.byte_offset);
             }
 
-            if skip.word < word {
+            if &skip.word < word {
                 prev_offset = skip.byte_offset;
                 continue;
-            } else if skip.word > word {
+            } else if &skip.word > word {
                 if i == 0 {
                     return WordOffsetRange::Invalid;
                 }
