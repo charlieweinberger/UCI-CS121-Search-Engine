@@ -34,7 +34,12 @@ impl SearchEngine {
         self.tokens = Tokenizer::new().tokenize(&self.query);
     }
 
-    pub fn search(&self) {
+    pub fn set_query(&mut self, query: String) {
+        self.query = query;
+        self.tokens = Tokenizer::new().tokenize(&self.query);
+    }
+
+    pub fn search(&self) -> (Vec<String>, u128) {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
@@ -92,7 +97,7 @@ impl SearchEngine {
         // Sort candidates by score (term frequency) in descending order
         let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
         sorted_candidates.sort_by(|a, b| b.1.cmp(a.1));
-
+        let mut results = Vec::new();
         for (doc_id, term_freq) in sorted_candidates.iter().take(5) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
             println!(
@@ -102,8 +107,10 @@ impl SearchEngine {
                 doc.path.display(),
                 term_freq
             );
+            results.push(doc.url.clone());
         }
         println!("Search took: {}ms", time.elapsed().as_millis());
+        (results, time.elapsed().as_millis())
     }
 }
 
