@@ -4,11 +4,23 @@
 
 <div>
   <h1>Geegle</h1>
-  <div class="shiny-text">Search for answers from across the web</div>
-
+  <button
+    class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+  >
+    <div class="shiny-text" style="animation-duration: 2s;">Search</div>
+  </button>
   <style>
+    @keyframes shine {
+      0% {
+        background-position: 100%;
+      }
+      100% {
+        background-position: -100%;
+      }
+    }
+
     .shiny-text {
-      color: #b5b5b5a4; /* Adjust this color to change intensity/style */
+      color: #b5b5b599;
       background: linear-gradient(
         120deg,
         rgba(255, 255, 255, 0) 40%,
@@ -22,14 +34,8 @@
       animation: shine 5s linear infinite;
     }
 
-    @keyframes shine {
-      0% {
-        background-position: 100%;
-      }
-
-      100% {
-        background-position: -100%;
-      }
+    .shiny-text.disabled {
+      animation: none;
     }
   </style>
 </div>
