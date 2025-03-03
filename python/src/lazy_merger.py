@@ -102,7 +102,7 @@ def lazy_merger():
 
     # Create mapping of docid to file location
     docid_to_file = {}
-    for i, file_path in enumerate(sorted(batches), 1):
+    for i, file_path in enumerate(sorted(batches)):
         docid_to_file[i] = file_path
 
     # Write the mapping to phonebook.json
