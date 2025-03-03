@@ -1,14 +1,15 @@
 # A3
 
-Currently building the Inverted Index
+Working on querying the documents
 
 ## M1
 
-Goal Building the index:
+Goal: Develop a search and retrieval component
+
 
 - Given only HTML files
 - Inverted index = token -> key, list of corresponding postings
-- Postings = docID, frequency of token in doc (tf-idf score for that document, for MS1 it is just the freq), position of token in doc
+- Postings = docID, frequency of token in doc (tf-idf score for that document, for MS1 it is just the freq), position of token in doc 
 
 Tips:
 
@@ -43,6 +44,5 @@ The rust version: is incomplete and only makes
 
 ### Deliverables
 
-- The number of indexed documents;
-- The number of unique words;
-- The total size (in KB) of your index on disk.
+• the top 5 URLs for each of the queries above
+• a picture of your search interface in action
