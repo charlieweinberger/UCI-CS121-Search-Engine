@@ -15,9 +15,7 @@ pub const BATCH_SIZE: u16 = 5000; // Define the batch size
 
 struct Document {
     url: String,
-
     content: String,
-
     encoding: String,
 }
 
@@ -27,9 +25,7 @@ fn get_only_text_from_html(content: &str, encoding: String) -> String {
     } else {
         match encoding.to_lowercase().as_str() {
             enc if enc.contains("utf-8") => content.to_string(),
-
             enc if enc.contains("iso-8859") => content.to_string(), // ISO-8859 is already ASCII compatible
-
             _ => content.chars().filter(|c| c.is_ascii()).collect::<String>(), // fallback to ASCII filtering
         }
     };
