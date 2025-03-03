@@ -36,7 +36,11 @@ Combine the partial indexes using:
 python src/lazy_merger.py
 ```
 
-The rust version: is incomplete and only makes
+Query with our interface:
+```bash
+python src/run_queries.py
+```
+
 
 ### Deliverables
 
