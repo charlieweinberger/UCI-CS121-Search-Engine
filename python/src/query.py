@@ -1,11 +1,14 @@
 import time
 import os
 from collections import defaultdict
+from typing import List
 from tokenizer import Tokenizer
 
 OUTPUT_DIR = "./merged_indexes"
 
 # ! Do we have a function for this? idk
+
+
 def get_postings(token):
     """
     Get the postings list for a given token from the inverted index.
@@ -19,33 +22,38 @@ def get_postings(token):
                 parts = line.strip().split()
                 if parts[0] == token:
                     for posting in parts[1:]:
-                        doc_id, freq = map(int, posting.removesuffix(',').split(':'))
+                        doc_id, freq = map(
+                            int, posting.removesuffix(',').split(':'))
                         postings[doc_id] = freq
-                    break # stop after finding the token
+                    break  # stop after finding the token
     return postings
+
 
 class Candidate:
     """
     A candidate document for a query.
     """
+
     def __init__(self, doc_id):
         self.doc_id = doc_id
         self.tokens_matched = {}
-    
+
     def update_score(self, token, frequency):
         self.tokens_matched[token] = frequency
-    
+
     def has_all_tokens(self, query_tokens):
         return all(token in self.tokens_matched for token in query_tokens)
+
 
 class SearchEngine:
     """
     A search engine that takes a query and returns the matching documents.
     """
+
     def __init__(self):
         self.query = ""
         self.tokens = []
-    
+
     def get_query(self):
         """
         Get the query from the user through the console.
@@ -53,35 +61,50 @@ class SearchEngine:
         self.query = input("Enter your query: ").strip()
         tokenizer = Tokenizer()
         self.tokens = tokenizer.tokenize(self.query)
-    
-    def search(self):
+
+    def set_query(self, query):
+        """
+        Set the query from the user.
+        """
+        self.query = query
+        tokenizer = Tokenizer()
+        self.tokens = tokenizer.tokenize(self.query)
+
+    def search(self) -> List[str]:
         start_time = time.time()
         print(f"Searching...: {self.query}")
         print(f"Tokens: {self.tokens}")
         candidates = {}
-        
+
         for token in self.tokens:
             # get the postings list for the token
-            postings = get_postings(token)   
+            postings = get_postings(token)
             for doc_id, frequency in postings.items():
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
                 candidates[doc_id].update_score(token, frequency)
         # Filter candidates to only those that match all query tokens
         valid_candidates = get_valid_candidates(candidates, self.tokens)
-        
-        print(f"Found {len(valid_candidates)}")
+
+        # Sort candidates by summing frequencies across all matched tokens
+        valid_candidates.sort(key=lambda c: sum(
+            c.tokens_matched.values()), reverse=True)
+        # Take only top 5 results if available
+        valid_candidates = valid_candidates[:5]
         if valid_candidates:
             print("Matching Documents:")
             for i, candidate in enumerate(valid_candidates):
-                print(f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
-        # Time
+                print(
+                    f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
+        else:
+            return []        # Time
         print(f"Search completed in {time.time() - start_time:.2f} seconds.")
-        
+        return [c.doc_id for c in valid_candidates]
+
+
 def get_valid_candidates(candidates, query_tokens):
     valid_candidates = []
     for c in candidates.values():
         if c.has_all_tokens(query_tokens):
             valid_candidates.append(c)
     return valid_candidates
-                
