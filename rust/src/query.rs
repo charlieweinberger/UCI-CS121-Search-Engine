@@ -39,7 +39,7 @@ impl SearchEngine {
         self.tokens = Tokenizer::new().tokenize(&self.query);
     }
 
-    pub fn search(&self) -> Vec<String> {
+    pub fn search(&self) -> (Vec<String>, u128) {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
@@ -110,7 +110,7 @@ impl SearchEngine {
             results.push(doc.url.clone());
         }
         println!("Search took: {}ms", time.elapsed().as_millis());
-        results
+        (results, time.elapsed().as_millis())
     }
 }
 

@@ -38,6 +38,7 @@ struct SearchRequest {
 #[derive(Serialize)]
 struct SearchResponse {
     results: Vec<String>,
+    time: u128,
 }
 
 #[actix_web::main]
@@ -77,12 +78,13 @@ async fn handle_search(
 
     // Set the query and perform search
     engine.set_query(payload.query.clone());
-    let results = engine.search();
+    let (results, time) = engine.search();
 
     // Limit to 5 results
     let limited_results = results.into_iter().take(5).collect();
 
     HttpResponse::Ok().json(SearchResponse {
         results: limited_results,
+        time: time,
     })
 }
