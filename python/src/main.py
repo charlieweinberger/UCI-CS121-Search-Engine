@@ -49,19 +49,19 @@ def main():
 
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
-
+        return doc_id_counter
         
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
         # When batch size is reached, process and save
         if len(current_batch) >= batch_size:
-            save_inverted_index(doc_id_counter)
+            doc_id_counter = save_inverted_index(doc_id_counter)
             current_batch = []
             batch_count += 1
 
     # Process remaining documents in the final batch
     if current_batch:
-        save_inverted_index(doc_id_counter)
+        doc_id_counter = save_inverted_index(doc_id_counter)
     save_phonebook(phonebook)
     
 if __name__ == "__main__":

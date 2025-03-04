@@ -4,9 +4,6 @@ import tokenizer
 import os
 
 
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
-
 class InvertedIndex:
     def __init__(self, current_doc_id: int = 1):
         self.current_doc_id: int = current_doc_id
