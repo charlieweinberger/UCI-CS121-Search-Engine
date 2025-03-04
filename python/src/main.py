@@ -29,7 +29,6 @@ def main():
             doc_id_counter += 1
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
-        inverted_index.save_phonebook()
 
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
