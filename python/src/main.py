@@ -2,19 +2,34 @@
 import download
 import indexer
 import save
-
+import os
+import json
 
 DEV_PATH = "../developer/DEV"
-INDEXES_PATH = "./indexes"
 
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
+INDEXES_PATH = os.path.join(SRC_DIR, "indexes")
+
+def load_phonebook():
+    """Loads the phonebook.json if it exists; otherwise, returns an empty dictionary."""
+    if os.path.exists(PHONEBOOK_PATH):
+        with open(PHONEBOOK_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_phonebook(phonebook):
+    """Writes the phonebook dictionary to a JSON file."""
+    with open(PHONEBOOK_PATH, "w", encoding="utf-8") as f:
+        json.dump(phonebook, f, indent=4)
 
 def main():
     # * Download the documents
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
-    doc_id_counter = 0  # Add a counter to track document IDs
-
+    doc_id_counter = 1  # Add a counter to track document IDs
+    phonebook = load_phonebook()
     def process_document(document_path):
         document = download.Document(document_path)
         return document.content
@@ -26,10 +41,13 @@ def main():
         for doc_path in current_batch:
             content = process_document(doc_path)
             inverted_index.add_document(content)
+            # Add to the phonebook
+            phonebook[str(doc_id_counter)] = doc_path
             doc_id_counter += 1
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
-
+        save_phonebook(phonebook)
+        
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
         # When batch size is reached, process and save
@@ -41,7 +59,7 @@ def main():
     # Process remaining documents in the final batch
     if current_batch:
         save_inverted_index(doc_id_counter)
-
+        
 
 if __name__ == "__main__":
     main()
