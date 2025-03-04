@@ -4,12 +4,12 @@ from typing import List
 from posting import Postings
 import json
 
-
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 DEV_PATH = "../developer/DEV"
-INDEXES_PATH = "./indexes"
-FINAL_INDEX = "final_index.txt"
-OUTPUT_DIR = "./merged_indexes"
-PHONEBOOK_PATH = "phonebook.json"
+INDEXES_PATH = os.path.join(SRC_DIR, "indexes")
+# FINAL_INDEX = os.path.join(SRC_DIR, "final_index.txt")
+OUTPUT_DIR = os.path.join(SRC_DIR, "merged_indexes")
+PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
 
 
 def get_file_for_word(word: str) -> str:
@@ -18,7 +18,7 @@ def get_file_for_word(word: str) -> str:
     if first_char.isalpha():
         return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
     elif first_char.isdigit():
-        return os.path.join(OUTPUT_DIR, "0-9.txt")
+        return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
     raise TypeError(f"Invalid input: word {word} should never start with a special character or space.")
 
 def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
@@ -101,13 +101,13 @@ def lazy_merger():
         batches.extend([os.path.join(root, file) for file in files])
 
     # Create mapping of docid to file location
-    docid_to_file = {}
-    for i, file_path in enumerate(sorted(batches)):
-        docid_to_file[i] = file_path
+    # docid_to_file = {}
+    # for i, file_path in enumerate(sorted(batches), 1):
+    #     docid_to_file[i] = file_path
 
-    # Write the mapping to phonebook.json
-    with open('phonebook.json', 'w', encoding='utf-8') as f:
-        json.dump(docid_to_file, f, indent=2)
+    # # Write the mapping to phonebook.json
+    # with open('phonebook.json', 'w', encoding='utf-8') as f:
+    #     json.dump(docid_to_file, f, indent=2)
 
 
 if __name__ == "__main__":

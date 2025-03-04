@@ -15,7 +15,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-PHONEBOOK_PATH = "phonebook.json"
+
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
 
 searcher = None
 with open(PHONEBOOK_PATH, 'r') as file:
