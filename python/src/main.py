@@ -28,8 +28,10 @@ def main():
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
-    doc_id_counter = 1  # Add a counter to track document IDs
     phonebook = load_phonebook()
+    doc_id_counter = 0  # Add a counter to track document IDs
+
+    
     def process_document(document_path):
         document = download.Document(document_path)
         return document.content
@@ -42,11 +44,12 @@ def main():
             content = process_document(doc_path)
             inverted_index.add_document(content)
             # Add to the phonebook
-            phonebook[str(doc_id_counter)] = doc_path
             doc_id_counter += 1
+            phonebook[str(doc_id_counter)] = doc_path
+
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
-        save_phonebook(phonebook)
+
         
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
@@ -59,7 +62,7 @@ def main():
     # Process remaining documents in the final batch
     if current_batch:
         save_inverted_index(doc_id_counter)
-        
-
+    save_phonebook(phonebook)
+    
 if __name__ == "__main__":
     main()
