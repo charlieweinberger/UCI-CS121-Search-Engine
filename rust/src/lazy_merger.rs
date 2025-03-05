@@ -5,9 +5,8 @@ use std::io::{BufRead, BufReader, LineWriter, Write};
 use std::path::PathBuf;
 
 use crate::file_skip_list::{FileSkip, MERGED_INDEX_DIR};
-pub fn main() {
+pub fn main(doc_id: u16) {
     fs::create_dir_all(MERGED_INDEX_DIR).unwrap_or_default();
-    let doc_id = 55393;
     let batch_count = (doc_id - 1) / BATCH_SIZE + 1;
     let word_ranges = ["0_9", "a_f", "g_p", "q_z"];
     // first character is null

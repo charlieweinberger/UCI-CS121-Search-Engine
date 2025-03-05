@@ -10,7 +10,6 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time;
 use url_parse::core::Parser;
-use url_parse::url::Url;
 const PATH: &str = "../developer/DEV/";
 pub const IDBOOK_PATH: &str = "inverted_index/id_book.txt";
 pub const BATCH_SIZE: u16 = 5000; // Define the batch size
@@ -83,7 +82,7 @@ fn process_file(
     id_book.insert(*doc_id, (doc.url, file_path.to_str().unwrap().to_string()));
 }
 
-pub fn main() {
+pub fn main() -> u16 {
     let doc_id: Arc<Mutex<u16>> = Arc::new(Mutex::new(0));
     // shared between threads
     let id_book: Arc<Mutex<HashMap<u16, (String, String)>>> = Arc::new(Mutex::new(HashMap::new()));
@@ -192,6 +191,7 @@ pub fn main() {
         }
         Err(e) => println!("Error creating id_book file: {}", e),
     }
+    return doc_id;
 }
 
 fn is_valid_page(url: &str, content: &str) -> bool {

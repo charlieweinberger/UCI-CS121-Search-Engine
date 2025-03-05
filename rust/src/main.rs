@@ -14,10 +14,10 @@ use std::sync::{Arc, Mutex};
 
 fn main() {
     // ! BUILD INDEX
-    index_builder::main();
+    // let doc_id = index_builder::main();
     // ! MERGE BATCHES
     // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
-    lazy_merger::main();
+    // lazy_merger::main(doc_id);
 
     // ! Comes searching and ranking now
 
