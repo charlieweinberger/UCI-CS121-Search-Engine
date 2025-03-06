@@ -23,3 +23,5 @@
 - [ ] Potentially trying to add positions information to the index along with MAYBE an extent list to see if that improves the search speed.
 - [ ] Duplication checking and removal
 - [ ] PageRank and scraping via paths
+- [ ] Make a seperate index which indexes pages with their locations and make it so that if the text is in a important tag you incease the tf idf score signigicantly
+- [ ] Add BERT Tokenizer on an experimental branch along wiht testing out tokenizers from things like GPT and so on.

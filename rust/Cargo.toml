@@ -15,5 +15,5 @@ serde_json = "1.0.139"
 url-parse = "1.0.10"
 
 [[bin]]
-name = "non_html_pages"
-path = "src/non_html_pages.rs"
+name = "page_rank"
+path = "src/enable_page_rank.rs"
