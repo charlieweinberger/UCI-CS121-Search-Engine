@@ -16,7 +16,7 @@ fn main() {
     // ! BUILD INDEX
     // let doc_id = index_builder::main();
     // ! MERGE BATCHES
-    // ! The following code snippet merges the batches of inverted indexes into a single inverted index.
+    // ! The following code snippet merges the batches of inverted indexes into a multiple sorted inverted index.
     // lazy_merger::main(doc_id);
 
     // ! Comes searching and ranking now

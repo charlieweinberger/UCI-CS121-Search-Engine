@@ -66,13 +66,13 @@ fn process_file(
     } else {
         return;
     };
-    let url = doc.url.clone();
+    let url: String = doc.url.clone();
     if !is_valid_page(&url, &doc.content) {
         return;
     }
     // ! do some logic if there is a query as well perhaps since it could be bad for us
-    let text = get_only_text_from_html(&doc.content, doc.encoding);
-
+    let text: String = get_only_text_from_html(&doc.content, doc.encoding);
+    // * 
     // Send the processed document data to the main thread
     let mut doc_id = doc_id.lock().unwrap();
     *doc_id += 1;
