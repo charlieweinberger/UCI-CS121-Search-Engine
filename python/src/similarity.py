@@ -37,6 +37,18 @@ def generate_fingerprint(vector: list[int], bit_size: int = SIMHASH_BIT_SIZE) ->
             fingerprint |= 1 << i
     return fingerprint
 
+def simhash(text:str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
+    vector = [0]*bit_size
+    ngrams = generate_word_ngrams(text, WORD_NGRAM_SIZE)
+    for ngram in ngrams:
+        hash_value = int(hashlib.md5(ngram.encode('utf-8')).hexdigest, 16)
+        for i in range(bit_size):
+            bit = (hash_value >> i) & 1
+            vector[1] += 1 if bit == 1 else -1
+    return generate_fingerprint(vector, bit_size)
+
+def hamming_distance(hash1: int, hash2: int) -> int:
+    return bin(hash1 ^ hash2).count('1')
 
 class SimilarityDeterctor:
     """
@@ -64,5 +76,9 @@ class SimilarityDeterctor:
         if checksum in self.seen_checksums:
             return True, "exact_duplicate"
         simhash_value = simhash(clean_text)
+        for page_path, s_hash in self.page_simhashes.items():
+            if hamming_distance(simhash_value, s_hash) < 3:
+                return True, f"similar: {page_path}"
         self.seen_checksums.add(checksum)
+        self.page_simhashes[path] = simhash_value
         return False, "unique"
