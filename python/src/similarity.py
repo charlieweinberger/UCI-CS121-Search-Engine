@@ -1,4 +1,8 @@
 import hashlib
+WORD_NGRAM_SIZE = 2
+WORD_SIMILARITY_THRESHOLD = 0.75
+SIMHASH_BIT_SIZE = 64
+
 
 # * Understanding from https://zlib.net/crc_v3.txt, https://en.wikipedia.org/wiki/Cyclic_redundancy_check#CRCs_and_data_integrity
 def python_crc32(data: str):
@@ -19,6 +23,13 @@ def python_crc32(data: str):
             # The polynomial is XORed with the remainder if the highest bit of the remainder is 1 else if 0, the remainder is shifted right by 1
             crc = (crc >> 1) ^ (crc32_polynomial if crc & 1 else 0)
     return crc
+
+def generate_word_ngrams(text: str, n: int) -> set[str]:
+    words = text.split()
+    if len(words) < n:
+        return set()
+    return {' '.join(words[i:i+n]) for i in range(len(words - n + 1))}
+
 
 class SimilarityDeterctor:
     """
@@ -43,4 +54,8 @@ class SimilarityDeterctor:
     def is_duplicate_or_similar(self, path: str, text:str) -> tuple[bool, str]:
         clean_text = self.clean_text(text)
         checksum = python_crc32(clean_text)
+        if checksum in self.seen_checksums:
+            return True, "exact_duplicate"
+        simhash_value = simhash(clean_text)
+        self.seen_checksums.add(checksum)
         return False, "unique"
