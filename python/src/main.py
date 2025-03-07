@@ -42,11 +42,11 @@ def main():
         # Process documents sequentially
         for doc_path in current_batch:
             content = process_document(doc_path)
-            if 
-            inverted_index.add_document(content)
-            # Add to the phonebook
-            doc_id_counter += 1
-            phonebook[str(doc_id_counter)] = doc_path
+            if indexer.InvertedIndex.is_valid_page(doc_path, content):
+                inverted_index.add_document(content)
+                # Add to the phonebook
+                doc_id_counter += 1
+                phonebook[str(doc_id_counter)] = doc_path
 
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
