@@ -4,6 +4,7 @@ import indexer
 import save
 import os
 import json
+from similarity import SimilarityDetector
 
 DEV_PATH = "../developer/DEV"
 
@@ -28,7 +29,9 @@ def main():
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
+    similarity = SimilarityDetector()
     phonebook = load_phonebook()
+
     doc_id_counter = 0  # Add a counter to track document IDs
         
     
@@ -43,7 +46,7 @@ def main():
         for doc_path in current_batch:
             content = process_document(doc_path)
             # Skip invalid document
-            if content is None:
+            if similarity.is_duplicate_or_similar(doc_path, content):
                 continue
             inverted_index.add_document(content)
             # Add to the phonebook
