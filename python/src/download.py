@@ -2,6 +2,7 @@
 import json
 import bs4 as BeautifulSoup
 import os
+import filter
 
 
 def download_json(file_path: str):
@@ -24,6 +25,8 @@ class Document:
         self.content = self.get_only_text(self.data['content'])
 
     def get_only_text(self, content: str) -> str:
+        if filter.is_valid_page(self.url, self.content) != True:
+            return None
         parser = BeautifulSoup.BeautifulSoup(
             content, 'html.parser', from_encoding=self.encoding)
         text = parser.get_text()
