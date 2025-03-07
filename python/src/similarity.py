@@ -50,7 +50,7 @@ def simhash(text:str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
 def hamming_distance(hash1: int, hash2: int) -> int:
     return bin(hash1 ^ hash2).count('1')
 
-class SimilarityDeterctor:
+class SimilarityDetector:
     """
     Detect similar pages during indexing based on content
     """
