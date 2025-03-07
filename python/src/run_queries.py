@@ -46,17 +46,19 @@
 
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="127.0.0.1", port=3000)
+
 from query import SearchEngine
 import json
 import os
+
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
 
 def main():
-    with open(PHONEBOOK_PATH, 'r') as file:
+    with open(PHONEBOOK_PATH, "r") as file:
         data = json.load(file)
         searcher = SearchEngine()
-        while(True):
+        while True:
             searcher.get_query()
             searcher.search()
 
