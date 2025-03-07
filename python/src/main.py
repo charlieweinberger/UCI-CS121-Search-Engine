@@ -23,13 +23,19 @@ def save_phonebook(phonebook):
     with open(PHONEBOOK_PATH, "w", encoding="utf-8") as f:
         json.dump(phonebook, f, indent=4)
 
+def get_max_doc_id(phonebook):
+    """Returns the highest document ID from the phonebook, or 0 if empty."""
+    if not phonebook:
+        return 0
+    return max(int(doc_id) for doc_id in phonebook.keys())
+
 def main():
     # * Download the documents
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
     phonebook = load_phonebook()
-    doc_id_counter = 0  # Add a counter to track document IDs
+    doc_id_counter = get_max_doc_id(phonebook)  # Add a counter to track document IDs
 
     
     def process_document(document_path):
@@ -49,6 +55,7 @@ def main():
 
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
+        save_phonebook(phonebook)
         return doc_id_counter
         
     for document_path in download.generator_files(DEV_PATH):
@@ -63,6 +70,6 @@ def main():
     if current_batch:
         doc_id_counter = save_inverted_index(doc_id_counter)
     save_phonebook(phonebook)
-    
+
 if __name__ == "__main__":
     main()

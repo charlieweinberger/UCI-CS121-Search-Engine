@@ -4,7 +4,8 @@ from collections import defaultdict
 from typing import List
 from tokenizer import Tokenizer
 
-OUTPUT_DIR = "./merged_indexes"
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(SRC_DIR, "./merged_indexes")
 
 # ! Do we have a function for this? idk
 
