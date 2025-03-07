@@ -1,6 +1,7 @@
 # create the inverted index along with the given tokens
 import posting
 import tokenizer
+from urllib.parse import urlparse
 import os
 
 
@@ -19,4 +20,17 @@ class InvertedIndex:
 
         self.current_doc_id += 1
     
+    def is_valid_page(url: str, content: str) -> bool:
+    # Parse URL to validate scheme and check for fragments (anchors)
+        try:
+            parsed_url = urlparse(url)
+        except Exception:
+            return False
+        
+        # Exclude pages with anchors
+        if parsed_url.fragment:
+            return False
+        
+        
+
     

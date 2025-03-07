@@ -42,6 +42,7 @@ def main():
         # Process documents sequentially
         for doc_path in current_batch:
             content = process_document(doc_path)
+            if 
             inverted_index.add_document(content)
             # Add to the phonebook
             doc_id_counter += 1
