@@ -30,6 +30,13 @@ def generate_word_ngrams(text: str, n: int) -> set[str]:
         return set()
     return {' '.join(words[i:i+n]) for i in range(len(words - n + 1))}
 
+def generate_fingerprint(vector: list[int], bit_size: int = SIMHASH_BIT_SIZE) -> int:
+    fingerprint = 0
+    for i in range(bit_size):
+        if vector[i] > 0:
+            fingerprint |= 1 << i
+    return fingerprint
+
 
 class SimilarityDeterctor:
     """
