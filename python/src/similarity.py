@@ -1,12 +1,32 @@
 import hashlib
 
+# * Understanding from https://zlib.net/crc_v3.txt, https://en.wikipedia.org/wiki/Cyclic_redundancy_check#CRCs_and_data_integrity
+def python_crc32(data: str):
+    # we use the CRC-32 polynomial for the CRC calculation
+    # crc = Width of the CRC (actual position of the highest bit)
+    crc32_polynomial = 0x04c11db7
+    # crc32_polynomial = 0x04c11db7: 0000 0100 1100 0001 0001 1101 1011 0111
+    data = data.encode("utf-8")
+    if len(data) < 1024*5:
+        print("Warning: Data is too small for CRC32 calculation")
+    # crc is masked to 32 bits just incase
+    crc = 0x00000000
+    # Divide the data by the polynomial and the remainder is the CRC
+    for byte in data:
+        # Each byte is XORed with the CRC
+        crc ^= byte
+        for _ in range(8):
+            # The polynomial is XORed with the remainder if the highest bit of the remainder is 1 else if 0, the remainder is shifted right by 1
+            crc = (crc >> 1) ^ (crc32_polynomial if crc & 1 else 0)
+    return crc
+
 class SimilarityDeterctor:
     """
     Detect similar pages during indexing based on content
     """
     def __init__(self):
         self.seen_checksums = set()
-        self.page_simhashes = {}\
+        self.page_simhashes = {}
         
     def clean_text(self, text:str) -> str:
         text = ' '.join(text.strip().split())
@@ -22,4 +42,5 @@ class SimilarityDeterctor:
     #not sure what we passin in to here
     def is_duplicate_or_similar(self, path: str, text:str) -> tuple[bool, str]:
         clean_text = self.clean_text(text)
+        checksum = python_crc32(clean_text)
         return False, "unique"
