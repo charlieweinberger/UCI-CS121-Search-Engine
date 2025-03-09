@@ -10,6 +10,8 @@ use std::fs::File;
 use std::sync::{Arc, Mutex};
 use std::thread;
 
+pub const TOTAL_DOCUMENT_COUNT: u16 = 46843;
+
 pub struct SearchEngine {
     query: String,
     tokens: Vec<String>,
@@ -81,8 +83,10 @@ impl SearchEngine {
                 if let Ok(file) = File::open(&file_path) {
                     let postings =
                         file_skip_list::get_postings_from_offset_range(&file, offset_range, &token);
+                    let posting_length = postings.postings.len() as u16;
                     for single_posting in postings.postings {
-                        candidate.update_score(single_posting.doc_id, single_posting.term_freq);
+                        let score = scoring_tf_idf(single_posting.term_freq, posting_length);
+                        candidate.update_score(single_posting.doc_id, score);
                     }
                 } else {
                     println!("Warning: Could not open index file for '{}'", first_char);
@@ -97,27 +101,31 @@ impl SearchEngine {
             handle.join().unwrap();
         }
 
+        if self.tokens.len() == 0 {
+            return (Vec::new(), 0);
+        }
+
         let mut candidates = Arc::try_unwrap(candidates).unwrap().into_inner().unwrap();
         candidates.sort_by(|a, b| a.doc_ids.len().cmp(&b.doc_ids.len()));
 
-        let mut boolean_and_candidates: HashMap<&u16, &u16> =
+        let mut boolean_and_candidates: HashMap<&u16, &f64> =
             candidates[0].doc_ids.iter().collect();
         for candidate in candidates.iter().skip(1) {
             boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
         }
         let final_time = time.elapsed().as_millis();
         println!("Search took: {}ms", final_time);
-        let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
-        sorted_candidates.sort_by(|a, b| b.1.cmp(a.1));
+        let mut sorted_candidates: Vec<(&u16, &f64)> = boolean_and_candidates.into_iter().collect();
+        sorted_candidates.sort_by(|a, b| b.1.partial_cmp(a.1).unwrap());
         let mut results = Vec::new();
-        for (doc_id, term_freq) in sorted_candidates.iter().take(5) {
+        for (doc_id, score) in sorted_candidates.iter().take(5) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
             println!(
                 "{}|> {}: {} (Score: {})",
                 doc_id,
                 doc.url,
                 doc.path.display(),
-                term_freq
+                score
             );
             results.push(doc.url.clone());
         }
@@ -128,7 +136,7 @@ impl SearchEngine {
 #[derive(Debug)]
 pub struct Candidate {
     pub term: String,
-    pub doc_ids: HashMap<u16, u16>, // for each doc_id, the term frequency
+    pub doc_ids: HashMap<u16, f64>, // for each doc_id, the tfidf score
 }
 
 impl Candidate {
@@ -138,7 +146,14 @@ impl Candidate {
             doc_ids: HashMap::new(),
         }
     }
-    pub fn update_score(&mut self, doc_id: u16, term_freq: u16) {
-        self.doc_ids.insert(doc_id, term_freq);
+    pub fn update_score(&mut self, doc_id: u16, score: f64) {
+        self.doc_ids.insert(doc_id, score);
     }
 }
+
+pub fn scoring_tf_idf(term_freq: u16, posting_length: u16) -> f64 {
+    let tf: f64 = f64::log2(term_freq as f64) + 1.0;
+    let idf: f64 = f64::log2(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
+    tf * idf
+}
+
