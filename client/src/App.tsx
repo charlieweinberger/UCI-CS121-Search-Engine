@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const fakeData: Website[] = [
   {
@@ -42,10 +42,25 @@ async function getAISummary(website: Website): Promise<Website> {
   return website;
 }
 
+function WebsiteComponent({ website }: { website: Website | undefined }) {
+  if (!website) return;
+  return (
+    <div className="p-4 bg-blue-400 rounded-lg">
+      <a>{website.url}</a>
+      <p>{website.summary}</p>
+    </div>
+  );
+}
+
 export default function App() {
 
-  const [ query, setQuery ] = useState("");
-  const [ websites, setWebsites ] = useState<Website[]>([]);
+  // const [ query, setQuery ] = useState("");
+
+  const [ website1, setWebsite1 ] = useState<Website>();
+  const [ website2, setWebsite2 ] = useState<Website>();
+  const [ website3, setWebsite3 ] = useState<Website>();
+  const [ website4, setWebsite4 ] = useState<Website>();
+  const [ website5, setWebsite5 ] = useState<Website>();
 
   const handleSearch = async () => {
     try {
@@ -70,10 +85,11 @@ export default function App() {
   };
 
   const summarizeWebsites = async (results: Website[]) => {
-    for (const result of results) {
-      const summarizedWebsite: Website = await getAISummary(result);
-      setWebsites([...websites, summarizedWebsite]);
-    }
+    setWebsite1(await getAISummary(results[0]));
+    setWebsite2(await getAISummary(results[1]));
+    setWebsite3(await getAISummary(results[2]));
+    setWebsite4(await getAISummary(results[3]));
+    setWebsite5(await getAISummary(results[4]));
   };
 
   return (
@@ -86,7 +102,7 @@ export default function App() {
           id="search-query"
           type="text"
           placeholder="Input search query here"
-          onChange={(e) => setQuery(e.target.value)}
+          // onChange={(e) => setQuery(e.target.value)}
           className="w-96 bg-white"
           required
         />
@@ -94,13 +110,12 @@ export default function App() {
           Search
         </Button>
       </div>
-      <div className="flex flex-col gap-4 bg-blue-300">
-        {websites.map((website: Website) => (
-          <div key={website.url} className="flex flex-col gap-4 bg-blue-500">
-            <p>{website.url}</p>
-            <p>{website.summary}</p>
-          </div>
-        ))}
+      <div className="flex flex-col gap-4 bg-blue-300 p-4 rounded-lg">
+        <WebsiteComponent website={website1} />
+        <WebsiteComponent website={website2} />
+        <WebsiteComponent website={website3} />
+        <WebsiteComponent website={website4} />
+        <WebsiteComponent website={website5} />
       </div>
     </div>
   );
