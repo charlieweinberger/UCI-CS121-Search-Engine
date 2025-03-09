@@ -39,6 +39,7 @@ impl FileSkip {
         };
         // create a buffered reader, which is more efficient for reading lines
         let mut reader: BufReader<File> = BufReader::new(file);
+        // * from the documentation:
         // BufReader<R> can improve the speed of programs that make small and
         // repeated read calls to the same file.
         // It does not help when reading very large amounts at once, or reading just one or a few times.
