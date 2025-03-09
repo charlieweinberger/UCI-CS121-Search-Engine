@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,15 +28,17 @@ const fakeData: Website[] = [
   }
 ]
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
-  systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
-});
+// const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+// const model = genAI.getGenerativeModel({
+//   model: "gemini-1.5-flash",
+//   systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
+// });
 
 async function getAISummary(website: Website): Promise<Website> {
-  const result = await model.generateContent(website.content);
-  website.summary = result.response.text() ?? "AI summary failed.";
+  // const result = await model.generateContent(website.content);
+  // website.summary = result.response.text() ?? "AI summary failed.";
+  website.summary = "this is a webiste";
+  await new Promise(resolve => setTimeout(resolve, 1000)); // pause 1 second for testing, to simulate AI taking its time to summarize
   return website;
 }
 
@@ -67,17 +69,10 @@ export default function App() {
     }
   };
 
-  useEffect(() => {
-    // setWebsites(websites)
-  }, [websites]);
-
   const summarizeWebsites = async (results: Website[]) => {
     for (const result of results) {
-      const newWebsite: Website = await getAISummary(result);
-      websites.push(newWebsite);
-      console.log([...websites].length);
-      console.log([...websites, newWebsite].length);
-      setWebsites([...websites, newWebsite]);
+      const summarizedWebsite: Website = await getAISummary(result);
+      setWebsites([...websites, summarizedWebsite]);
     }
   };
 
