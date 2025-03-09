@@ -4,10 +4,11 @@ from collections import defaultdict
 from typing import List
 from tokenizer import Tokenizer
 import math
+import json
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SRC_DIR, "merged_indexes")
-
+PHONEBOOK = os.path.join(SRC_DIR, "phonebook.json")
 TOTAL_DOCUMENT_COUNT = 10000  # Replace with the actual total document count
 
 def get_postings(token):
@@ -88,7 +89,8 @@ class SearchEngine:
         for token in self.tokens:
             # get the postings list for the token
             postings = get_postings(token)
-            for doc_id, frequency in postings.items():
+            for cur_doc, frequency in postings.items():
+                doc_id = cur_doc + 1
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
                 score = scoring_tf_idf(frequency, len(postings))
@@ -101,17 +103,20 @@ class SearchEngine:
             c.tokens_matched.values()), reverse=True)
         # Take only top 5 results if available
         valid_candidates = valid_candidates[:5]
-        finished_time = time.time() - start_time
+        finished_time = int((time.time() - start_time) * 1000)
+        doc_ids = []
         if valid_candidates:
             print("Matching Documents:")
             for i, candidate in enumerate(valid_candidates):
                 print(
                     f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
+                doc_ids.append(candidate.doc_id)
         else:
             return [] 
+        print(f"Search completed in {finished_time} ms.")
         
-        print(f"Search completed in {finished_time} seconds.")
-        return [c.doc_id for c in valid_candidates]
+        return get_doc_info(doc_ids)
+        
 
 
 def get_valid_candidates(candidates, query_tokens):
@@ -120,3 +125,25 @@ def get_valid_candidates(candidates, query_tokens):
         if c.has_all_tokens(query_tokens):
             valid_candidates.append(c)
     return valid_candidates
+
+def get_doc_info(doc_ids):
+    """
+    Get the document information for a given document ID.
+    Returns an array of a docID's URL and content
+    First element has the highest score. 
+    """
+    with open(PHONEBOOK, 'r') as f:
+        phonebook = json.load(f)
+    
+    result = []
+    
+    for doc_id in doc_ids:
+        if doc_id in phonebook:
+            file_path = phonebook[doc_id]
+            with open(file_path, 'r') as doc_file:
+                doc_data = json.load(doc_file)
+                result.append((doc_data["url"], doc_data["content"]))
+    
+    return result
+            
+            
