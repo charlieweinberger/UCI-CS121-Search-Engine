@@ -1,13 +1,13 @@
 use crate::single_posting::Posting;
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Postings {
     pub word: String,
     pub postings: Vec<Posting>,
     pub skip_list: Vec<SkipList>,
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct SkipList {
     doc_id: u16,
     index: u16,
@@ -48,7 +48,7 @@ impl Postings {
         &self.postings
     }
 
-    pub fn load_postings(line: &str) -> Result<Postings, &'static str> {
+    pub fn load_postings(line: &str) -> Result<Postings, &str> {
         if line.is_empty() {
             return Err("Empty line");
         }
