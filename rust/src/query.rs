@@ -13,13 +13,24 @@ use std::thread;
 pub struct SearchEngine {
     query: String,
     tokens: Vec<String>,
+    skiplists: Arc<Vec<Vec<file_skip_list::FileSkip>>>,
 }
 
 impl SearchEngine {
     pub fn new() -> Self {
+        let mut skiplists = Vec::new();
+        for i in 0..=9 {
+            let skiplist = file_skip_list::FileSkip::read_skip_list((b'0' + i) as char);
+            skiplists.push(skiplist);
+        }
+        for i in 0..26 {
+            let skiplist = file_skip_list::FileSkip::read_skip_list((b'a' + i) as char);
+            skiplists.push(skiplist);
+        }
         Self {
             query: String::new(),
             tokens: Vec::new(),
+            skiplists: Arc::new(skiplists),
         }
     }
 
@@ -43,31 +54,33 @@ impl SearchEngine {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
-        // this will be shared across threads for adding candidates
+
+        // This will be shared across threads for adding candidates
         let candidates = Arc::new(Mutex::new(Vec::with_capacity(self.tokens.len())));
-        // create a thread for each token to search for the token in the inverted index
         let mut handles = vec![];
 
         for token in self.tokens.iter() {
             let candidates = Arc::clone(&candidates);
-            // spawn a thread for each token
-            // cloning since the "token" would otherwise be consumed by the thread and that reference lifetime could only work if it were static!
+            let skiplists = Arc::clone(&self.skiplists);
             let token = token.clone();
+
             let handle = thread::spawn(move || {
-                // get the first letter of the token to determine which file to read
-                let first_char = token.chars().next().clone().unwrap();
-                // go to the file_skip list of the first character
-                let skiplist = file_skip_list::FileSkip::read_skip_list(first_char);
-                // get which BYTE range it is in between
-                let offset_range = file_skip_list::FileSkip::find_skip_entry(&skiplist, &token);
+                let first_char = token.chars().next().unwrap();
+                let first_char_index = if first_char.is_ascii_digit() {
+                    (first_char as u8 - b'0') as usize
+                } else {
+                    (first_char as u8 - b'a') as usize + 10
+                };
+
+                let offset_range =
+                    file_skip_list::FileSkip::find_skip_entry(&skiplists[first_char_index], &token);
+
                 let file_path = format!("inverted_index/merged/{}.txt", first_char);
 
                 let mut candidate = Candidate::new(token.to_string());
                 if let Ok(file) = File::open(&file_path) {
-                    // get the postings from the file and update the scorings of the candidates
                     let postings =
                         file_skip_list::get_postings_from_offset_range(&file, offset_range, &token);
-                    // Update candidates with the postings data
                     for single_posting in postings.postings {
                         candidate.update_score(single_posting.doc_id, single_posting.term_freq);
                     }
@@ -79,24 +92,24 @@ impl SearchEngine {
             });
             handles.push(handle);
         }
-        // after each thread is done, join them
+
         for handle in handles {
             handle.join().unwrap();
         }
-        // unwrap the candidates from the mutex lock
+
         let mut candidates = Arc::try_unwrap(candidates).unwrap().into_inner().unwrap();
-        // sort the candidates by the number of documents they appear in with smallest first
         candidates.sort_by(|a, b| a.doc_ids.len().cmp(&b.doc_ids.len()));
-        // then filter candidates that only have all the tokens
+
         let mut boolean_and_candidates: HashMap<&u16, &u16> =
             candidates[0].doc_ids.iter().collect();
         for candidate in candidates.iter().skip(1) {
             boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
         }
-
-        // Sort candidates by score (term frequency) in descending order
+        let final_time = time.elapsed().as_millis();
+        println!("Search took: {}ms", final_time);
         let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
         sorted_candidates.sort_by(|a, b| b.1.cmp(a.1));
+
         let mut results = Vec::new();
         for (doc_id, term_freq) in sorted_candidates.iter().take(5) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
@@ -109,8 +122,7 @@ impl SearchEngine {
             );
             results.push(doc.url.clone());
         }
-        println!("Search took: {}ms", time.elapsed().as_millis());
-        (results, time.elapsed().as_millis())
+        (results, final_time)
     }
 }
 
