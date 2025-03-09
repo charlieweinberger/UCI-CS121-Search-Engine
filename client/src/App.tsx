@@ -73,10 +73,19 @@ export default function App() {
       // const results: Website[] = data.results;
       const results: Website[] = fakeData;
       console.log(results);
-      return results;
+      summarizeWebsites(results);
     } catch (error) {
       console.error(`Error searching: ${error}`);
     }
+  };
+
+  const summarizeWebsites = async (results: Website[]) => {
+    const summarizedWebsites: Website[] = [];
+    for (const result of results) {
+      const summarizedWebsite: Website = await getAISummary(result);
+      summarizedWebsites.push(summarizedWebsite);
+    }
+    setWebsites(summarizedWebsites);
   };
 
   return (
