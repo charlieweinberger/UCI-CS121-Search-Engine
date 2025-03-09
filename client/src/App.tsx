@@ -68,16 +68,14 @@ export default function App() {
   };
 
   const summarizeWebsites = async (results: Website[]) => {
-    const summarizedWebsites: Website[] = [];
     for (const result of results) {
       const summarizedWebsite: Website = await getAISummary(result);
-      summarizedWebsites.push(summarizedWebsite);
+      setWebsites([...websites, summarizedWebsite]);
     }
-    setWebsites(summarizedWebsites);
   };
 
   return (
-    <div className="bg-blue-100 py-44 h-screen flex items-center flex-col gap-12">
+    <div className="bg-blue-100 py-20 h-screen flex items-center flex-col gap-12">
       <div className="text-8xl text-center font-bold flex flex-row">
         <p>SearchThing</p>
       </div>
