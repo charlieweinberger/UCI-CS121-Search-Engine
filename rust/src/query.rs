@@ -109,7 +109,6 @@ impl SearchEngine {
         println!("Search took: {}ms", final_time);
         let mut sorted_candidates: Vec<(&u16, &u16)> = boolean_and_candidates.into_iter().collect();
         sorted_candidates.sort_by(|a, b| b.1.cmp(a.1));
-
         let mut results = Vec::new();
         for (doc_id, term_freq) in sorted_candidates.iter().take(5) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
