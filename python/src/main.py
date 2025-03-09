@@ -26,6 +26,10 @@ def save_phonebook(phonebook):
 
 def main():
     # * Download the documents
+    if os.path.exists(DEV_PATH):
+        print("a")
+    else:
+        open(DEV_PATH, "w", encoding="utf-8")
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
@@ -45,9 +49,12 @@ def main():
         # Process documents sequentially
         for doc_path in current_batch:
             content = process_document(doc_path)
-            # Skip invalid document
-            if similarity.is_duplicate_or_similar(doc_path, content):
+            if content is None:
                 continue
+            sim = similarity.is_duplicate_or_similar(doc_path, content)
+            if sim[0]:
+                continue
+            # Skip invalid document
             inverted_index.add_document(content)
             # Add to the phonebook
             doc_id_counter += 1
@@ -56,7 +63,6 @@ def main():
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
         return doc_id_counter
-        
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
         # When batch size is reached, process and save
