@@ -25,7 +25,7 @@ class Document:
         self.content = self.get_only_text(self.data['content'])
 
     def get_only_text(self, content: str) -> str:
-        if filter.is_valid_page(self.url, self.content) != True:
+        if filter.is_valid_page(self.url, content) != True:
             return None
         parser = BeautifulSoup.BeautifulSoup(
             content, 'html.parser', from_encoding=self.encoding)
