@@ -96,7 +96,7 @@ export default function App() {
       </div>
       <div className="flex flex-col gap-4 bg-blue-300">
         {websites.map((website: Website) => (
-          <div className="flex flex-col gap-4 bg-blue-500">
+          <div key={website.url} className="flex flex-col gap-4 bg-blue-500">
             <p>{website.url}</p>
             <p>{website.summary}</p>
           </div>
