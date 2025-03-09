@@ -27,7 +27,7 @@ if __name__ == "__main__":
     tokenizer = Tokenizer()
     text = "This is a simple text."
     text2 = "THIS IS  A simpler TEXT WITH MORE WORDS."
-    text3 = "aren't loop"
+    text3 = "iftekhar ahmed"
     tokens = tokenizer.tokenize(text)
     print(tokens)
     tokens = tokenizer.tokenize(text2)
