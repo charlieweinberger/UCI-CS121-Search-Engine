@@ -2,26 +2,57 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+import Groq from "groq-sdk";
+
+const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY });
+
+async function getGroqChatCompletion() {
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "system",
+        content: "you are a helpful assistant.",
+      },
+      {
+        role: "user",
+        content: "Explain the importance of fast language models",
+      },
+    ],
+    model: "llama-3.3-70b-versatile",
+  });
+}
+
+async function getAISummary(website: Website): Promise<Website> {
+  const chatCompletion = await getGroqChatCompletion();
+  website.summary = chatCompletion.choices[0]?.message?.content || "AI summary failed.";
+  return website;
+}
+
 export default function App() {
-  const [query, setQuery] = useState("");
+
+  const [ query, setQuery ] = useState("");
+  const [ websites, setWebsites ] = useState<Website[]>([]);
 
   const handleSearch = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:3000/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: query,
-          search_type: "name",
-        }),
-      });
-      const data = await response.json();
-      const results = data.results;
+      // const response = await fetch("http://127.0.0.1:3000/search", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     query: query,
+      //     search_type: "name",
+      //   }),
+      // });
+      // const data = await response.json();
+      // const results: Website[] = data.results;
+      const results: Website[] = fakeData;
       console.log(results);
+      return results;
     } catch (error) {
-      console.error("Error searching:", error);
+      console.error(`Error searching: ${error}`);
     }
   };
 
