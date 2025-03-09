@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Card, CardContent } from "@/components/ui/card";
+// import { Skeleton } from "@/components/ui/skeleton";
 
-import { Search } from "lucide-react";
+// import { Search } from "lucide-react";
 
 //! Uncomment when done testing
 // import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -54,7 +54,6 @@ async function getAISummary(website: Website): Promise<Website> {
 
 function WebsiteComponent({ website }: { website: Website | undefined }) {
   if (!website) return;
-  //! Consider replacing this with shadcn card (https://ui.shadcn.com/docs/components/card)
   return (
     <div className="p-4 bg-blue-400 rounded-lg">
       <a>{website.url}</a>
@@ -63,91 +62,16 @@ function WebsiteComponent({ website }: { website: Website | undefined }) {
   );
 }
 
-export function SearchResults({ query, loading, websites }: {
-  query: string
-  loading: boolean
-  websites: Website[]
-}) {
-
-  if (!query) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground">Enter a search term to see results</p>
-      </div>
-    )
-  }
-
-  if (websites.length === 0 && query) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground">No results found for "{query}"</p>
-      </div>
-    )
-  }
-
-  return <>
-    <WebsiteComponent website={website1} />
-    <WebsiteComponent website={website2} />
-    <WebsiteComponent website={website3} />
-    <WebsiteComponent website={website4} />
-    <WebsiteComponent website={website5} />
-  </>
-
-}
-
-  if (loading) {
-    return (
-      <div className="space-y-4">
-        {[...Array(5)].map((_, i) => (
-          <Card key={i} className="overflow-hidden">
-            <CardContent className="p-4">
-              <Skeleton className="h-4 w-3/4 mb-2" />
-              <Skeleton className="h-3 w-full mb-1" />
-              <Skeleton className="h-3 w-full mb-1" />
-              <Skeleton className="h-3 w-4/5" />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    )
-  }
-
-  return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground mb-4">
-        Showing {websites.length} results for "{query}"
-      </p>
-      {websites.map((website: Website) => (
-        <Card key={website.url} className="overflow-hidden hover:shadow-md transition-shadow">
-          <CardContent className="p-4">
-            <h2 className="text-xl font-medium mb-1">
-              <a
-                href={website.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-green-600 dark:text-green-400 hover:underline mb-2 inline-block"
-              >
-                {website.url}
-              </a>
-            </h2>
-            <p className="text-sm text-slate-700 dark:text-slate-300 mt-2">{website.content}</p>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  )
-}
-
 export default function App() {
 
   const [ query, setQuery ] = useState("");
 
-  const [ websites, setWebsites ] = useState<Website[]>([]);
-  // const [ website1, setWebsite1 ] = useState<Website>();
-  // const [ website2, setWebsite2 ] = useState<Website>();
-  // const [ website3, setWebsite3 ] = useState<Website>();
-  // const [ website4, setWebsite4 ] = useState<Website>();
-  // const [ website5, setWebsite5 ] = useState<Website>();
+  // const [ websites, setWebsites ] = useState<Website[]>([]);
+  const [ website1, setWebsite1 ] = useState<Website>();
+  const [ website2, setWebsite2 ] = useState<Website>();
+  const [ website3, setWebsite3 ] = useState<Website>();
+  const [ website4, setWebsite4 ] = useState<Website>();
+  const [ website5, setWebsite5 ] = useState<Website>();
 
   const handleSubmit = async () => {
     resetResults();
@@ -156,12 +80,12 @@ export default function App() {
   };
 
   const resetResults = () => {
-    setWebsites([]);
-    // setWebsite1(undefined);
-    // setWebsite2(undefined);
-    // setWebsite3(undefined);
-    // setWebsite4(undefined);
-    // setWebsite5(undefined);
+    // setWebsites([]);
+    setWebsite1(undefined);
+    setWebsite2(undefined);
+    setWebsite3(undefined);
+    setWebsite4(undefined);
+    setWebsite5(undefined);
   };
 
   const fetchResults = async () => {
@@ -185,75 +109,42 @@ export default function App() {
   }
 
   const summarizeWebsites = async (results: Website[]) => {
-    for (const result of results) {
-      const summarizedWebsite: Website = await getAISummary(result);
-      setWebsites([...websites, summarizedWebsite]);
-    }
-    // setWebsite1(await getAISummary(results[0]));
-    // setWebsite2(await getAISummary(results[1]));
-    // setWebsite3(await getAISummary(results[2]));
-    // setWebsite4(await getAISummary(results[3]));
-    // setWebsite5(await getAISummary(results[4]));
+    // for (const result of results) {
+    //   const summarizedWebsite: Website = await getAISummary(result);
+    //   setWebsites([...websites, summarizedWebsite]);
+    // }
+    setWebsite1(await getAISummary(results[0]));
+    setWebsite2(await getAISummary(results[1]));
+    setWebsite3(await getAISummary(results[2]));
+    setWebsite4(await getAISummary(results[3]));
+    setWebsite5(await getAISummary(results[4]));
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-8 text-center">Search Engine</h1>
-        <div className="w-full max-w-2xl">
-          
-          {/* Search Bar */}
-          <form onSubmit={handleSubmit} className="w-full mb-8">
-            <div className="flex w-full items-center space-x-2">
-              <div className="relative flex-1">
-                <Input
-                  type="text"
-                  placeholder="Search the web..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  className="pl-4 pr-10 py-6 text-lg w-full"
-                />
-                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-              </div>
-              <Button type="submit" size="lg" className="px-6">
-                Search
-              </Button>
-            </div>
-          </form>
-          
-          {/* Search Results */}
-          <SearchResults websites={websites} />
-        </div>
+    <div className="h-screen bg-blue-100 flex items-center justify-center flex-col gap-12">
+      <div className="text-8xl text-center font-bold flex flex-row">
+        <p>SearchThing</p>
       </div>
-    </main>
-  )
-
-  // return (
-  //   <div className="h-screen bg-blue-100 flex items-center justify-center flex-col gap-12">
-  //     <div className="text-8xl text-center font-bold flex flex-row">
-  //       <p>SearchThing</p>
-  //     </div>
-  //     <div className="flex flex-row gap-2">
-  //       <Input
-  //         id="search-query"
-  //         type="text"
-  //         placeholder="Input search query here"
-  //         onChange={(e) => setQuery(e.target.value)}
-  //         className="w-96 bg-white"
-  //         required
-  //       />
-  //       <Button type="submit" onClick={handleSubmit}>
-  //         Search
-  //       </Button>
-  //     </div>
-  //     {/*//! Consider replacing overflow-auto with shadcn scroll-area (https://ui.shadcn.com/docs/components/scroll-area) */}
-  //     {website1 && <div className="w-2/3 h-2/3 flex flex-col gap-4 bg-blue-300 p-4 rounded-lg overflow-auto">
-  //         <WebsiteComponent website={website1} />
-  //         <WebsiteComponent website={website2} />
-  //         <WebsiteComponent website={website3} />
-  //         <WebsiteComponent website={website4} />
-  //         <WebsiteComponent website={website5} />
-  //     </div>}
-  //   </div>
-  // );
+      <div className="flex flex-row gap-2">
+        <Input
+          id="search-query"
+          type="text"
+          placeholder="Input search query here"
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-96 bg-white"
+          required
+        />
+        <Button type="submit" onClick={handleSubmit}>
+          Search
+        </Button>
+      </div>
+      {website1 && <div className="w-2/3 h-2/3 flex flex-col gap-4 bg-blue-300 p-4 rounded-lg overflow-auto">
+          <WebsiteComponent website={website1} />
+          <WebsiteComponent website={website2} />
+          <WebsiteComponent website={website3} />
+          <WebsiteComponent website={website4} />
+          <WebsiteComponent website={website5} />
+      </div>}
+    </div>
+  );
 }
