@@ -91,7 +91,7 @@ export default function App() {
   return (
     <div className="bg-blue-100 py-44 h-screen flex items-center flex-col gap-12">
       <div className="text-8xl text-center font-bold flex flex-row">
-        <p>CS 121 A3 Search Engine</p>
+        <p>SearchThing</p>
       </div>
       <div className="flex flex-row gap-2">
         <Input
@@ -105,6 +105,14 @@ export default function App() {
         <Button type="submit" onClick={handleSearch}>
           Search
         </Button>
+      </div>
+      <div className="flex flex-col gap-4 bg-blue-300">
+        {websites.map((website: Website) => (
+          <div className="flex flex-col gap-4 bg-blue-500">
+            <p>{website.url}</p>
+            <p>{website.summary}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
