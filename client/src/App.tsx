@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const fakeData: Website[] = [
   {
@@ -28,17 +28,17 @@ const fakeData: Website[] = [
   }
 ]
 
-// const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-// const model = genAI.getGenerativeModel({
-//   model: "gemini-1.5-flash",
-//   systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
-// });
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
+});
 
 async function getAISummary(website: Website): Promise<Website> {
-  // const result = await model.generateContent(website.content);
-  // website.summary = result.response.text() ?? "AI summary failed.";
-  website.summary = "this is a webiste";
-  await new Promise(resolve => setTimeout(resolve, 1000)); // pause 1 second for testing, to simulate AI taking its time to summarize
+  const result = await model.generateContent(website.content);
+  website.summary = result.response.text() ?? "AI summary failed.";
+  // website.summary = "this is a webiste";
+  // await new Promise(resolve => setTimeout(resolve, 1000)); // pause 1 second for testing, to simulate AI taking its time to summarize
   return website;
 }
 
@@ -93,7 +93,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-blue-100 py-20 h-screen flex items-center flex-col gap-12">
+    <div className="h-screen bg-blue-100 flex items-center justify-center flex-col gap-12">
       <div className="text-8xl text-center font-bold flex flex-row">
         <p>SearchThing</p>
       </div>
@@ -110,13 +110,13 @@ export default function App() {
           Search
         </Button>
       </div>
-      <div className="flex flex-col gap-4 bg-blue-300 p-4 rounded-lg">
-        <WebsiteComponent website={website1} />
-        <WebsiteComponent website={website2} />
-        <WebsiteComponent website={website3} />
-        <WebsiteComponent website={website4} />
-        <WebsiteComponent website={website5} />
-      </div>
+      {website1 && <div className="w-2/3 h-2/3 flex flex-col gap-4 bg-blue-300 p-4 rounded-lg overflow-auto">
+          <WebsiteComponent website={website1} />
+          <WebsiteComponent website={website2} />
+          <WebsiteComponent website={website3} />
+          <WebsiteComponent website={website4} />
+          <WebsiteComponent website={website5} />
+      </div>}
     </div>
   );
 }
