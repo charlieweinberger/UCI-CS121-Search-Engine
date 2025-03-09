@@ -19,8 +19,6 @@ fn main() {
     // ! The following code snippet merges the batches of inverted indexes into a multiple sorted inverted index.
     // lazy_merger::main(doc_id);
 
-    //     // ! Comes searching and ranking now
-
     println!("Welcome to the Search Engine!");
     let mut search_engine = query::SearchEngine::new();
     loop {

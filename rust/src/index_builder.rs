@@ -47,7 +47,7 @@ fn get_only_text_from_html(content: &str, encoding: String) -> String {
             let selector = scraper::Selector::parse(better_selector).unwrap();
             for element in document.select(&selector) {
                 let text = element.text().collect::<String>();
-                for _ in 0..10 {
+                for _ in 0..50 {
                     combined_text.push_str(&text);
                 }
             }
