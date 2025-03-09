@@ -30,16 +30,16 @@ const fakeData: Website[] = [
 
 const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY });
 
-async function getGroqChatCompletion() {
+async function getGroqChatCompletion(website: Website): Promise<Groq.Chat.Completions.ChatCompletion> {
   return groq.chat.completions.create({
     messages: [
       {
         role: "system",
-        content: "you are a helpful assistant.",
+        content: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
       },
       {
         role: "user",
-        content: "Explain the importance of fast language models",
+        content: website.content,
       },
     ],
     model: "llama-3.3-70b-versatile",
@@ -47,7 +47,7 @@ async function getGroqChatCompletion() {
 }
 
 async function getAISummary(website: Website): Promise<Website> {
-  const chatCompletion = await getGroqChatCompletion();
+  const chatCompletion = await getGroqChatCompletion(website);
   website.summary = chatCompletion.choices[0]?.message?.content || "AI summary failed.";
   return website;
 }
