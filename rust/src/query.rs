@@ -123,7 +123,7 @@ impl SearchEngine {
         let mut results = Vec::new();
         let final_time = time.elapsed().as_millis();
         println!("Search took: {}ms", final_time);
-        for (doc_id, score) in sorted_candidates.iter().take(20) {
+        for (doc_id, score) in sorted_candidates.iter().take(5) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
             println!(
                 "{}|> {}: {} (Score: {})",
@@ -159,6 +159,5 @@ impl Candidate {
 pub fn scoring_tf_idf(term_freq: u16, posting_length: u16) -> f64 {
     let tf: f64 = f64::log2(term_freq as f64) + 1.0;
     let idf: f64 = f64::log2(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
-    print!("{} ", idf);
     tf * idf
 }
