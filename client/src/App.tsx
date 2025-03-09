@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+//! Uncomment when done testing
 // import { GoogleGenerativeAI } from "@google/generative-ai";
 
+//! Delete when done testing
 const fakeData: Website[] = [
   {
     "url": "https://aiclub.ics.uci.edu/",
@@ -28,6 +30,7 @@ const fakeData: Website[] = [
   }
 ]
 
+//! Uncomment when done testing
 // const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 // const model = genAI.getGenerativeModel({
 //   model: "gemini-1.5-flash",
@@ -35,15 +38,19 @@ const fakeData: Website[] = [
 // });
 
 async function getAISummary(website: Website): Promise<Website> {
+  //! Uncomment when done testing
   // const result = await model.generateContent(website.content);
   // website.summary = result.response.text() ?? "AI summary failed.";
-  website.summary = "this is a webiste";
-  await new Promise(resolve => setTimeout(resolve, 1000)); // pause 1 second for testing, to simulate AI taking its time to summarize
+  // return website;
+  //! Delete when done testing
+  website.summary = "this is a website";
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return website;
 }
 
 function WebsiteComponent({ website }: { website: Website | undefined }) {
   if (!website) return;
+  //! Consider replacing this with shadcn card (https://ui.shadcn.com/docs/components/card)
   return (
     <div className="p-4 bg-blue-400 rounded-lg">
       <a>{website.url}</a>
@@ -54,7 +61,7 @@ function WebsiteComponent({ website }: { website: Website | undefined }) {
 
 export default function App() {
 
-  // const [ query, setQuery ] = useState("");
+  const [ query, setQuery ] = useState("");
 
   const [ website1, setWebsite1 ] = useState<Website>();
   const [ website2, setWebsite2 ] = useState<Website>();
@@ -63,26 +70,39 @@ export default function App() {
   const [ website5, setWebsite5 ] = useState<Website>();
 
   const handleSearch = async () => {
+    resetResults();
+    const results: Website[] = await fetchResults();
+    summarizeWebsites(results);
+  };
+
+  const resetResults = () => {
+    //! Consider replacing these with shadcn skeletons (https://ui.shadcn.com/docs/components/skeleton)
+    setWebsite1(undefined);
+    setWebsite2(undefined);
+    setWebsite3(undefined);
+    setWebsite4(undefined);
+    setWebsite5(undefined);
+  };
+
+  const fetchResults = async () => {
     try {
-      // const response = await fetch("http://127.0.0.1:3000/search", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     query: query,
-      //     search_type: "name",
-      //   }),
-      // });
-      // const data = await response.json();
-      // const results: Website[] = data.results;
-      const results: Website[] = fakeData;
-      console.log(results);
-      summarizeWebsites(results);
+      return fakeData; //! Delete when done testing
+      const response = await fetch("http://127.0.0.1:3000/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: query,
+          search_type: "name",
+        }),
+      });
+      const data = await response.json();
+      return data.results;
     } catch (error) {
       console.error(`Error searching: ${error}`);
     }
-  };
+  }
 
   const summarizeWebsites = async (results: Website[]) => {
     setWebsite1(await getAISummary(results[0]));
@@ -102,7 +122,7 @@ export default function App() {
           id="search-query"
           type="text"
           placeholder="Input search query here"
-          // onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setQuery(e.target.value)}
           className="w-96 bg-white"
           required
         />
@@ -110,6 +130,7 @@ export default function App() {
           Search
         </Button>
       </div>
+      {/*//! Consider replacing overflow-auto with shadcn scroll-area (https://ui.shadcn.com/docs/components/scroll-area) */}
       {website1 && <div className="w-2/3 h-2/3 flex flex-col gap-4 bg-blue-300 p-4 rounded-lg overflow-auto">
           <WebsiteComponent website={website1} />
           <WebsiteComponent website={website2} />
