@@ -71,20 +71,8 @@ export function SearchResults({ query, websites }: {
   websites: Website[]
 }) {
 
-  if (!query) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground">Enter a search term to see results</p>
-      </div>
-    )
-  }
-
-  if (websites.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground">No results found for "{query}"</p>
-      </div>
-    )
+  if (!query || websites.length === 0) {
+    return;
   }
 
   return (
