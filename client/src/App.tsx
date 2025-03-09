@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,10 +67,17 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    // setWebsites(websites)
+  }, [websites]);
+
   const summarizeWebsites = async (results: Website[]) => {
     for (const result of results) {
-      const summarizedWebsite: Website = await getAISummary(result);
-      setWebsites([...websites, summarizedWebsite]);
+      const newWebsite: Website = await getAISummary(result);
+      websites.push(newWebsite);
+      console.log([...websites].length);
+      console.log([...websites, newWebsite].length);
+      setWebsites([...websites, newWebsite]);
     }
   };
 
