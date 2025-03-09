@@ -37,12 +37,22 @@ fn get_only_text_from_html(content: &str, encoding: String) -> String {
     let selector = scraper::Selector::parse("body")
         .unwrap_or_else(|_| scraper::Selector::parse("html").unwrap());
 
+    let better_selectors = vec!["h1", "h2", "h3", "h4", "h5", "h6", "b", "strong", "title"];
+
+    let mut combined_text = String::new();
+
     if let Some(body) = document.select(&selector).next() {
-        body.text()
-            .collect::<String>()
-            .chars()
-            .filter(|c| c.is_ascii())
-            .collect()
+        combined_text.push_str(&body.text().collect::<String>());
+        for better_selector in &better_selectors {
+            let selector = scraper::Selector::parse(better_selector).unwrap();
+            for element in document.select(&selector) {
+                let text = element.text().collect::<String>();
+                for _ in 0..10 {
+                    combined_text.push_str(&text);
+                }
+            }
+        }
+        combined_text.chars().collect()
     } else {
         String::new()
     }
@@ -72,7 +82,6 @@ fn process_file(
     }
     // ! do some logic if there is a query as well perhaps since it could be bad for us
     let text: String = get_only_text_from_html(&doc.content, doc.encoding);
-    // * 
     // Send the processed document data to the main thread
     let mut doc_id = doc_id.lock().unwrap();
     *doc_id += 1;
