@@ -4,6 +4,7 @@ import indexer
 import save
 import os
 import json
+from similarity import SimilarityDetector
 
 DEV_PATH = "../developer/DEV"
 
@@ -28,7 +29,9 @@ def main():
     batch_size = 5000
     batch_count = 0
     current_batch: list[str] = []
+    similarity = SimilarityDetector()
     phonebook = load_phonebook()
+
     doc_id_counter = 0  # Add a counter to track document IDs
         
     
@@ -42,9 +45,10 @@ def main():
         # Process documents sequentially
         for doc_path in current_batch:
             content = process_document(doc_path)
-            # Skip invalid document
-            if content is None:
+            sim = similarity.is_duplicate_or_similar(doc_path, content)
+            if content is None or sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
                 continue
+            # Skip invalid document
             inverted_index.add_document(content)
             # Add to the phonebook
             doc_id_counter += 1
@@ -53,7 +57,6 @@ def main():
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
         return doc_id_counter
-        
     for document_path in download.generator_files(DEV_PATH):
         current_batch.append(document_path)
         # When batch size is reached, process and save
