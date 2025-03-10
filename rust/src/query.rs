@@ -111,20 +111,23 @@ impl SearchEngine {
             return (Vec::new(), 0);
         }
         candidates.sort_by(|a: &Candidate, b: &Candidate| a.doc_ids.len().cmp(&b.doc_ids.len()));
-        let mut base: HashMap<u16, f64> = candidates[0].doc_ids.clone();
-        for i in 1..candidates.len() {
-            let next = &candidates[i].doc_ids;
-            base.retain(|k, _| next.contains_key(k));
-        }
 
-        let mut all_candidates: HashMap<u16, f64> = base;
-        for candidate in candidates.iter() {
-            for (doc_id, score) in candidate.doc_ids.iter() {
-                all_candidates
-                    .entry(*doc_id)
-                    .and_modify(|s| *s += score)
-                    .or_insert(*score);
-            }
+        let mut all_candidates: HashMap<u16, f64> = if !candidates.is_empty() {
+            candidates[0].doc_ids.clone()
+        } else {
+            HashMap::new()
+        };
+
+        // boolean AND
+        for candidate in candidates.iter().skip(1) {
+            all_candidates.retain(|doc_id, score| {
+                if let Some(candidate_score) = candidate.doc_ids.get(doc_id) {
+                    *score += candidate_score;
+                    true
+                } else {
+                    false
+                }
+            });
         }
 
         let mut sorted_candidates: Vec<(&u16, &f64)> = all_candidates.iter().collect();
@@ -169,7 +172,7 @@ impl Candidate {
 }
 
 pub fn scoring_tf_idf(term_freq: u16, posting_length: u16) -> f64 {
-    let tf: f64 = f64::log2(term_freq as f64) + 1.0;
-    let idf: f64 = f64::log2(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
+    let tf: f64 = f64::log10(term_freq as f64) + 1.0;
+    let idf: f64 = f64::log10(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
     tf * idf
 }
