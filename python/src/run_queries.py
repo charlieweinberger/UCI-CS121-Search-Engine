@@ -16,8 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
+PHONEBOOK_PATH = "phonebook.json"
 
 searcher = None
 with open(PHONEBOOK_PATH, 'r') as file:
@@ -35,14 +34,10 @@ async def search(request: SearchRequest = Body(...)):
     try:
         searcher.set_query(request.query)
         results = searcher.search()
-        print(f"\nresults: ")
-        print(results)
-        for i in range(len(results)):
-            results[i] = data[str(results[i])]
-            print(results[i])
-            results[i] = json.load(open(results[i]))["url"]
+        formatted_results = [{"url": url, "content": content}
+                             for url, content in results]
         return {
-            "results": results,
+            "results": formatted_results,
             "time": searcher.get_time()
         }
     except Exception as e:

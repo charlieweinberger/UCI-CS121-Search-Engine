@@ -1,0 +1,550 @@
+Welcome to the Search Engine!
+Searching for: "masters in software engineering"
+Tokens: ["master", "in", "softwar", "engin"]
+Search took: 14ms
+28821|> https://mswe.ics.uci.edu/: ../developer/DEV/mswe_ics_uci_edu\aea1caee5eee2184127f8867c6e3bd4929be507998fe41504d6a5c173c472a66.json (Score: 9.14707215486601)
+12594|> https://mswe.ics.uci.edu/program/curriculum/: ../developer/DEV/mswe_ics_uci_edu\76cf1a608e94b207d8be4634cea94e668b5e1733bb097e53937eeb2f71daae00.json (Score: 8.86873460158839)
+43420|> https://www.informatics.uci.edu/grad/mswe/: ../developer/DEV/www_informatics_uci_edu\9114845b1f997361c20d381962de3160992501a71ed056f365d49e5e761ebc7c.json (Score: 8.57792017082051)
+34092|> https://www.ics.uci.edu/~epaikari/: ../developer/DEV/www_ics_uci_edu\a64f39130cbed7968d8afd2544a3e4b74d1e79fdcc3c2078bf0bf9c5be9e0f79.json (Score: 8.54153274368554)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 8.368009728035162)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 8.368009728035162)
+43688|> https://www.informatics.uci.edu/grad/courses/: ../developer/DEV/www_informatics_uci_edu\f9046622afb9491bdb3bfbb523baebb6335e07f97146ed86fac7b9c1faeec8d0.json (Score: 8.172266944987543)
+43259|> https://www.informatics.uci.edu/undergrad/courses/: ../developer/DEV/www_informatics_uci_edu\57160fd38ca6d1b75907e0793e5cf805f8ff712d8c9456dff9e979bbe7e7a066.json (Score: 8.023838433277295)
+43451|> https://www.informatics.uci.edu/explore/department-seminars/department-seminars-2018-2019/: ../developer/DEV/www_informatics_uci_edu\9de66bc64fc67e07b816697098079a105870abb178b20920638a3419aa63c682.json (Score: 7.761263665791947)
+17015|> https://www.ics.uci.edu/~aalshayb/: ../developer/DEV/www_ics_uci_edu\0a8ffaadb3053b9e52342f7952394b65d0cc13e71709dba983c5bee0135ab337.json (Score: 7.752039678719905)
+Searching for: "artificial intelligence"
+Tokens: ["artifici", "intellig"]
+Search took: 12ms
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 10.475286914924592)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 10.475286914924592)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 10.475286914924592)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 10.475286914924592)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 10.446257132341422)
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 10.446257132341422)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 10.391910257710524)
+17416|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-wq-cs171/CS-171-WQ-2014.htm: ../developer/DEV/www_ics_uci_edu\0e1a173ab31e0fc64c12a5453fb2dd4f58052abcd15c36432cda8581d2d90c57.json (Score: 10.327741361661573)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 10.28652166585734)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 10.199726404693703)
+Searching for: "machine learning"
+Tokens: ["machin", "learn"]
+Search took: 16ms
+26849|> https://www.ics.uci.edu/~welling/publications/publications.html: ../developer/DEV/www_ics_uci_edu\e4aca246b1bb30d16ff159c887339d0f3944c88ad3afc2310b24b2b93f37e44c.json (Score: 5.868879155108685)
+3670|> https://cml.ics.uci.edu/category/aiml/page/2/: ../developer/DEV/cml_ics_uci_edu\a53fe71124f116afc782d52a2d2348d38c514c39edb803b6d33fde2c3b59990d.json (Score: 5.707768290577059)
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 5.684658376272472)
+567|> https://cml.ics.uci.edu/category/news/: ../developer/DEV/cml_ics_uci_edu\c79804accd54566b41fed52fa5695b6b799fea905d45a38abd58cb99ad7bea36.json (Score: 5.492979957670027)
+17981|> https://cml.ics.uci.edu/category/news/?page=events&subPage=aiml: ../developer/DEV/cml_ics_uci_edu\fd2684e11c6f9f7ebf4c4ba9623f7c7588804718d43a52b6a2ffe4108580a987.json (Score: 5.492979957670027)
+3623|> https://cml.ics.uci.edu/category/news/?page=events&subPage=dss_schedule: ../developer/DEV/cml_ics_uci_edu\2d1dd97d24502f23443837ba0098a9f908113d8718c782ec5aa9ed3413b4e7fc.json (Score: 5.492979957670027)
+3634|> https://cml.ics.uci.edu/category/news/?page=people&subPage=faculty: ../developer/DEV/cml_ics_uci_edu\6fcada4358b11421774090c9631160ab9e854196ff7627b1022ccc7d997bdae1.json (Score: 5.492979957670027)
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 5.489636528427306)
+3667|> https://cml.ics.uci.edu/2011/09/2011_scmlworkshop/: ../developer/DEV/cml_ics_uci_edu\67ca03cf66ea18fc7bd1442094d991e612e95ea68720cd7f76049ac10697da34.json (Score: 5.479793041271023)
+17954|> https://cml.ics.uci.edu/2006/10/2006_cmlnips/: ../developer/DEV/cml_ics_uci_edu\29262f17723dcf7d53646b6bf28207508cb38cf66a80fc6930965801da39b33c.json (Score: 5.479793041271023)
+Searching for: "iftehkar ahmed"
+Tokens: ["iftehkar", "ahm"]
+Search took: 2ms
+46354|> https://www.informatics.uci.edu/grad/upcoming-course-schedule/: ../developer/DEV/www_informatics_uci_edu\25494ffc73d905a95e3adc4c4d61b21cd6628dc6210aed07ea7e7d3c95d67865.json (Score: 9.292778890199545)
+43131|> https://www.informatics.uci.edu/very-top-footer-menu-items/people/: ../developer/DEV/www_informatics_uci_edu\28a7af8044b23c0dada195b4626bc57edcc8a7f5e5d0be3a4c86596e40c72e73.json (Score: 7.142632315296444)
+Searching for: "iftekhar ahmed"
+Tokens: ["iftekhar", "ahm"]
+Search took: 0ms
+12514|> https://mswe.ics.uci.edu/people/faculty-staff/: ../developer/DEV/mswe_ics_uci_edu\6b1145655efa1130092ab67c7c4630718b1b9d82630c12bb04706a7074ac9758.json (Score: 14.117535634309938)
+15432|> https://www.ics.uci.edu/~iftekha/: ../developer/DEV/www_ics_uci_edu\93989ef00710e3e549ff16f4d154a5e4a0d381051a8404fbddca4da038ba2e58.json (Score: 13.477615202400237)
+43332|> https://www.informatics.uci.edu/explore/faculty-profiles/iftekhar-ahmed/: ../developer/DEV/www_informatics_uci_edu\7111bbe0b55695a6e05083e14963f626f76e5c7a458451ad07b2903bb16d368f.json (Score: 12.424492205956348)
+34715|> https://www.ics.uci.edu/~rickl/courses/ics-h197/2018-fq-h197/talk-abstracts/: ../developer/DEV/www_ics_uci_edu\aabdb617fe3357150e540d80b856e04d77534aefcb1bbbda1973713290b87f11.json (Score: 8.696344309818603)
+27499|> https://www.ics.uci.edu/~rickl/courses/ics-h197/2018-fq-h197/talk-slides/: ../developer/DEV/www_ics_uci_edu\6962088b76f906a8db0ad3446261242b878988786d0f51ad95ef19aa3f843929.json (Score: 8.696344309818603)
+18186|> https://www.ics.uci.edu/~iftekha/publication/on-the-limits-of-mutation-reduction-strategies/: ../developer/DEV/www_ics_uci_edu\166f2c4f80cd482379838daaf6f5ba0ee3729269f9644d646c4432fa544271ef.json (Score: 8.147935870627295)
+32248|> https://www.ics.uci.edu/~iftekha/publication/how-hard-does-mutation-analysis-have-to-be-anyway/: ../developer/DEV/www_ics_uci_edu\97295bcb24fd9cd988842b820a01e83f1f39ac563b69af8030c71bc72fdab842.json (Score: 8.147935870627295)
+42216|> https://www.ics.uci.edu/~iftekha/publication/how-verified-or-tested-is-my-code/: ../developer/DEV/www_ics_uci_edu\f7b39f29887a36b8e100ee7f0fddf4d8f72361d1a5f08e6da7af0e7e14c7350d.json (Score: 8.147935870627295)
+28306|> https://www.ics.uci.edu/~iftekha/publication/an-empirical-study-of-design-degradation-how-software-projects-get-worse-over-time/: ../developer/DEV/www_ics_uci_edu\f8b8bdc014214599e9c97cfec2567051bf1ecca0e145b0d56c74693b3b579b29.json (Score: 8.147935870627295)
+37107|> https://www.ics.uci.edu/~iftekha/publication/mutation-reduction-strategies-considered-harmful/: ../developer/DEV/www_ics_uci_edu\4b348f2ec773203981bcbc4e31ba11e00d8461efc7d8e6ae2d7c41175b1df7d0.json (Score: 8.147935870627295)
+Searching for: "computer science"
+Tokens: ["comput", "scienc"]
+Search took: 15ms
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 3.939317782401335)
+35232|> https://www.ics.uci.edu/~eppstein/bibs/eppstein.html: ../developer/DEV/www_ics_uci_edu\aff238d8493a383c284f875e75ac4566c1fd1f6e594438d25719901ac3e5fe2a.json (Score: 3.7978398638809)
+15861|> https://www.cs.uci.edu/: ../developer/DEV/www_cs_uci_edu\943a480e0409bfd655ed5a5f978124297a6d7103a780c8352bd7b3dc0a362d1a.json (Score: 3.73924005314497)
+36736|> https://www.ics.uci.edu/faculty/: ../developer/DEV/www_ics_uci_edu\bd8e70fc4050454906bc2428eafec8c8ae0af6edd7b7671456ed98087f508409.json (Score: 3.658583445271745)
+30422|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/bib: ../developer/DEV/www_ics_uci_edu\8608c79e77054cb0e4853301f1a03f1a92634b678d32ac0a6ab7b0d3cd46e1f6.json (Score: 3.6439110398504972)
+34358|> https://www.ics.uci.edu/faculty/faculty_dept?department=Computer%20Science: ../developer/DEV/www_ics_uci_edu\26a59765c2aa6b3af9c9c632aaae4ab971117f39f301a20f883114bf66cb4762.json (Score: 3.5761208987630257)
+43752|> https://www.stat.uci.edu/slider/b-s-in-data-science/: ../developer/DEV/www_stat_uci_edu\87e6354ae1a89d0ba432badbe6b69577ee213dffe27371b7fd413936d68fa95a.json (Score: 3.570157037176262)
+40874|> https://www.ics.uci.edu/faculty/?department=Computer%20Science: ../developer/DEV/www_ics_uci_edu\e8b4e409da4b50018c41121f296674b99c1dfd76d4892918f51dadc1c0b49224.json (Score: 3.570101720800034)
+12592|> https://ngs.ics.uci.edu/where-is-computer-science-in-it/: ../developer/DEV/ngs_ics_uci_edu\01458fb26f5fc917b57edfe500b63369ac2f7e9137dd536ac2f4f485226f081d.json (Score: 3.542754471717952)
+15700|> https://www.cs.uci.edu/news/page/11/: ../developer/DEV/www_cs_uci_edu\0a77b224f19e2fadc0ec26a19e7b6219dc56833f005fbd658f6eb8194804883e.json (Score: 3.5272283846593986)
+Searching for: "top 10 teachers"
+Tokens: ["top", "10", "teacher"]
+Search took: 21ms
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 6.105555055313515)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 6.105555055313515)
+20257|> https://www.ics.uci.edu/~pattis/quotations.html: ../developer/DEV/www_ics_uci_edu\2a37b7e94812d06f599726a8d70928c9dae28e4ce85b7df9dc3c68176e08e7ad.json (Score: 5.060497505089567)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 4.707944878052696)
+37751|> https://www.ics.uci.edu/~jutts/8/readme.html: ../developer/DEV/www_ics_uci_edu\c6b2d6b7001d3f41304409dc679ab46e3e83f98e1e853f8c2fe7bb2adbe07813.json (Score: 4.255047289918556)
+14122|> https://ngs.ics.uci.edu/category/technical-thoughts/page/75/: ../developer/DEV/ngs_ics_uci_edu\ed8dfbdda4e9b22b18e25b8c57a7437c687c6ac9390d249e09d49efb0b177f01.json (Score: 4.182080904172304)
+43272|> https://www.informatics.uci.edu/2019/04/: ../developer/DEV/www_informatics_uci_edu\5bf7659b07d89cc22520ace4223104b282fd4caed0f64c4e06be49c3c1d8c960.json (Score: 4.167919147218478)
+20196|> https://www.ics.uci.edu/~pattis/ICS-46/lectures/overview/lecture.html: ../developer/DEV/www_ics_uci_edu\29fc68399c2ca58a5e020878790af8c0b86206f2933332080021c83d268cd1c7.json (Score: 4.166193469714012)
+33378|> https://www.ics.uci.edu/~gbowker/classification/: ../developer/DEV/www_ics_uci_edu\a106056b9baf23609273707309d793d53311f5a1ab6fd61707d7cef05dc18928.json (Score: 4.166193469714012)
+43641|> https://www.informatics.uci.edu/very-top-footer-menu-items/news/page/5/: ../developer/DEV/www_informatics_uci_edu\e520f310c08e5e0069c3249847366563b0c7dcd6d256306301ada78e6ec65c39.json (Score: 4.1539830701535365)
+Searching for: "uci"
+Tokens: ["uci"]
+Search took: 16ms
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 1.613568755787452)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 1.5093745368404818)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 1.5093745368404818)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 1.5093745368404818)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 1.5093745368404818)
+3913|> https://cwicsocal18.ics.uci.edu/photos/: ../developer/DEV/cwicsocal18_ics_uci_edu\13ab74e3b72e0abd82e5c3cd50b42afc0867c160b20e01d25a556225637ea034.json (Score: 1.4078507631546142)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 1.4021260711822592)
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 1.4021260711822592)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 1.3873002969856294)
+17416|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-wq-cs171/CS-171-WQ-2014.htm: ../developer/DEV/www_ics_uci_edu\0e1a173ab31e0fc64c12a5453fb2dd4f58052abcd15c36432cda8581d2d90c57.json (Score: 1.3808584236186858)
+Searching for: "rainbows"
+Tokens: ["rainbow"]
+Search took: 11ms
+26102|> https://www.ics.uci.edu/~eppstein/pix/josh2/SunsetRainbow2.html: ../developer/DEV/www_ics_uci_edu\5f2b91edd5fc49162446ac406c1b9ae4846a5519d6fd0fdcc2ab16d76f6a4c46.json (Score: 8.281196157878396)
+23517|> https://www.ics.uci.edu/~eppstein/pix/josh2/SunsetRainbow1.html: ../developer/DEV/www_ics_uci_edu\48ded0652f042c6479583d63c924743ac908d4ecc15c8f53c36cc03343c4ee18.json (Score: 8.262058875322149)
+24965|> https://www.ics.uci.edu/~eppstein/pix/josh2/SunsetRainbow3.html: ../developer/DEV/www_ics_uci_edu\5569d01245820420cd685a026924228fa59d5b423082cf8e0bdaf984dae78e76.json (Score: 8.262058875322149)
+30550|> https://www.ics.uci.edu/~eppstein/pix/rogue/DoubleRainbow1.html: ../developer/DEV/www_ics_uci_edu\8725d2e89e44af7e008951615a87b817d7e8de744c7533336dfb13d2aaca37d3.json (Score: 8.262058875322149)
+21621|> https://www.ics.uci.edu/~eppstein/pix/rogue/DoubleRainbow2.html: ../developer/DEV/www_ics_uci_edu\375ea87f66ecbcdde1b69a88a4d7295cdac786e6b90e40e3630e7e1c5217d2ab.json (Score: 8.262058875322149)
+31391|> https://www.ics.uci.edu/~eppstein/pix/roseparade/HawaiiRainbowFlags.html: ../developer/DEV/www_ics_uci_edu\8f56003ef404a661d7a15275ed2d10b03bac6d47b4c64c86e0801598bbc1e405.json (Score: 8.24262940924767)
+27307|> https://www.ics.uci.edu/~eppstein/pix/hw01/RainbowWigClown.html: ../developer/DEV/www_ics_uci_edu\6852da09130b5a3135a7ca172080e7211abb1a7fce7c8ddcd25b283459715520.json (Score: 8.24262940924767)
+27919|> https://www.ics.uci.edu/~theory/269/060120.html: ../developer/DEV/www_ics_uci_edu\f13e841f53f03ef7f046c049f4afd26bd0c186a9ad6bb8a68e6cff25f53f752c.json (Score: 7.417947133432526)
+4681|> https://www.ics.uci.edu/~theory/269/051014.html: ../developer/DEV/www_ics_uci_edu\1d70185fabbc8b8e736dc64965b80d0eb8a1237a9e3ed7b2c0c6ccba3eb2fc67.json (Score: 7.417947133432526)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 6.37656107207873)
+Searching for: "project"
+Tokens: ["project"]
+Search took: 16ms
+9654|> https://cbcl.ics.uci.edu/public_data/shilab/forColleen/MAJIQ/tables/Wt-cort_psigroup_psi_names_filtered.txt: ../developer/DEV/cbcl_ics_uci_edu\5c077e92607b2db457ac25dd93621b4c47cf9798afaecfaddcb3b993f683bb18.json (Score: 2.1075506931609755)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 2.032374605265691)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 2.032374605265691)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 2.032374605265691)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 2.032374605265691)
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 1.9778907461576742)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 1.9368154761030207)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 1.9256601264909483)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 1.9030525932273359)
+7801|> https://www.ics.uci.edu/~rickl/courses/cs-171/2013-fq-cs171/CS-171-FQ-2013.htm: ../developer/DEV/www_ics_uci_edu\42fd375fda88629d8d851935e690660f52281cfe5f9f0a583c92c96821e556ea.json (Score: 1.7131209261161708)
+Searching for: "how to print in python"
+Tokens: ["how", "to", "print", "in", "python"]
+Word is after the last entry in the skip list
+Search took: 14ms
+19351|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/review.txt: ../developer/DEV/www_ics_uci_edu\2128515345edce623ffd5414d6cb3cd6f8fbee7722b481403613135b22e1a0bd.json (Score: 13.938638513960464)
+25101|> https://www.ics.uci.edu/~thornton/ics32/Notes/PythonBasics/: ../developer/DEV/www_ics_uci_edu\cd324c0210f64052a107297805b42a1fa1c4b416cbb22e4539d993bd89afca91.json (Score: 13.063566918315182)
+36556|> https://www.ics.uci.edu/~thornton/ics32a/Notes/PythonBasics/: ../developer/DEV/www_ics_uci_edu\bbe6855305a11c5519ac75a9e59a9a543a50d0ddc1e2405f8713ddcbe1f4cc72.json (Score: 12.932734494018579)
+27751|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/operatoroverloading1.txt: ../developer/DEV/www_ics_uci_edu\6b87e661c81c4471a71a968a357ffebe9ceb48ce992a974d3e76ca9fefbd9773.json (Score: 12.166593135192898)
+38933|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/operatoroverloading2.txt: ../developer/DEV/www_ics_uci_edu\d3c90f546a109414186eb6e38503d844e6a43a14a7d25806bce7374092ba8a04.json (Score: 11.892760703770445)
+20292|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/generators.txt: ../developer/DEV/www_ics_uci_edu\2aef36c4d7285cd970576913c02367554c0a6c0478e0ed934895ce42357fadec.json (Score: 11.591444706987604)
+36701|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/class.txt: ../developer/DEV/www_ics_uci_edu\bd5ab0f1ef0840df4bed8d0da86074ef940b481c58a677178a599134e0872974.json (Score: 11.58848603645181)
+29772|> https://www.ics.uci.edu/~pattis/ICS-31/lectures/for/for.txt: ../developer/DEV/www_ics_uci_edu\7f92c172c79ef0d22d19911ed566a76c1ce98d1d2c5d80cd9ceb2395b2cb1417.json (Score: 11.480949375589859)
+22614|> https://www.ics.uci.edu/~thornton/ics32/Notes/Functions/: ../developer/DEV/www_ics_uci_edu\40836631a99643f4503caccc63e2419094937c833906eeec9aa6fade6b0822f5.json (Score: 11.28121113225695)
+40600|> https://www.ics.uci.edu/~pattis/ICS-31/lectures/functions/functions.txt: ../developer/DEV/www_ics_uci_edu\e5f377dfae0065e803b7e71ebbdb79cf41ce3b6956c86528ae091bebd9e179ea.json (Score: 11.272664568736696)
+Searching for: "Fibonacci mips"
+Tokens: ["fibonacci", "mip"]
+Search took: 11ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 7.658044543947441)
+Searching for: "mips"
+Tokens: ["mip"]
+Search took: 0ms
+32240|> https://www.ics.uci.edu/~rickl/rickl-students.html: ../developer/DEV/www_ics_uci_edu\9716dd18d88f1947d3ae96a7720609768081777aff9945153d885ed82c68f785.json (Score: 7.57540501027002)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 5.110309567621288)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 5.110309567621288)
+36124|> https://www.ics.uci.edu/~rickl/courses/cs-171/2012-wq-cs171/CS-171-WQ-2012.htm: ../developer/DEV/www_ics_uci_edu\b78a0a7f4d932b5c96ea758f12a3e0b3ec9bca2fcd5a4b39e97b2dc2ec45349a.json (Score: 5.110309567621288)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 5.110309567621288)
+22220|> https://www.ics.uci.edu/~rickl/courses/cs-171/2012-fq-cs171/CS-171-FQ-2012.htm: ../developer/DEV/www_ics_uci_edu\3c722d9169248fd94f843ed343535eae0eee3b3384d81d96168f3449001046ae.json (Score: 5.110309567621288)
+38408|> https://www.ics.uci.edu/~rickl/courses/cs-271/2013-wq-cs271/CS-271-WQ-2013-new-broken-archive.htm: ../developer/DEV/www_ics_uci_edu\cde88be6c2af0a1c2d906bbe58cf3565721d7f61763c1e36acdccee1e8e632d6.json (Score: 5.110309567621288)
+23373|> https://www.ics.uci.edu/~rickl/courses/cs-271/2013-wq-cs271/CS-271-WQ-2013-broken-save.htm: ../developer/DEV/www_ics_uci_edu\4670406b6fc070f3756aaac8dd42fdadf1ebc9a2ffe7e7d49598628addb087bd.json (Score: 5.110309567621288)
+46343|> https://www.ics.uci.edu/~rickl/courses/cs-271/2013-wq-cs271/CS-271-WQ-2013-new-broken-use_750am.htm: ../developer/DEV/www_ics_uci_edu\7598a60e73b65e4a237165c8d011f603672d6d80c6d61bf4816d5f4df226ea55.json (Score: 5.110309567621288)
+17992|> https://www.ics.uci.edu/~rickl/courses/cs-271/2013-wq-cs271/CS-271-WQ-2013-new-broken-use.htm: ../developer/DEV/www_ics_uci_edu\148de57e0e2b57cca913f312555fff3adf5cbaff79e458e8264cc08453998840.json (Score: 5.110309567621288)
+Searching for: "data analysis"
+Tokens: ["data", "analysi"]
+Search took: 15ms
+26849|> https://www.ics.uci.edu/~welling/publications/publications.html: ../developer/DEV/www_ics_uci_edu\e4aca246b1bb30d16ff159c887339d0f3944c88ad3afc2310b24b2b93f37e44c.json (Score: 5.877587600460368)
+37267|> https://www.ics.uci.edu/~wscacchi/Papers/Vintage/Software_Productivity.html: ../developer/DEV/www_ics_uci_edu\c2ca28e18c8cca7e4191be729021e8a09427953b14132fdd0c282f6be4a93030.json (Score: 5.558203823561489)
+35232|> https://www.ics.uci.edu/~eppstein/bibs/eppstein.html: ../developer/DEV/www_ics_uci_edu\aff238d8493a383c284f875e75ac4566c1fd1f6e594438d25719901ac3e5fe2a.json (Score: 5.557354795701893)
+45580|> https://www.ics.uci.edu/~arcadia/arcadia_papers/analysis/analysis_papers.html: ../developer/DEV/www_ics_uci_edu\d4e67a8029e4bb3b7590e3702898d4d51c0f4f8fc160e8bf750309d1602dba68.json (Score: 5.5462153832116226)
+11858|> http://graphics.ics.uci.edu/publication.html: ../developer/DEV/graphics_ics_uci_edu\9ccd4752f3503c4456bd7c19c54e253a4973232d7ed07241c70e84766a5da617.json (Score: 5.4914060335373245)
+36116|> https://www.ics.uci.edu/~wscacchi/Process_Life_Cycle.html: ../developer/DEV/www_ics_uci_edu\41620d541e95e9746999aa3eb7b1b6594c67e10f3ed252482097e16a11f96399.json (Score: 5.408365227575786)
+43730|> https://www.stat.uci.edu/the-center-for-statistical-consultings-new-director-envisions-a-one-stop-shop-for-data-analysis-needs/: ../developer/DEV/www_stat_uci_edu\308d70e72e8c55dc4e50275d1f6ee9255da874f49876fb9613326b5a8f362c72.json (Score: 5.3829327723128895)
+43742|> https://www.stat.uci.edu/shahbaba-receives-1-7-million-neural-data-analysis-grant/: ../developer/DEV/www_stat_uci_edu\64bc6cad1e8363dd1ce6b1580ad2e56bd29b685b6436a881366930ef07e8ffa9.json (Score: 5.34918554871834)
+43779|> https://www.stat.uci.edu/stern-receives-degroot-prize-for-bayesian-data-analysis/: ../developer/DEV/www_stat_uci_edu\f1549ad19ac3130342dd77f1f6b1f78d1f2f3f98cf4316a358cb6090ddcd3f12.json (Score: 5.338656052272453)
+46489|> https://www.stat.uci.edu/nsf-awards-professor-shahbaba-uci-team-250k-for-big-data-analysis-research/: ../developer/DEV/www_stat_uci_edu\d048f2a8d18e88dcedfa946ee74aa2f1aabae12f4898d3d54900020ff54251a4.json (Score: 5.335038719799736)
+Searching for: "google search engine"
+Tokens: ["googl", "search", "engin"]
+Search took: 14ms
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 6.501587269281677)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 6.501587269281677)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 6.501587269281677)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 6.501587269281677)
+13397|> https://ngs.ics.uci.edu/category/technical-thoughts/page/21/: ../developer/DEV/ngs_ics_uci_edu\7e876011786568bf537db4beb9032bc5b4674a2f743db5fb482f5457d656a2de.json (Score: 6.148110606976184)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 6.085259296126494)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 5.9693091619452305)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 5.883310364859788)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 5.832541249060151)
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 5.794926449557651)
+Searching for: "final project"
+Tokens: ["final", "project"]
+Search took: 4ms
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 5.418741454974958)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 5.300571637863008)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 5.300571637863008)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 5.300571637863008)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 5.300571637863008)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 5.206714327581187)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 5.197621664190786)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 5.17819527179017)
+7801|> https://www.ics.uci.edu/~rickl/courses/cs-171/2013-fq-cs171/CS-171-FQ-2013.htm: ../developer/DEV/www_ics_uci_edu\42fd375fda88629d8d851935e690660f52281cfe5f9f0a583c92c96821e556ea.json (Score: 4.921505324063789)
+32482|> https://www.ics.uci.edu/~rickl/courses/cs-271/2013-wq-cs271/CS-271-WQ-2013.htm: ../developer/DEV/www_ics_uci_edu\020d1464aab1ccbc85cb4fbfba3f8f4603719ac2e3b073faa7d94f38dde93181.json (Score: 4.918070882578331)
+Searching for: "nadia ahmed"
+Tokens: ["nadia", "ahm"]
+Search took: 11ms
+12064|> http://iasl.ics.uci.edu/people/ahmedn/: ../developer/DEV/iasl_ics_uci_edu\87322ff7ee8108bbc5e13641ad25b1ae33ce063200132c5d6c89ff25132f7fd9.json (Score: 13.533009444710412)
+12075|> http://iasl.ics.uci.edu/people/levorato/: ../developer/DEV/iasl_ics_uci_edu\1bd26a6f80a73a3b4ad4cddc49d5849ae5758149678b115dadd174a2203cdc3f.json (Score: 10.74893319777028)
+12091|> http://iasl.ics.uci.edu/publications/: ../developer/DEV/iasl_ics_uci_edu\7b827e5a7f4b8058fdc6d8a4a5de7bdcbed8190a60c267462652c677ba936ab6.json (Score: 10.74893319777028)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 8.051280762281314)
+24218|> https://www.ics.uci.edu/~mlevorat/: ../developer/DEV/www_ics_uci_edu\4e7d0c3e1d582311b17ed5c72d43b0dfbfd3ac7b6427c4729349915d8107c323.json (Score: 6.18838980585712)
+30726|> https://www.ics.uci.edu/~mlevorat/index.html: ../developer/DEV/www_ics_uci_edu\88d320713c3f884f26b56eeb8de9af1cfbf9e3cef769ddefe9d84eb00f52059c.json (Score: 6.18838980585712)
+24306|> https://www.ics.uci.edu/~kkask/Fall-2014%20CS271/index.html: ../developer/DEV/www_ics_uci_edu\4f44153f47a87030c8362ee20800ca4f4ebe5ab816ed3b29eff3055815c55cc5.json (Score: 6.18838980585712)
+12052|> http://iasl.ics.uci.edu/people/: ../developer/DEV/iasl_ics_uci_edu\51d41a4ac9ae32bbb097cc83c1c8060a08f52e70b6634de8d66fe40079629765.json (Score: 6.18838980585712)
+Searching for: "CS121 Project A3"
+Tokens: ["cs121", "project", "a3"]
+Search took: 4ms
+Searching for: "CS121 A3"
+Tokens: ["cs121", "a3"]
+Search took: 1ms
+Searching for: "CS121"
+Tokens: ["cs121"]
+Search took: 2ms
+23308|> https://www.ics.uci.edu/~kay/courses/i141/hw/asst3.html: ../developer/DEV/www_ics_uci_edu\46ad29f10dee2b553b7d30202aca7cffed17ef4963db771ca06babe101b330a1.json (Score: 4.369614705461452)
+42359|> https://www.ics.uci.edu/~kay/courses/i141/w15.html: ../developer/DEV/www_ics_uci_edu\f95872535fccf55de5a95139e4b2a36895a75f89eab5a6ecd11f95da922092b0.json (Score: 4.369614705461452)
+Searching for: "Project A3"
+Tokens: ["project", "a3"]
+Search took: 3ms
+33575|> https://www.ics.uci.edu/~cs230/win2011projects.html: ../developer/DEV/www_ics_uci_edu\13cd849a9e5a140d0095ceb112f5fd9a7bdb5f7b5fe76091f24b5ff8b0c0b02d.json (Score: 7.8574036405202605)
+25306|> https://www.ics.uci.edu/~pattis/ICS-21/lectures/voe/lecture.html: ../developer/DEV/www_ics_uci_edu\5813b15a0f458a6e7c5cd33b687a97979782dea321a2d8a70d76d22c649e6f4a.json (Score: 4.652117711652623)
+20428|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project4?version=6: ../developer/DEV/grape_ics_uci_edu\09996a1016be9f395b675e3ebdf77aba01c7e73200cdfe4d59b29dc9bae4a7ea.json (Score: 3.9047344169619596)
+5508|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project4?version=7: ../developer/DEV/grape_ics_uci_edu\011411210fbcf75f68861bc4b2d426e8b9d0a30f4c29780a0971ede6d0f3ae64.json (Score: 3.9047344169619596)
+5917|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project4: ../developer/DEV/grape_ics_uci_edu\0476a8469861cd4b49a7f0e8577ac52e4bb792e6bde578c84d472df38b2cebfa.json (Score: 3.9047344169619596)
+39173|> https://www.ics.uci.edu/~eppstein/junkyard/hedronometry.html: ../developer/DEV/www_ics_uci_edu\d679d692af7276bce635402051d45770c8b33589bd14dcd8bbcbb102c6ca0704.json (Score: 3.8698121892004798)
+43652|> https://www.ics.uci.edu/~thornton/ics32/Notes/Classes/: ../developer/DEV/www_ics_uci_edu\7b06eb773cb839d34e9e5948c20db9cb8c5c96c63e185bdc5981e3547feca822.json (Score: 3.8698121892004798)
+11841|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2017-fall-project2?version=7: ../developer/DEV/grape_ics_uci_edu\fda1acf376a9a7d91909cc67a20f6e1824b7a880597581d3be9b8603fdf5e3cf.json (Score: 3.8360077571206164)
+27504|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2017-fall-project2: ../developer/DEV/grape_ics_uci_edu\fe5a60ba7ed5c2f1f127b8938e55b467f3a3005dae887998a6d22825832497b4.json (Score: 3.8360077571206164)
+21552|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2017-fall-project2?version=1: ../developer/DEV/grape_ics_uci_edu\29b0d57b8d4a4d25f68c9a116499af606fdfc2003f4061dd239ab81181ddf3d8.json (Score: 3.8360077571206164)
+Searching for: "How to run a for loop"
+Tokens: ["how", "to", "run", "a", "for", "loop"]
+Search took: 11ms
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 12.994438029475457)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 12.994438029475457)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 12.994316890725939)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 12.993649138250312)
+19351|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/review.txt: ../developer/DEV/www_ics_uci_edu\2128515345edce623ffd5414d6cb3cd6f8fbee7722b481403613135b22e1a0bd.json (Score: 12.706638413386775)
+25101|> https://www.ics.uci.edu/~thornton/ics32/Notes/PythonBasics/: ../developer/DEV/www_ics_uci_edu\cd324c0210f64052a107297805b42a1fa1c4b416cbb22e4539d993bd89afca91.json (Score: 12.024206388940245)
+36556|> https://www.ics.uci.edu/~thornton/ics32a/Notes/PythonBasics/: ../developer/DEV/www_ics_uci_edu\bbe6855305a11c5519ac75a9e59a9a543a50d0ddc1e2405f8713ddcbe1f4cc72.json (Score: 12.022585098813655)
+29772|> https://www.ics.uci.edu/~pattis/ICS-31/lectures/for/for.txt: ../developer/DEV/www_ics_uci_edu\7f92c172c79ef0d22d19911ed566a76c1ce98d1d2c5d80cd9ceb2395b2cb1417.json (Score: 11.715836801699973)
+41196|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/iterators.txt: ../developer/DEV/www_ics_uci_edu\ec328874ba678b8e380100e2076450a5bf5d32de662c470b03edd66551ea6d1e.json (Score: 11.635278917467721)
+41194|> https://www.ics.uci.edu/~pattis/ICS-21/lectures/statements/lecture.html: ../developer/DEV/www_ics_uci_edu\ebed357da9d12f5cf41a7dd57ad16263cdb6c6a8ef4a0451653e01bb1d07081e.json (Score: 11.611060075813704)
+Searching for: "Rust Programming language"
+Tokens: ["rust", "program", "languag"]
+Search took: 2ms
+31422|> https://www.ics.uci.edu/~perl/: ../developer/DEV/www_ics_uci_edu\8f89b1ab847c5cf3d3178588f1e7eb093b616e187cf52911e14ab0f9d811416b.json (Score: 10.973947273100086)
+31466|> https://www.ics.uci.edu/~aburtsev/: ../developer/DEV/www_ics_uci_edu\9013d39346a2ffa595626abdab4077b48f5a092aa99acddb3bc8ea226c8f59b0.json (Score: 10.624614634698926)
+35691|> https://www.ics.uci.edu/~aburtsev/index.html: ../developer/DEV/www_ics_uci_edu\b3bf4e644c11abd3339e29ff586dcfb21bae168f926cef624cb3d9493bf0a879.json (Score: 10.624614634698926)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 9.801161398988661)
+37069|> https://www.ics.uci.edu/~aburtsev/143A/: ../developer/DEV/www_ics_uci_edu\c1022d9c26751c8992b029b2085fe9fa6a86816e799cfdfb90c2d971139c0dcb.json (Score: 9.626805688585758)
+37619|> https://www.ics.uci.edu/~aburtsev/143A/index.html: ../developer/DEV/www_ics_uci_edu\c5fbb2491b22432da715b4817e77a4c7773ee435dce3459ea881bd64202acdb8.json (Score: 9.59069400851003)
+24043|> https://www.ics.uci.edu/~aburtsev/publications.html: ../developer/DEV/www_ics_uci_edu\4d01af30360b7c84b43209eb27f786ba18086e5b40d7c044e9143efb8167c600.json (Score: 9.295629545084255)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 8.03372729327236)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 8.03372729327236)
+Searching for: "multithreading in python"
+Tokens: ["multithread", "in", "python"]
+Word is after the last entry in the skip list
+Search took: 4ms
+22611|> https://www.ics.uci.edu/~ics1c/doc/www_faq.html: ../developer/DEV/www_ics_uci_edu\400464d57a88c99404b5596d9dd52711b9d4abf1cd1c3a8de49decc9f5e6b631.json (Score: 8.766875885444383)
+Searching for: "Research search engine"
+Tokens: ["research", "search", "engin"]
+Search took: 3ms
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 6.73843548337395)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 6.73843548337395)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 6.73843548337395)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 6.73843548337395)
+13495|> https://ngs.ics.uci.edu/humans-in-search-engine/: ../developer/DEV/ngs_ics_uci_edu\91c600c6ea0311674e1777176c58d6ecb412ce12137a1cea36756a6d051fec72.json (Score: 6.436269331703668)
+13239|> https://ngs.ics.uci.edu/cuil-a-new-search-engine/: ../developer/DEV/ngs_ics_uci_edu\670f23ded99efede42b481103c06c44f6726f017d8578de3d5ce4078a4c86390.json (Score: 6.40458248903542)
+13456|> https://ngs.ics.uci.edu/tineye-an-image-search-engine/: ../developer/DEV/ngs_ics_uci_edu\850d9316eac4587df063ca5de5f15e0d8546ca196ef7bc6ae346cf20f8da9f61.json (Score: 6.397049565542174)
+23532|> https://www.ics.uci.edu/~rickl/courses/ics-h197/2014-fq-h197/ICS-H197-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\4871410482aea7315c9a9111ea70f32f0db92f68f2d784fa3c1a911d3e9349ac.json (Score: 6.278315142784853)
+29721|> https://ngs.ics.uci.edu/terrible-state-of-search-engines/: ../developer/DEV/ngs_ics_uci_edu\8e6c34f1378eca73d4f54af1dc9affd1aeec5b81d0da123b133f67ef85fe7c64.json (Score: 6.2523294768668665)
+13397|> https://ngs.ics.uci.edu/category/technical-thoughts/page/21/: ../developer/DEV/ngs_ics_uci_edu\7e876011786568bf537db4beb9032bc5b4674a2f743db5fb482f5457d656a2de.json (Score: 6.015193144927009)
+Searching for: "Angry birds"
+Tokens: ["angri", "bird"]
+Search took: 13ms
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 11.77241012178229)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 10.62081586826758)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 10.62081586826758)
+26694|> https://grape.ics.uci.edu/wiki/public/raw-attachment/wiki/cs221-2019-spring-project2/Team2StressTest.txt: ../developer/DEV/grape_ics_uci_edu\d3cca8e8972f7c306ba84941a222cedeb8e754862a23f52202f662bc36eb31bd.json (Score: 10.361374990082012)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 10.05287086960368)
+25573|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist-random.txt: ../developer/DEV/www_ics_uci_edu\5a00e89ed968a45af6be06656bdf382d6cee6a7fc42b31b97aa719db2f07af58.json (Score: 9.756518633017937)
+34056|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist.txt: ../developer/DEV/www_ics_uci_edu\1b79168f228a864be239f3ff877d00e242dd6f3a760d763218716bb1f02a606b.json (Score: 9.756518633017937)
+18321|> https://evoke.ics.uci.edu/cory-knobel-receives-iconference-2014-best-paper-award/: ../developer/DEV/evoke_ics_uci_edu\8a58ba129b5080e398c881baa615db2727ba3630814c2bdd7b0e54637c0f5bc0.json (Score: 7.501587400111956)
+33378|> https://www.ics.uci.edu/~gbowker/classification/: ../developer/DEV/www_ics_uci_edu\a106056b9baf23609273707309d793d53311f5a1ab6fd61707d7cef05dc18928.json (Score: 6.933642401448054)
+14814|> https://transformativeplay.ics.uci.edu/classes/ics-163-mobile-ubiquitous-games/: ../developer/DEV/transformativeplay_ics_uci_edu\34fe754252e50959b4e89f3a259d50c7b7ee90c55463cd0c28918f6908a41760.json (Score: 6.933642401448054)
+Searching for: "pineapple on pizza"
+Tokens: ["pineappl", "on", "pizza"]
+Search took: 12ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 9.799490639927747)
+Searching for: "macaroni and cheese"
+Tokens: ["macaroni", "and", "chees"]
+Search took: 6ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 11.63647296333099)
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 10.14217783053764)
+25573|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist-random.txt: ../developer/DEV/www_ics_uci_edu\5a00e89ed968a45af6be06656bdf382d6cee6a7fc42b31b97aa719db2f07af58.json (Score: 9.134585757096108)
+34056|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist.txt: ../developer/DEV/www_ics_uci_edu\1b79168f228a864be239f3ff877d00e242dd6f3a760d763218716bb1f02a606b.json (Score: 9.134585757096108)
+Searching for: "Leveraging Evolutionary Game Theory"
+Tokens: ["leverag", "evolutionari", "game", "theori"]
+Search took: 4ms
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 11.789327961016784)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 10.39290371846799)
+18236|> https://cradl.ics.uci.edu/people/oliver-wang-phd-student/: ../developer/DEV/cradl_ics_uci_edu\acf199a9e14b36022b2fbad5f56e1c5e6c4a05fb195d9e69b800eb6361327c73.json (Score: 7.986987488919171)
+Searching for: "Computational Vision"
+Tokens: ["comput", "vision"]
+Search took: 15ms
+15953|> https://www.cs.uci.edu/intel-parallel-universe-computer-vision-for-the-masses-bringing-computer-vision-to-the-open-web-platform/: ../developer/DEV/www_cs_uci_edu\dcf5eee452c0744624eaf85ef3e44cd6823db0105ecabbb92b649622ead4297c.json (Score: 5.14047320149994)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 5.119008658253346)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 5.119008658253346)
+3701|> https://cml.ics.uci.edu/2008/10/2008_vision/: ../developer/DEV/cml_ics_uci_edu\fe3a50806fe9dfc6dcb904c5452693f636a8b86d4d35c8f20b38233ee2d5cecd.json (Score: 5.067053581106447)
+13332|> https://ngs.ics.uci.edu/computer-vision-in-computing/: ../developer/DEV/ngs_ics_uci_edu\75b5cb0224ba0d77d5664f448703345d219d8f96ddd7c5e4a28673d06d67eaa8.json (Score: 4.969939306398884)
+13169|> https://ngs.ics.uci.edu/research-areacomputer-vision/: ../developer/DEV/ngs_ics_uci_edu\5c0568afe1e92bcdecf679d36059e22eb4566b51d119797a4ca06416ef37fbf3.json (Score: 4.871964934753318)
+29364|> https://ngs.ics.uci.edu/test-images-in-computer-vision-research/: ../developer/DEV/ngs_ics_uci_edu\558db098422ec88aa67f9f5f7a2318c0e91f75340845aad873cea0533eb19b9c.json (Score: 4.86917948299044)
+14008|> https://ngs.ics.uci.edu/contenxt-not-content-or-context-in-computer-vision/: ../developer/DEV/ngs_ics_uci_edu\dbd821182c90139d8d8681adaf0b0ef18ad9c484b42181d4c71e510b1962c6dd.json (Score: 4.860707313007039)
+13355|> https://ngs.ics.uci.edu/current-research-challenges-in-computer-vision-and-multimedia/: ../developer/DEV/ngs_ics_uci_edu\7954b3731e75ae268a1a980b3013d1026b3cdde16a6531dc70c71e0afb74ccbf.json (Score: 4.857979837276645)
+15066|> http://vision.ics.uci.edu/publications.html: ../developer/DEV/vision_ics_uci_edu\eaced04b50b1f1cfcfa52d8b5053cde04fa8fa0587a834fe54ad249f58438376.json (Score: 4.852750498618176)
+Searching for: "Professor Scandal"
+Tokens: ["professor", "scandal"]
+Search took: 2ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 10.730137050650383)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 9.358232933523224)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 9.358232933523224)
+26694|> https://grape.ics.uci.edu/wiki/public/raw-attachment/wiki/cs221-2019-spring-project2/Team2StressTest.txt: ../developer/DEV/grape_ics_uci_edu\d3cca8e8972f7c306ba84941a222cedeb8e754862a23f52202f662bc36eb31bd.json (Score: 6.714772855285672)
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 6.714772855285672)
+21056|> https://www.ics.uci.edu/~jutts/hyman.html: ../developer/DEV/www_ics_uci_edu\31e29dc2a5ae58043006c11eb056d4aa112d1a7de933e2cdf4fd18abb3074b06.json (Score: 6.508322414365605)
+22032|> https://www.ics.uci.edu/~kay/computer.law/cyberlawcourse/lessons/disput01.html: ../developer/DEV/www_ics_uci_edu\3ae4371aa490120051cdcc9507ec47101803c7a4b5f8919912b852f378dde5fb.json (Score: 5.79797376258707)
+Searching for: "Amazon web services"
+Tokens: ["amazon", "web", "servic"]
+Search took: 10ms
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 7.867503595935804)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 7.867503595935804)
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 7.867503595935804)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 7.828489561421825)
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 7.686787283473373)
+31037|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-smrq-cs171/CS-171-SMRQ-2016.htm: ../developer/DEV/www_ics_uci_edu\8b226fbc29f6fda23145e808a12b943a600d249fc2a1f4410f77b879c2b8880d.json (Score: 7.545134944354092)
+35899|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-wq-cs171/CS-171-WQ-2016.htm: ../developer/DEV/www_ics_uci_edu\b46eba04eabffcb31c0e725d5f73c3ae45f6c86e0054899a867539cf65325e69.json (Score: 7.475828316733972)
+41172|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-fq-cs171/CS-171-FQ-2015.htm: ../developer/DEV/www_ics_uci_edu\eb618cb89601cb071b6db7b6477ef532f8354a0958e7f5c9b1fd85ac9725b088.json (Score: 7.1408638686778065)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 7.093850425346599)
+26182|> https://www.ics.uci.edu/~rickl/courses/cs-171/2015-wq-cs171/CS-171-WQ-2015.htm: ../developer/DEV/www_ics_uci_edu\5e718721766cc1ee0f228227a8a807a2ada21c7c84c205a6a7e495d61a0efdef.json (Score: 7.034942400642276)
+Searching for: "how to deploy your page"
+Tokens: ["how", "to", "deploi", "your", "page"]
+Search took: 18ms
+23971|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=5: ../developer/DEV/grape_ics_uci_edu\85d3ff84fa14fec40d13e60c7ef5b860b905f5898594c682f8b8f580d3ec1535.json (Score: 8.246417062188597)
+9655|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=6: ../developer/DEV/grape_ics_uci_edu\a77716aee438b705e14703e7768c6ad3b63919262ec46d5caaa0a055e475a4e7.json (Score: 8.239045203782851)
+21943|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=3: ../developer/DEV/grape_ics_uci_edu\2407e07e50bb5c2968d7ccea9b5ef97876d1f715d55e5f6e9051462f17150d1f.json (Score: 8.21355489845722)
+9358|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=4: ../developer/DEV/grape_ics_uci_edu\99d15888b087bc6fc0e102d75cbc40908da1f0d234152d796e57c026c0b44963.json (Score: 8.211098219162725)
+8007|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=2: ../developer/DEV/grape_ics_uci_edu\614aedc02b54d3f24c186003c8a973326cdb79cd2668ba9a423c8bc1d0ba4e0c.json (Score: 8.205391592217328)
+25887|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=1: ../developer/DEV/grape_ics_uci_edu\b2f12c115c4f88fb043325f416ce3c7f924e3e503dde80af1efb77ebd7a570b1.json (Score: 8.176155929235156)
+10488|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2017-fall-project1: ../developer/DEV/grape_ics_uci_edu\c68f388e3703756dc275d20fdf7f04947696d589ccaf4edde8ff5bf30c6fe618.json (Score: 8.176155929235156)
+38248|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2017-fall-project1?version=11: ../developer/DEV/grape_ics_uci_edu\9cb28d388a8c57ca8b39ec24b41b4563205d9fa967cf96bca40422e4606e629e.json (Score: 8.176155929235156)
+6468|> https://grape.ics.uci.edu/wiki/public/wiki/cs222p-2018-fall-project1?version=1: ../developer/DEV/grape_ics_uci_edu\25f518eddc6e88ed185b612748590b70211086797771292555d4390c6f100e56.json (Score: 8.163696334196027)
+27352|> https://grape.ics.uci.edu/wiki/public/wiki/cs222-2018-fall-project1?version=10: ../developer/DEV/grape_ics_uci_edu\f567086b9927f66246b903143ef505be03b752be71dee91939ca977512d0abca.json (Score: 8.163696334196027)
+Searching for: "resources for learning language"
+Tokens: ["resourc", "for", "learn", "languag"]
+Search took: 6ms
+29184|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_draft.htm: ../developer/DEV/www_ics_uci_edu\78b2c5bc75edd4a5639d65b6ce3ba2ff87ca159b573398e034c3c16c79083aab.json (Score: 8.826440747961973)
+46110|> https://www.ics.uci.edu/~rickl/courses/cs-171/0-ihler-2016-fq/Lectures/Lathrop/CS-171%20Fall%20Quarter%202016.htm: ../developer/DEV/www_ics_uci_edu\ed5f2b049c0e5dfa486d46ae2db681b54d687db1cf7c0aea5b95fb0bffbe4ce6.json (Score: 8.826440747961973)
+34243|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160919.htm: ../developer/DEV/www_ics_uci_edu\1e2f1d57fde106748f7313995033dce0f8be1968610fda0113ec115f4114be3f.json (Score: 8.825651856736828)
+46118|> https://www.ics.uci.edu/~rickl/courses/cs-171/2016-fq-cs171/CS-171-FQ-2016_20160918.htm: ../developer/DEV/www_ics_uci_edu\ef6b6a5cbbe2ac3149b932afbae76942153cfafa94d5b9cd2efdab34f20f7b73.json (Score: 8.825651856736828)
+7801|> https://www.ics.uci.edu/~rickl/courses/cs-171/2013-fq-cs171/CS-171-FQ-2013.htm: ../developer/DEV/www_ics_uci_edu\42fd375fda88629d8d851935e690660f52281cfe5f9f0a583c92c96821e556ea.json (Score: 8.820360053420432)
+35638|> https://www.ics.uci.edu/~rickl/courses/cs-171/2014-fq-cs171/CS-171-FQ-2014.htm: ../developer/DEV/www_ics_uci_edu\b3129a3e56105810767a931584742c99e5b6cb89a6dc0206546a77ee5e54137d.json (Score: 8.412322296514358)
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 8.404815036434695)
+23675|> https://www.ics.uci.edu/~ejw/authoring/protocol/draft-ietf-webdav-protocol-05.html: ../developer/DEV/www_ics_uci_edu\49ecf1028a10fa4abbfeaec04261bdf2003d20a84fb393dc56e28904fc6bf6db.json (Score: 8.28839894267746)
+18063|> https://www.ics.uci.edu/~ejw/authoring/protocol/draft-ietf-webdav-protocol-04.html: ../developer/DEV/www_ics_uci_edu\15548fed74bac44b0bab0c4962754c27bf4c72824dd739d9bbe7c59d49187584.json (Score: 7.997965228513722)
+8861|> https://www.ics.uci.edu/~ejw/authoring/protocol/draft-ietf-webdav-protocol-03.html: ../developer/DEV/www_ics_uci_edu\4fae36f9424f9efa457447eed65062f91dc7d7827e1e98c9336a1bc7658aa203.json (Score: 7.916887312622956)
+Searching for: "dungeons and dragons"
+Tokens: ["dungeon", "and", "dragon"]
+Search took: 4ms
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 14.326498177752178)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 14.326498177752178)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 11.875346912460762)
+34056|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist.txt: ../developer/DEV/www_ics_uci_edu\1b79168f228a864be239f3ff877d00e242dd6f3a760d763218716bb1f02a606b.json (Score: 8.297182396869886)
+25573|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist-random.txt: ../developer/DEV/www_ics_uci_edu\5a00e89ed968a45af6be06656bdf382d6cee6a7fc42b31b97aa719db2f07af58.json (Score: 8.297182396869886)
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 7.747079302971882)
+44947|> https://www.ics.uci.edu/community/news/view_news?id=1494: ../developer/DEV/www_ics_uci_edu\b232a99f78ee5eab2c3d8b8e9d21adab689a245929ad3bf8b04d2e5bfdd1932e.json (Score: 6.623024563039393)
+45842|> https://www.ics.uci.edu/~jacobson/Bio.html: ../developer/DEV/www_ics_uci_edu\631fc4cb590605edb747898a10f0a2ba62cfd684caf1dbec6d5a0348a7a36526.json (Score: 6.260606168025391)
+Searching for: "Squid Game"
+Tokens: ["squid", "game"]
+Search took: 1ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 10.273489075179503)
+Searching for: "AMong us "
+Tokens: ["among", "us"]
+Search took: 4ms
+42037|> https://www.ics.uci.edu/~gmark/Home_page/Publications.html: ../developer/DEV/www_ics_uci_edu\f5ca46718b7c083525d3a9542a05724e75be2d99d2c74616477c4361245cbe03.json (Score: 5.974982473395274)
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 5.704999186652419)
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 5.330579510126054)
+26694|> https://grape.ics.uci.edu/wiki/public/raw-attachment/wiki/cs221-2019-spring-project2/Team2StressTest.txt: ../developer/DEV/grape_ics_uci_edu\d3cca8e8972f7c306ba84941a222cedeb8e754862a23f52202f662bc36eb31bd.json (Score: 5.1089258902607)
+15721|> https://www.cs.uci.edu/uci-ranks-among-top-20-on-semantic-scholar-insights-list/: ../developer/DEV/www_cs_uci_edu\19b8b6a14b5bf15d1a67756dcc7743c2059b86cea9e8da14071fa246aa3a5f60.json (Score: 5.107729863205624)
+3674|> https://cml.ics.uci.edu/2007/08/2007_jcdl/: ../developer/DEV/cml_ics_uci_edu\75013db687963a6db638aab4f622f21671769c953f0f0e42aa7ebbb1153b3392.json (Score: 5.008351775971808)
+29374|> https://ngs.ics.uci.edu/sitting-among-packed-boxes/: ../developer/DEV/ngs_ics_uci_edu\55f2352a67409bdaef0b160da536d2538e23aebd06be9f9c2518877fd8e553bf.json (Score: 4.9682894111341165)
+15703|> https://www.cs.uci.edu/irvine-newport-beach-rated-among-top-cybersecurity-hubs-in-u-s/: ../developer/DEV/www_cs_uci_edu\0caaa16db7d9a104756271d8bc3481b2369a5cbb45958e4b28ceb644328009d2.json (Score: 4.929470950482324)
+44367|> https://www.cs.uci.edu/grad-students-participate-in-global-ucsb-ictf-hacking-competition-place-third-among-u-s-teams/: ../developer/DEV/www_cs_uci_edu\eb7177ed001ce05e3b496aeca056d7d2347bf09a69142dcfb9c804d5f3738f93.json (Score: 4.929470950482324)
+28373|> https://www.ics.uci.edu/community/news/view_news?id=1535: ../developer/DEV/www_ics_uci_edu\71eda3edbe064f13109fc899c90b36377853a58b4f14fdbc2025526e871f88ff.json (Score: 4.911223389390314)
+Searching for: "video game club @ uci"
+Tokens: ["video", "game", "club", "uci"]
+Search took: 3ms
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 15.51757530851966)
+43338|> https://www.informatics.uci.edu/2018/03/: ../developer/DEV/www_informatics_uci_edu\73f08d0302e312cc0d3a3bdcb4cbf88fa2849c8bcb463e66d077e5bbb1325281.json (Score: 12.396295741166538)
+36798|> https://www.ics.uci.edu/community/news/spotlight/: ../developer/DEV/www_ics_uci_edu\be41ec60f981b23e394b4a7fab9f84357236484bb252ccf24c1a6cada8920024.json (Score: 11.433459009752081)
+43299|> https://www.informatics.uci.edu/explore/department-seminars/seminar-info/?seminar_id=1006: ../developer/DEV/www_informatics_uci_edu\66626b007e4498b744e55a6b58b38f1cdb0fb8b517afb8385af5848462cfd05e.json (Score: 11.208132904981984)
+43407|> https://www.informatics.uci.edu/very-top-footer-menu-items/news/page/19/: ../developer/DEV/www_informatics_uci_edu\8a04585cc94a4826c13ca0374d5288d706cbd98e5802298f43907d667047cb05.json (Score: 10.472885017017543)
+29338|> https://www.informatics.uci.edu/undergrad/student-profiles/william-stone/: ../developer/DEV/www_informatics_uci_edu\fc9b51689e2e385fccdae735393892d343f8e228b22b8227395eb68820fae095.json (Score: 10.451616392185723)
+43272|> https://www.informatics.uci.edu/2019/04/: ../developer/DEV/www_informatics_uci_edu\5bf7659b07d89cc22520ace4223104b282fd4caed0f64c4e06be49c3c1d8c960.json (Score: 10.082162961746858)
+43641|> https://www.informatics.uci.edu/very-top-footer-menu-items/news/page/5/: ../developer/DEV/www_informatics_uci_edu\e520f310c08e5e0069c3249847366563b0c7dcd6d256306301ada78e6ec65c39.json (Score: 10.035373266266408)
+7247|> https://www.ics.uci.edu/community/news/view_news?id=1303: ../developer/DEV/www_ics_uci_edu\3cf991999debe04458df5d4dab753abfb42d1c702754a33913c499fd58b01275.json (Score: 9.829936826676004)
+24372|> https://www.ics.uci.edu/community/news/view_news?id=1466: ../developer/DEV/www_ics_uci_edu\c46d66d8996e17a9716e26d4a362b1a74f5231a598b3402989f584edf573c2a4.json (Score: 9.570480473912617)
+Searching for: "Club meeting tommorow"
+Tokens: ["club", "meet", "tommorow"]
+Search took: 4ms
+Searching for: "Club meeting"
+Tokens: ["club", "meet"]
+Search took: 1ms
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 8.637024222168499)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 8.637024222168499)
+5106|> https://www.ics.uci.edu/~ejw/authoring/cambridge/minutes.html: ../developer/DEV/www_ics_uci_edu\2574b91f9a2280d7605ead1553c7fba8f66a47e1ea545ff5adc989f22453787a.json (Score: 7.881075754461731)
+33178|> https://www.ics.uci.edu/~ejw/authoring/cambridge/whitehead/tsld001.htm: ../developer/DEV/www_ics_uci_edu\9f2b6da4ec99d74f81ca26e59aa33a15c34c30c26b2084bdb9e46fc1baf1e0ca.json (Score: 7.805249769702752)
+17171|> https://www.ics.uci.edu/~ejw/authoring/cambridge/: ../developer/DEV/www_ics_uci_edu\0caecc8d3243314888d5cc887f1108448a57321e164e50f5a61f1055e5481fb3.json (Score: 7.70724772883727)
+15089|> https://wics.ics.uci.edu/event/week-5-potluck/: ../developer/DEV/wics_ics_uci_edu\04e046a7fa642ead6579550f16da0cd9d523c83dad69d837c6515d182fe2b23c.json (Score: 7.0062674305215635)
+15128|> https://wics.ics.uci.edu/event/week-3-club-affiliates-fair/: ../developer/DEV/wics_ics_uci_edu\146eac3f1468506ee74fb1acb6cff88856a31050ad82f5133129f976d8d2ebfb.json (Score: 6.944395912537202)
+17462|> https://www.ics.uci.edu/~ejw/authoring/cambridge/attendees.html: ../developer/DEV/www_ics_uci_edu\0f18ca0cdf0103ee204cc7d3064e24be969334581dcf693770f8c168141be655.json (Score: 6.923347070733202)
+36798|> https://www.ics.uci.edu/community/news/spotlight/: ../developer/DEV/www_ics_uci_edu\be41ec60f981b23e394b4a7fab9f84357236484bb252ccf24c1a6cada8920024.json (Score: 6.7926739251765955)
+31735|> https://wics.ics.uci.edu/spring-potluck-with-ics-clubs/?afg36_page_id=2: ../developer/DEV/wics_ics_uci_edu\40182f85e2eb537608f5165cd2a77d145afe12bbe7928c7ebb13b110addbdfcd.json (Score: 6.454891928275037)
+Searching for: "Yo mamma"
+Tokens: ["yo", "mamma"]
+Search took: 2ms
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 11.47912969995581)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 11.47912969995581)
+Searching for: "octopussy"
+Tokens: ["octopussi"]
+Search took: 3ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 5.455899791294104)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 4.193523446405771)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 4.193523446405771)
+Searching for: "thanos snapping"
+Tokens: ["thano", "snap"]
+Search took: 3ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 11.047619040611263)
+Searching for: "marvel rivals"
+Tokens: ["marvel", "rival"]
+Search took: 1ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 13.034034017486643)
+37689|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/book1: ../developer/DEV/www_ics_uci_edu\c639f1c0b3a660313c4e9b8f2580a610dbaac38bc9a793fe310a5b65cf9946e8.json (Score: 10.885122301860164)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 10.141945769081579)
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 10.141945769081579)
+25573|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist-random.txt: ../developer/DEV/www_ics_uci_edu\5a00e89ed968a45af6be06656bdf382d6cee6a7fc42b31b97aa719db2f07af58.json (Score: 7.315747816237831)
+34056|> https://www.ics.uci.edu/~kay/courses/h22/hw/wordlist.txt: ../developer/DEV/www_ics_uci_edu\1b79168f228a864be239f3ff877d00e242dd6f3a760d763218716bb1f02a606b.json (Score: 7.315747816237831)
+Searching for: "mutex thread lock"
+Tokens: ["mutex", "thread", "lock"]
+Search took: 2ms
+31832|> https://www.ics.uci.edu/~aburtsev/143A/2018fall/hw/hw4-threads.html: ../developer/DEV/www_ics_uci_edu\93605df013353ab2f4b87164aab47bc1d65ba6876036e4b85a57dcb08042e818.json (Score: 19.688584601355366)
+19091|> https://www.ics.uci.edu/~majumder/VC/211HW3/vlfeat/doc/api/generic_8c.html: ../developer/DEV/www_ics_uci_edu\1e949a26960a44ec7858dbb3fa1481cff2d3204bba4e9b640b2c54e619ef477d.json (Score: 13.867661861453247)
+37609|> https://www.ics.uci.edu/~bic/os/OS/OS-TOC.htm: ../developer/DEV/www_ics_uci_edu\c5dfe0be2e35d458be58cdbaf4b10791273891b213fa69ecb47b02fef5dabfdd.json (Score: 13.05570082793443)
+14289|> http://plrg.ics.uci.edu/software_page/42-2/: ../developer/DEV/plrg_ics_uci_edu\24b9217272e0c83e3c73700bddb9e57f71158835f1e1026bc8b985b9cdbc4791.json (Score: 11.56111462185044)
+Searching for: "future of health and sciences"
+Tokens: ["futur", "of", "health", "and", "scienc"]
+Search took: 8ms
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 11.738638442910942)
+20251|> https://futurehealth.ics.uci.edu/about/: ../developer/DEV/futurehealth_ics_uci_edu\36ea5772f0aeeacdc318e9af69829fb725fc680e9dee4541161befd2ce13e723.json (Score: 10.730621017910881)
+43601|> https://www.informatics.uci.edu/explore/department-seminars/department-seminars-2016-2017/: ../developer/DEV/www_informatics_uci_edu\d852702b99119712c2f273edc2522ae9409d617245116ecd8b0affdb2669e35b.json (Score: 10.510620484501143)
+5448|> https://futurehealth.ics.uci.edu/news-events/uci-seminars/: ../developer/DEV/futurehealth_ics_uci_edu\1e799c6db84d33ef0e9c60b5216bc7e01ad637cc11d19d0b8f1958853c1ef0ff.json (Score: 9.853818184390887)
+20239|> https://futurehealth.ics.uci.edu/news-events/meetings/: ../developer/DEV/futurehealth_ics_uci_edu\89c31e7fbfd072abe4b39f6bb6c2b6ddeb5bd6a565d5b8bdc3d04af7b66d63e0.json (Score: 9.832100881108818)
+33378|> https://www.ics.uci.edu/~gbowker/classification/: ../developer/DEV/www_ics_uci_edu\a106056b9baf23609273707309d793d53311f5a1ab6fd61707d7cef05dc18928.json (Score: 9.825896700658138)
+43587|> https://www.informatics.uci.edu/explore/department-seminars/department-seminars-2014-2015/: ../developer/DEV/www_informatics_uci_edu\d36f2611e1bd804b0534a3bc4a74f45ba108e6e4a239cc46717bc986a0fc9710.json (Score: 9.667389098647615)
+43171|> https://www.informatics.uci.edu/very-top-footer-menu-items/news/page/28/: ../developer/DEV/www_informatics_uci_edu\3ba23bbb3411725e2b98e5d8e7873a6dca9ae7672679b9abf345e3e5ddc78440.json (Score: 9.56703413002911)
+43067|> https://www.informatics.uci.edu/2017/05/: ../developer/DEV/www_informatics_uci_edu\1a541276f31c52a75e3466dec593ba434d8a8d9b510f7810d4bd6216745501fe.json (Score: 9.56703413002911)
+5452|> https://futurehealth.ics.uci.edu/: ../developer/DEV/futurehealth_ics_uci_edu\714f129ed5226289dbf51df76c784cba6a39b4749dd635190385f6b31d3dcc0c.json (Score: 9.490350520833173)
+Searching for: "biology dna"
+Tokens: ["biologi", "dna"]
+Search took: 2ms
+28845|> https://www.ics.uci.edu/~rickl/rickl-publications: ../developer/DEV/www_ics_uci_edu\76680c3bb6bf03d8c98c60db2ebbe3b71fcc8e22873725bd4e2e6507b69e0432.json (Score: 10.824542162337648)
+37170|> https://www.ics.uci.edu/~rickl/rickl-publications.html: ../developer/DEV/www_ics_uci_edu\c1f1bca81ab774577af5fd2ae8abcb12000274aca81fc0262ab7cb9cc5e6cc9b.json (Score: 10.824542162337648)
+3364|> http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+(Splice-junction+Gene+Sequences): ../developer/DEV/archive_ics_uci_edu\83b07f21da2b0fd860e10c6ec861fad5ece84eb0d273fdfab25ad6b259a27878.json (Score: 9.671196702484071)
+250|> http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+%28Splice-junction+Gene+Sequences%29: ../developer/DEV/archive_ics_uci_edu\554d6001aff6875dfa6d64fefa331b92976a3ef05396eafdd8a178805e908412.json (Score: 9.671196702484071)
+38531|> https://www.ics.uci.edu/~kibler/: ../developer/DEV/www_ics_uci_edu\cf0b6d5ceb0745f1d016868ce2b4a45b881f0c32e33b236755b502dcdf4e2b06.json (Score: 9.087297001262666)
+19768|> https://www.ics.uci.edu/~emj/Mjolsness_CV_V67p.htm: ../developer/DEV/www_ics_uci_edu\24dadc8a5064f50ebcb569630a42861bd2d00bf1f0e527debecf17161c739f35.json (Score: 8.783367924783274)
+2209|> https://cbcl.ics.uci.edu/public_data/shilab/ChIPseq_elmira_08272016/homer-motifs/P2-promoters-motifs/reactome.txt: ../developer/DEV/cbcl_ics_uci_edu\7d4bcd63e9369c11380da5d17b8cf53a296032cc04d7c0bad841864ab8645f71.json (Score: 8.415715116133773)
+11524|> https://cbcl.ics.uci.edu/public_data/shilab/ChIPseq_elmira_08272016/homer-motifs/P4-promoters-motifs/reactome.txt: ../developer/DEV/cbcl_ics_uci_edu\95ca515161ed781b53cad31a9b7f27f5223ac5bfd7c6f380ed87543de7548ef9.json (Score: 8.415715116133773)
+599|> http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+(Promoter+Gene+Sequences): ../developer/DEV/archive_ics_uci_edu\994e866d83d9ec73ccc2b1ea020845e141d90eba162b5c09af7de4622e427a82.json (Score: 8.386644142451587)
+3361|> http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+%28Promoter+Gene+Sequences%29: ../developer/DEV/archive_ics_uci_edu\0a971bb48e3925208eb36273da96abeb85ca00a25590f366156be17ce3c261c4.json (Score: 8.386644142451587)
+Searching for: "organic chemistry"
+Tokens: ["organ", "chemistri"]
+Search took: 4ms
+33968|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD-random.txt: ../developer/DEV/www_ics_uci_edu\a3980ab83f9e5491458e4fbc749b20483f81feb734e97a0982d8b875184fe166.json (Score: 7.237979343462186)
+4784|> https://www.ics.uci.edu/~kay/courses/h22/hw/DVD.txt: ../developer/DEV/www_ics_uci_edu\1bd0479e05d9caa65b6a6afaac4e20e4dd4d45130819d3285453e7103bd20c5b.json (Score: 7.237979343462186)
+9946|> https://www.ics.uci.edu/~gbowker/forget.html: ../developer/DEV/www_ics_uci_edu\5bf5be2c129d8c6f0dbe18514790b10b4cf6447c874f08d1f373210da4f12ad6.json (Score: 6.966480803523858)
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 6.6545574028276615)
+36684|> https://www.ics.uci.edu/~dan/class/267P/datasets/calgary/news: ../developer/DEV/www_ics_uci_edu\bcefe5cf124217e0e2a89dce41b38f002a95d68b0cd14db1f312670f6304c3e1.json (Score: 6.4477250876171155)
+45545|> https://www.ics.uci.edu/community/news/press/view_press?id=167: ../developer/DEV/www_ics_uci_edu\d28e5cf9d6984deabb2d804b8e9a04078ffaa6e5e9b787ffdc5b413806882534.json (Score: 6.067967632687491)
+28994|> https://www.ics.uci.edu/~eppstein/gina/kern.html: ../developer/DEV/www_ics_uci_edu\77b8be01bf809b5611776026b7877b0983e53df1e386be6b8a9b008d07f3c05e.json (Score: 5.960157220599152)
+19768|> https://www.ics.uci.edu/~emj/Mjolsness_CV_V67p.htm: ../developer/DEV/www_ics_uci_edu\24dadc8a5064f50ebcb569630a42861bd2d00bf1f0e527debecf17161c739f35.json (Score: 5.644458613325045)
+20776|> https://www.ics.uci.edu/~pattis/ICS-33/lectures/overview/lecture.html: ../developer/DEV/www_ics_uci_edu\aaf5106cc7d12c2e25de04cc1721dff7c84bd6690ec2ffc58c931418967c4b5b.json (Score: 5.463171995307739)
+45159|> https://www.ics.uci.edu/~pattis/ICS-21/lectures/overview/lecture.html: ../developer/DEV/www_ics_uci_edu\bbc13cc26f296b0598224aa8d9f5713544846c491851809650b7a6c5d425152d.json (Score: 5.463171995307739)
+Searching for: "deep learning"
+Tokens: ["deep", "learn"]
+Search took: 1ms
+26849|> https://www.ics.uci.edu/~welling/publications/publications.html: ../developer/DEV/www_ics_uci_edu\e4aca246b1bb30d16ff159c887339d0f3944c88ad3afc2310b24b2b93f37e44c.json (Score: 8.515872516395529)
+3596|> https://cml.ics.uci.edu/2019/09/920/: ../developer/DEV/cml_ics_uci_edu\3dc960cd1eaaac5beb71615ab4254ac341c8095dd67c594086768c1aac46cb9d.json (Score: 7.490698042161718)
+33616|> https://cml.ics.uci.edu/2014/08/2014_deep/: ../developer/DEV/cml_ics_uci_edu\312558fd2f078f5438639cd12a4373db409bf904fb784c5d4f2bbbadb9d32d33.json (Score: 7.490698042161718)
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 7.435403319344866)
+3670|> https://cml.ics.uci.edu/category/aiml/page/2/: ../developer/DEV/cml_ics_uci_edu\a53fe71124f116afc782d52a2d2348d38c514c39edb803b6d33fde2c3b59990d.json (Score: 7.428004678849579)
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 7.352759252582459)
+15691|> https://www.cs.uci.edu/uci-other-researchers-develop-deep-learning-technique-to-id-at-risk-anatomy-in-ct-scans/: ../developer/DEV/www_cs_uci_edu\083517b24c143f3cc600b348afc1239c31775930ece525793e832611607a92b8.json (Score: 7.24417236957359)
+15777|> https://www.cs.uci.edu/uci-news-uci-researchers-deep-learning-algorithm-solves-rubiks-cube-faster-than-any-human/: ../developer/DEV/www_cs_uci_edu\378ca5032eb16b08899fdd4598bebe32eebc754187034d79003f2e508e370957.json (Score: 7.229924574188789)
+32149|> https://www.cs.uci.edu/uci-researchers-deep-learning-algorithm-solves-rubiks-cube-faster-than-any-human/: ../developer/DEV/www_cs_uci_edu\5680d05bc8b211f6411e953f2a72d558ac152d916048ff5414242f4ec1d469cf.json (Score: 7.215488060800524)
+15699|> https://www.cs.uci.edu/news/page/2/: ../developer/DEV/www_cs_uci_edu\098bbae3ea2fa098ab9a77278d8dbf161a14b9be42773e16763ec2838dd75a8a.json (Score: 7.142756386499288)
+Searching for: "motion uci research"
+Tokens: ["motion", "uci", "research"]
+Search took: 3ms
+43209|> https://www.informatics.uci.edu/explore/department-seminars/department-seminars-2015-2016/: ../developer/DEV/www_informatics_uci_edu\4d856ceb12063823a986e98912338928107d7090b55413ab559ff4d1b8b5bcdd.json (Score: 7.801708786986444)
+3670|> https://cml.ics.uci.edu/category/aiml/page/2/: ../developer/DEV/cml_ics_uci_edu\a53fe71124f116afc782d52a2d2348d38c514c39edb803b6d33fde2c3b59990d.json (Score: 7.621092329935945)
+28415|> https://www.ics.uci.edu/~sudderth/projects/: ../developer/DEV/www_ics_uci_edu\faa48fb531185ef8093242fa72cd5a0abb148427dc2619f22be27ae1e1b09f2a.json (Score: 7.184533343030659)
+11858|> http://graphics.ics.uci.edu/publication.html: ../developer/DEV/graphics_ics_uci_edu\9ccd4752f3503c4456bd7c19c54e253a4973232d7ed07241c70e84766a5da617.json (Score: 6.921037070018651)
+3739|> https://cml.ics.uci.edu/2013/03/spring-2013-2/: ../developer/DEV/cml_ics_uci_edu\f8f8691b25512930000f0a05360ddbc0762735376abb9bd8bfa6d066f5a717c1.json (Score: 6.860763847607374)
+3613|> https://cml.ics.uci.edu/aiml/page/20/: ../developer/DEV/cml_ics_uci_edu\169f27abbd5680af03cab61d247755814dbaa179d7ef2204edf29ad4b5d39eed.json (Score: 6.8435963181723025)
+43299|> https://www.informatics.uci.edu/explore/department-seminars/seminar-info/?seminar_id=1006: ../developer/DEV/www_informatics_uci_edu\66626b007e4498b744e55a6b58b38f1cdb0fb8b517afb8385af5848462cfd05e.json (Score: 6.764794618082396)
+18267|> https://duttgroup.ics.uci.edu/publications/: ../developer/DEV/duttgroup_ics_uci_edu\3d20a5aed70d7a9146de21ef1970336300f7777ced47ee40a0745df284a34f42.json (Score: 6.518265311019613)
+19229|> https://www.ics.uci.edu/~gopi/Resume.html: ../developer/DEV/www_ics_uci_edu\1fbe908a6bec01ca13ebdc2fe5e55cf34ef9ad6c2a5d54e2e94280cb6fac7da0.json (Score: 6.283520003390856)
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 6.247131064534226)
+Searching for: "deep learning alphanumeric"
+Tokens: ["deep", "learn", "alphanumer"]
+Search took: 3ms
+40641|> https://www.ics.uci.edu/~kay/wordlist.txt: ../developer/DEV/www_ics_uci_edu\e104fabe116692443f09e0bbd4eeffe173682e04f90134303c3a11a16905d05b.json (Score: 9.438809243519806)
+15795|> https://www.cs.uci.edu/gene-tsudik-ics-exchange-students-on-international-team-studying-information-leakage/: ../developer/DEV/www_cs_uci_edu\698d43db2aa42e1203ba88ee9db399d0d6e5ee80e8e5372bbd7561d304a18906.json (Score: 5.703204945257882)
+Searching for: "deep learning"
+Tokens: ["deep", "learn"]
+Search took: 1ms
+26849|> https://www.ics.uci.edu/~welling/publications/publications.html: ../developer/DEV/www_ics_uci_edu\e4aca246b1bb30d16ff159c887339d0f3944c88ad3afc2310b24b2b93f37e44c.json (Score: 8.515872516395529)
+33616|> https://cml.ics.uci.edu/2014/08/2014_deep/: ../developer/DEV/cml_ics_uci_edu\312558fd2f078f5438639cd12a4373db409bf904fb784c5d4f2bbbadb9d32d33.json (Score: 7.490698042161718)
+3596|> https://cml.ics.uci.edu/2019/09/920/: ../developer/DEV/cml_ics_uci_edu\3dc960cd1eaaac5beb71615ab4254ac341c8095dd67c594086768c1aac46cb9d.json (Score: 7.490698042161718)
+3710|> https://cml.ics.uci.edu/category/aiml/: ../developer/DEV/cml_ics_uci_edu\fcffdbf24b716964c567d35c522a50933435c84fa341712af98b4dc4b2d7b64c.json (Score: 7.435403319344866)
+3670|> https://cml.ics.uci.edu/category/aiml/page/2/: ../developer/DEV/cml_ics_uci_edu\a53fe71124f116afc782d52a2d2348d38c514c39edb803b6d33fde2c3b59990d.json (Score: 7.428004678849579)
+26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 7.352759252582459)
+15691|> https://www.cs.uci.edu/uci-other-researchers-develop-deep-learning-technique-to-id-at-risk-anatomy-in-ct-scans/: ../developer/DEV/www_cs_uci_edu\083517b24c143f3cc600b348afc1239c31775930ece525793e832611607a92b8.json (Score: 7.24417236957359)
+15777|> https://www.cs.uci.edu/uci-news-uci-researchers-deep-learning-algorithm-solves-rubiks-cube-faster-than-any-human/: ../developer/DEV/www_cs_uci_edu\378ca5032eb16b08899fdd4598bebe32eebc754187034d79003f2e508e370957.json (Score: 7.229924574188789)
+32149|> https://www.cs.uci.edu/uci-researchers-deep-learning-algorithm-solves-rubiks-cube-faster-than-any-human/: ../developer/DEV/www_cs_uci_edu\5680d05bc8b211f6411e953f2a72d558ac152d916048ff5414242f4ec1d469cf.json (Score: 7.215488060800524)
+15699|> https://www.cs.uci.edu/news/page/2/: ../developer/DEV/www_cs_uci_edu\098bbae3ea2fa098ab9a77278d8dbf161a14b9be42773e16763ec2838dd75a8a.json (Score: 7.142756386499288)
+Searching for: "readmiles"
+Tokens: ["readmil"]
+Search took: 2ms
+Searching for: "redmiles"
+Tokens: ["redmil"]
+Search took: 3ms
+14274|> https://redmiles.ics.uci.edu/publication/: ../developer/DEV/redmiles_ics_uci_edu\183e940731efad3b322b452f3fd56228023d8613c7789855bcb7fcfd111f8cf2.json (Score: 6.772590659153212)
+18134|> https://cradl.ics.uci.edu/david-redmiles-gives-keynote-address-at-brazilian-symposium-on-collaborative-systems-sbsc-2012-and-participates-in-writing-workshop/: ../developer/DEV/cradl_ics_uci_edu\02d1ee30ae71bcb009771be594bfd3ba8ebc5d84856932462215f7b7f3e19d80.json (Score: 5.933896049015576)
+3783|> https://cradl.ics.uci.edu/people/david-redmiles-professor/: ../developer/DEV/cradl_ics_uci_edu\01db0988acda372184d19d6918d124a629dfd72c4c389cbb03000f88bde0550d.json (Score: 5.933896049015576)
+3859|> https://cradl.ics.uci.edu/david-redmiles-gives-keynote-address-at-brazilian-symposium-on-collaborative-systems-sbsc-2012-and-participates-in-writing-workshop/brazil_keynote1/: ../developer/DEV/cradl_ics_uci_edu\b9c8d208bab3b5bf231ea6bba06d33737ce5217a9302806ec9583b98eab83e99.json (Score: 5.898415891984007)
+3868|> https://cradl.ics.uci.edu/david-redmiles-gives-keynote-address-at-brazilian-symposium-on-collaborative-systems-sbsc-2012-and-participates-in-writing-workshop/brazil_workshop/: ../developer/DEV/cradl_ics_uci_edu\cbf233408a28d2ec68967199833dc3855acf3c52f39f755094d43bd0fb798711.json (Score: 5.898415891984007)
+3860|> https://cradl.ics.uci.edu/david-redmiles-gives-keynote-address-at-brazilian-symposium-on-collaborative-systems-sbsc-2012-and-participates-in-writing-workshop/brazil_keynote2/: ../developer/DEV/cradl_ics_uci_edu\c2d198121775601063a700943f665b98f83fffc6fdd121fe481dc2b471e1390a.json (Score: 5.898415891984007)
+37602|> https://www.ics.uci.edu/~redmiles/inf143-SQ09/Assignment1/assignment1_files/: ../developer/DEV/www_ics_uci_edu\c5da707cfbd5c23fd22c5ae8ae36dbf149840125ee3f19252bd2c45b778f73e3.json (Score: 5.8862687686999156)
+40976|> https://www.ics.uci.edu/~redmiles/inf143-SQ09/Assignment1/: ../developer/DEV/www_ics_uci_edu\e9f305da0678326599ddf5bdb4f78abc5d98c22e3c54382361905a618a0eaaa6.json (Score: 5.8862687686999156)
+43458|> https://www.informatics.uci.edu/professors-redmiles-dourish-appointed-associate-deans/: ../developer/DEV/www_informatics_uci_edu\a31312548ef36094f360efa24ea6713413842fd9712b516af84ef0a9743ac0b2.json (Score: 5.809696168334939)
+43197|> https://www.informatics.uci.edu/explore/faculty-profiles/david-redmiles/: ../developer/DEV/www_informatics_uci_edu\48501754920512ff1ab0496685c66243b6c879a65c5f5e6c7fd5f597af6eefdf.json (Score: 5.511954930660627)
