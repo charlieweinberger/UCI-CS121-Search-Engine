@@ -12,6 +12,7 @@ SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
 INDEXES_PATH = os.path.join(SRC_DIR, "indexes")
 
+
 def load_phonebook():
     """Loads the phonebook.json if it exists; otherwise, returns an empty dictionary."""
     if os.path.exists(PHONEBOOK_PATH):
@@ -20,10 +21,12 @@ def load_phonebook():
     print("fresh")
     return {}
 
+
 def save_phonebook(phonebook):
     """Writes the phonebook dictionary to a JSON file."""
     with open(PHONEBOOK_PATH, "w", encoding="utf-8") as f:
         json.dump(phonebook, f, indent=4)
+
 
 def main():
     # * Download the documents
@@ -34,8 +37,7 @@ def main():
     phonebook = load_phonebook()
 
     doc_id_counter = 0  # Add a counter to track document IDs
-        
-    
+
     def process_document(document_path):
         document = download.Document(document_path)
         return [document.content, document.url]
@@ -74,6 +76,7 @@ def main():
     if current_batch:
         doc_id_counter = save_inverted_index(doc_id_counter)
     save_phonebook(phonebook)
-    
+
+
 if __name__ == "__main__":
     main()

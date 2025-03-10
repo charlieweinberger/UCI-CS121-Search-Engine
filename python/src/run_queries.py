@@ -16,12 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-PHONEBOOK_PATH = "phonebook.json"
-
-searcher = None
-with open(PHONEBOOK_PATH, 'r') as file:
-    data = json.load(file)
-    searcher = SearchEngine()
+searcher = SearchEngine()
 
 
 class SearchRequest(BaseModel):

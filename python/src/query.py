@@ -11,6 +11,9 @@ PHONEBOOK = "phonebook.json"
 TOTAL_DOCUMENT_COUNT = 40157  # Replace with the actual total document count
 
 
+phonebook = json.load(open(PHONEBOOK, 'r'))
+
+
 def get_postings(token):
     """
     Get the postings list for a given token from the inverted index.
@@ -31,11 +34,11 @@ def get_postings(token):
     return postings
 
 
-def scoring_tf_idf(term_freq: int, posting_length: int) -> float:
+def scoring_tf_idf(term_freq: int, posting_length: int, total_terms: int) -> float:
     """
     Calculate the TF-IDF score for a term in a document.
     """
-    tf = (math.log2(term_freq) + 1.0)
+    tf = term_freq / total_terms
     idf = math.log2(TOTAL_DOCUMENT_COUNT / posting_length)
     return tf * idf
 
@@ -116,11 +119,14 @@ class SearchEngine:
             postings = get_postings(token)
             postings_len = len(postings)
             for cur_doc, frequency in postings.items():
-                doc_id = cur_doc + 1
+                doc_id = cur_doc - 1
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
-
-                score = scoring_tf_idf(frequency, postings_len)
+                try:
+                    score = scoring_tf_idf(
+                        frequency, postings_len, int(phonebook[str(doc_id)][1]))
+                except Exception as e:
+                    continue
                 candidates[doc_id].update_score(token, score)
                 # candidates[doc_id].set_info(frequency, postings_len, token)
         # Filter candidates to only those that match all query tokens
@@ -163,32 +169,12 @@ def get_doc_info(doc_ids):
     Returns an array of a docID's URL and content
     First element has the highest score. 
     """
-    with open(PHONEBOOK, 'r') as f:
-        phonebook = json.load(f)
-
     result = []
-
     for doc_id in doc_ids:
-        file_path = phonebook[str(doc_id)]
+        file_path = phonebook[str(doc_id)][0]
         print(f"File path: {file_path}")
         with open(file_path, 'r') as doc_file:
             doc_data = json.load(doc_file)
             result.append((doc_data["url"], doc_data["content"]))
 
     return result
-
-# def get_num_tokens_of_a_doc(doc_id):
-#     """
-#     Get the document information for a given document ID.
-#     Returns an array of a docID's URL and content
-#     First element has the highest score.
-#     """
-#     with open(PHONEBOOK, 'r') as f:
-#         phonebook = json.load(f)
-
-#     tokenizer = Tokenizer()
-#     file_path = phonebook[str(doc_id)]
-#     print(f"File path: {file_path}")
-#     with open(file_path, 'r') as doc_file:
-#         doc_data = json.load(doc_file)
-#         return len(tokenizer.tokenize(doc_data["content"]))
