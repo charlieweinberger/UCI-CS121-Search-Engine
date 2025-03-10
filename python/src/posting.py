@@ -131,7 +131,6 @@ class Dictionary:
                 right = mid
         self.keys.insert(left, word)
 
-
     def update_frequency(self, word: str, doc_id: int, frequency_increment: int):
         # ! This adds the word if not there, might cause confusing behaviour
         if word not in self.dictionary:

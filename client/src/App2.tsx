@@ -2,15 +2,17 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import { Card, CardContent } from "@/components/ui/card";
-// import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// import { Search } from "lucide-react";
-
-//! Uncomment when done testing
 // import { GoogleGenerativeAI } from "@google/generative-ai";
 
-//! Delete when done testing
+// const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+// const model = genAI.getGenerativeModel({
+//   model: "gemini-1.5-flash",
+//   systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
+// });
+
 const fakeData: Website[] = [
   {
     "url": "https://aiclub.ics.uci.edu/",
@@ -34,117 +36,128 @@ const fakeData: Website[] = [
   }
 ]
 
-//! Uncomment when done testing
-// const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-// const model = genAI.getGenerativeModel({
-//   model: "gemini-1.5-flash",
-//   systemInstruction: "You are playing the role of a website summarizer. You will be given the raw content of an html page. Imagine that the html content was rendered and you were looking at the website that was generated. What information would be presented to you? What does the website say? Summarize the content of the website in three sentences. Do not make up information that is not included in the html content. Do not mention the structure of the html at all.",
-// });
-
-async function getAISummary(website: Website): Promise<Website> {
+async function summarizeWebsite(website: Website): Promise<Website> {
   //! Uncomment when done testing
   // const result = await model.generateContent(website.content);
   // website.summary = result.response.text() ?? "AI summary failed.";
-  // return website;
   //! Delete when done testing
-  website.summary = "this is a website";
   await new Promise(resolve => setTimeout(resolve, 1000));
+  website.summary = "this is a website";
+  //! Keep this
+  website.summaryIsLoaded = true;
   return website;
 }
 
-function WebsiteComponent({ website }: { website: Website | undefined }) {
-  if (!website) return;
+export function SearchBar({ query, setQuery, handleSubmit }: {
+  query: string
+  setQuery: (query: string) => void
+  handleSubmit: (e: React.FormEvent) => void
+}) {
   return (
-    <div className="p-4 bg-blue-400 rounded-lg">
-      <a>{website.url}</a>
-      <p>{website.summary}</p>
-    </div>
+    <form onSubmit={handleSubmit} className="w-full mb-8">
+      <div className="flex w-full items-center space-x-2">
+        <Input
+          type="text"
+          placeholder="Search the web..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="pl-4 pr-10 py-6 text-lg w-full"
+        />
+        <Button type="submit" size="lg" className="px-6">
+          Search
+        </Button>
+      </div>
+    </form>
   );
+}
+
+export function SearchResults({ query, websites }: {
+  query: string
+  websites: Website[]
+}) {
+
+  if (!query || websites.length === 0) {
+    return;
+  }
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground mb-4">
+        Showing {websites.length} results for "{query}"
+      </p>
+      {websites.map((website: Website) => (
+        <Card key={website.url} className="overflow-hidden hover:shadow-md transition-shadow">
+          <CardContent className="p-4">
+            <a
+              href={website.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-medium text-green-600 dark:text-green-400 hover:underline mb-3 inline-block"
+            >
+              {website.url}
+            </a>
+            {website.summaryIsLoaded ? (
+              <p className="text-sm text-slate-700 dark:text-slate-300 mt-2">{website.summary}</p>
+            ) : (
+              <div className="mt-2 space-y-2">
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-4/5" />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
 }
 
 export default function App() {
 
   const [ query, setQuery ] = useState("");
+  const [ websites, setWebsites ] = useState<Website[]>([]);
 
-  // const [ websites, setWebsites ] = useState<Website[]>([]);
-  const [ website1, setWebsite1 ] = useState<Website>();
-  const [ website2, setWebsite2 ] = useState<Website>();
-  const [ website3, setWebsite3 ] = useState<Website>();
-  const [ website4, setWebsite4 ] = useState<Website>();
-  const [ website5, setWebsite5 ] = useState<Website>();
-
-  const handleSubmit = async () => {
-    resetResults();
-    const results: Website[] = await fetchResults();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const results = fakeData;
     summarizeWebsites(results);
-  };
-
-  const resetResults = () => {
-    // setWebsites([]);
-    setWebsite1(undefined);
-    setWebsite2(undefined);
-    setWebsite3(undefined);
-    setWebsite4(undefined);
-    setWebsite5(undefined);
-  };
-
-  const fetchResults = async () => {
-    try {
-      return fakeData; //! Delete when done testing
-      const response = await fetch("http://127.0.0.1:3000/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: query,
-          search_type: "name",
-        }),
-      });
-      const data = await response.json();
-      return data.results;
-    } catch (error) {
-      console.error(`Error searching: ${error}`);
-    }
   }
 
   const summarizeWebsites = async (results: Website[]) => {
-    // for (const result of results) {
-    //   const summarizedWebsite: Website = await getAISummary(result);
-    //   setWebsites([...websites, summarizedWebsite]);
-    // }
-    setWebsite1(await getAISummary(results[0]));
-    setWebsite2(await getAISummary(results[1]));
-    setWebsite3(await getAISummary(results[2]));
-    setWebsite4(await getAISummary(results[3]));
-    setWebsite5(await getAISummary(results[4]));
-  };
+    
+    if (!query) {
+      setWebsites([]);
+      return;
+    }
+
+    // Instantly load URLs with summaries marked as not loaded
+    const initialWebsites = results.map((website: Website) => ({
+      ...website,
+      summaryIsLoaded: false,
+    }));
+    setWebsites(initialWebsites);
+
+    // Load summaries one by one with 1 second delay between each
+    results.forEach(async (result, index) => {
+      const summarizedWebsite = await summarizeWebsite(result);
+      setWebsites((prevWebsites) => {
+        const newWebsites = [...prevWebsites];
+        newWebsites[index] = summarizedWebsite;
+        return newWebsites;
+      })
+    });
+
+  }
 
   return (
-    <div className="h-screen bg-blue-100 flex items-center justify-center flex-col gap-12">
-      <div className="text-8xl text-center font-bold flex flex-row">
-        <p>SearchThing</p>
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center">
+        <h1 className="text-4xl font-bold mb-8 text-center">Search Engine</h1>
+        <div className="w-full max-w-2xl">
+          <SearchBar query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
+          <SearchResults query={query} websites={websites} />
+        </div>
       </div>
-      <div className="flex flex-row gap-2">
-        <Input
-          id="search-query"
-          type="text"
-          placeholder="Input search query here"
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-96 bg-white"
-          required
-        />
-        <Button type="submit" onClick={handleSubmit}>
-          Search
-        </Button>
-      </div>
-      {website1 && <div className="w-2/3 h-2/3 flex flex-col gap-4 bg-blue-300 p-4 rounded-lg overflow-auto">
-          <WebsiteComponent website={website1} />
-          <WebsiteComponent website={website2} />
-          <WebsiteComponent website={website3} />
-          <WebsiteComponent website={website4} />
-          <WebsiteComponent website={website5} />
-      </div>}
-    </div>
-  );
+    </main>
+  )
 }

@@ -1,2 +1,5 @@
 nltk
 beautifulsoup4
+fastapi
+pydantic
+uvicorn
