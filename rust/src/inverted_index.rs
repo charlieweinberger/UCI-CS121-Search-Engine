@@ -76,7 +76,6 @@ impl InvertedIndexSplit {
 
     pub fn add_document(&mut self, doc_id: u16, content: &str) {
         let terms = self.tokenizer.tokenize(content);
-        let count = terms.len();
         for term in terms {
             let first_char = term.chars().next().unwrap();
             match first_char {
