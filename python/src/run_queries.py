@@ -41,7 +41,10 @@ async def search(request: SearchRequest = Body(...)):
             results[i] = data[str(results[i])]
             print(results[i])
             results[i] = json.load(open(results[i]))["url"]
-        return {"results": results}
+        return {
+            "results": results,
+            "time": searcher.get_time()
+        }
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=str(e))
