@@ -27,6 +27,9 @@ Make the partial index using:
 
 ```bash
 cd python
+run pip install -r requirements.txt
+run python -m venv venv
+run (for windows) venv\Scripts\activate or (for macos) source venv/bin/activate
 python src/main.py
 ```
 

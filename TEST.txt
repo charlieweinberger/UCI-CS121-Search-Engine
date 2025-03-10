@@ -42,6 +42,7 @@ Search took: 16ms
 17954|> https://cml.ics.uci.edu/2006/10/2006_cmlnips/: ../developer/DEV/cml_ics_uci_edu\29262f17723dcf7d53646b6bf28207508cb38cf66a80fc6930965801da39b33c.json (Score: 5.479793041271023)
 Searching for: "iftehkar ahmed"
 Tokens: ["iftehkar", "ahm"]
+Comments: Used a tokenizer to simplify words to allow efficient searching and indexing
 Search took: 2ms
 46354|> https://www.informatics.uci.edu/grad/upcoming-course-schedule/: ../developer/DEV/www_informatics_uci_edu\25494ffc73d905a95e3adc4c4d61b21cd6628dc6210aed07ea7e7d3c95d67865.json (Score: 9.292778890199545)
 43131|> https://www.informatics.uci.edu/very-top-footer-menu-items/people/: ../developer/DEV/www_informatics_uci_edu\28a7af8044b23c0dada195b4626bc57edcc8a7f5e5d0be3a4c86596e40c72e73.json (Score: 7.142632315296444)
@@ -60,6 +61,7 @@ Search took: 0ms
 37107|> https://www.ics.uci.edu/~iftekha/publication/mutation-reduction-strategies-considered-harmful/: ../developer/DEV/www_ics_uci_edu\4b348f2ec773203981bcbc4e31ba11e00d8461efc7d8e6ae2d7c41175b1df7d0.json (Score: 8.147935870627295)
 Searching for: "computer science"
 Tokens: ["comput", "scienc"]
+Comments: Runs stemming on the tokens to allow similar words to affect the searching
 Search took: 15ms
 26414|> https://www.ics.uci.edu/community/news/: ../developer/DEV/www_ics_uci_edu\60d9fdcbb5306f123ec52ba0190f5d6fa676d9bd8c9424652db2654c32901678.json (Score: 3.939317782401335)
 35232|> https://www.ics.uci.edu/~eppstein/bibs/eppstein.html: ../developer/DEV/www_ics_uci_edu\aff238d8493a383c284f875e75ac4566c1fd1f6e594438d25719901ac3e5fe2a.json (Score: 3.7978398638809)
