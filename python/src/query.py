@@ -9,7 +9,7 @@ import json
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SRC_DIR, "merged_indexes")
 PHONEBOOK = os.path.join(SRC_DIR, "phonebook.json")
-TOTAL_DOCUMENT_COUNT = 10000  # Replace with the actual total document count
+TOTAL_DOCUMENT_COUNT = 40167  # Replace with the actual total document count
 
 def get_postings(token):
     """
