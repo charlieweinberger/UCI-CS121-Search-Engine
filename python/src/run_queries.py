@@ -37,7 +37,7 @@ async def search(request: SearchRequest = Body(...)):
         formatted_results = [{"url": url, "content": content}
                              for url, content in results]
         return {
-            "results": formatted_results,
+            "results": formatted_results[:5],
             "time": searcher.get_time()
         }
     except Exception as e:

@@ -169,7 +169,8 @@ def get_doc_info(doc_ids):
     result = []
 
     for doc_id in doc_ids:
-        file_path = phonebook[str(doc_id)]
+        #! This might work on macOS but not Windows
+        file_path = phonebook[str(doc_id)].replace("\\", "/")
         print(f"File path: {file_path}")
         with open(file_path, 'r') as doc_file:
             doc_data = json.load(doc_file)
