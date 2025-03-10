@@ -87,6 +87,7 @@ class SearchEngine:
     def __init__(self):
         self.query = ""
         self.tokens = []
+        self.time = 0
 
     def get_query(self):
         """
@@ -125,8 +126,9 @@ class SearchEngine:
         # Filter candidates to only those that match all query tokens
         valid_candidates = get_valid_candidates(candidates, self.tokens)
         finished_time = int((time.time() - start_time) * 1000)
-                    
+        self.time = finished_time          
         valid_candidates.sort(key=lambda c: c.get_total_score(), reverse=True)
+        # valid_candidates.sort(key=lambda c: c.get_tf_idf(), reverse=True)
 
         # Take only top 5 results if available
         valid_candidates = valid_candidates[:5]
@@ -143,7 +145,8 @@ class SearchEngine:
         
         return get_doc_info(doc_ids)
         
-
+    def get_time(self):
+        return self.time
 
 def get_valid_candidates(candidates, query_tokens):
     valid_candidates = []
