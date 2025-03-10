@@ -1,10 +1,11 @@
-use std::time;
 use std::{
     collections::HashMap,
     io::{self, Write},
 };
+use std::{fs, time};
 
 use crate::id_book::IDBookElement;
+use crate::index_builder::Document;
 use crate::{file_skip_list, tokenizer::Tokenizer};
 use std::fs::File;
 use std::sync::{Arc, Mutex};
@@ -52,7 +53,7 @@ impl SearchEngine {
         self.tokens = Tokenizer::new().tokenize(&self.query);
     }
 
-    pub fn search(&self) -> (Vec<String>, u128) {
+    pub fn search(&self) -> (Vec<(String, String)>, u128) {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
@@ -83,12 +84,7 @@ impl SearchEngine {
                 if let Ok(file) = File::open(&file_path) {
                     let postings =
                         file_skip_list::get_postings_from_offset_range(&file, offset_range, &token);
-                    let posting_length = if token.len() <= 2 {
-                        println!("Warning: Token '{}' is too short", token);
-                        TOTAL_DOCUMENT_COUNT - 100
-                    } else {
-                        postings.postings.len() as u16
-                    };
+                    let posting_length = postings.postings.len() as u16;
                     for single_posting in postings.postings {
                         let score = scoring_tf_idf(single_posting.term_freq, posting_length);
                         candidate.update_score(single_posting.doc_id, score);
@@ -145,7 +141,10 @@ impl SearchEngine {
                 doc.path.display(),
                 score
             );
-            results.push(doc.url.clone());
+            let content: String = fs::read_to_string(&doc.path).unwrap();
+
+            let document: Document = serde_json::from_str(&content).unwrap();
+            results.push((doc.url.clone(), document.content));
         }
         (results, final_time)
     }

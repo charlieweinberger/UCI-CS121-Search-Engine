@@ -15,9 +15,9 @@ pub const IDBOOK_PATH: &str = "inverted_index/id_book.txt";
 pub const BATCH_SIZE: u16 = 5000; // Define the batch size
 #[derive(Debug, Deserialize)]
 
-struct Document {
+pub struct Document {
     url: String,
-    content: String,
+    pub content: String,
     encoding: String,
 }
 
