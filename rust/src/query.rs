@@ -83,7 +83,12 @@ impl SearchEngine {
                 if let Ok(file) = File::open(&file_path) {
                     let postings =
                         file_skip_list::get_postings_from_offset_range(&file, offset_range, &token);
-                    let posting_length = postings.postings.len() as u16;
+                    let posting_length = if token.len() <= 2 {
+                        println!("Warning: Token '{}' is too short", token);
+                        TOTAL_DOCUMENT_COUNT - 100
+                    } else {
+                        postings.postings.len() as u16
+                    };
                     for single_posting in postings.postings {
                         let score = scoring_tf_idf(single_posting.term_freq, posting_length);
                         candidate.update_score(single_posting.doc_id, score);
@@ -106,19 +111,32 @@ impl SearchEngine {
         }
 
         let mut candidates = Arc::try_unwrap(candidates).unwrap().into_inner().unwrap();
-        candidates.sort_by(|a, b| a.doc_ids.len().cmp(&b.doc_ids.len()));
-
-        let mut boolean_and_candidates: HashMap<&u16, &f64> =
-            candidates[0].doc_ids.iter().collect();
-        for candidate in candidates.iter().skip(1) {
-            boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
+        if candidates.len() == 0 {
+            return (Vec::new(), 0);
         }
-        let final_time = time.elapsed().as_millis();
-        println!("Search took: {}ms", final_time);
-        let mut sorted_candidates: Vec<(&u16, &f64)> = boolean_and_candidates.into_iter().collect();
+        candidates.sort_by(|a: &Candidate, b: &Candidate| a.doc_ids.len().cmp(&b.doc_ids.len()));
+        let mut base: HashMap<u16, f64> = candidates[0].doc_ids.clone();
+        for i in 1..candidates.len() {
+            let next = &candidates[i].doc_ids;
+            base.retain(|k, _| next.contains_key(k));
+        }
+
+        let mut all_candidates: HashMap<u16, f64> = base;
+        for candidate in candidates.iter() {
+            for (doc_id, score) in candidate.doc_ids.iter() {
+                all_candidates
+                    .entry(*doc_id)
+                    .and_modify(|s| *s += score)
+                    .or_insert(*score);
+            }
+        }
+
+        let mut sorted_candidates: Vec<(&u16, &f64)> = all_candidates.iter().collect();
         sorted_candidates.sort_by(|a, b| b.1.partial_cmp(a.1).unwrap());
         let mut results = Vec::new();
-        for (doc_id, score) in sorted_candidates.iter().take(5) {
+        let final_time = time.elapsed().as_millis();
+        println!("Search took: {}ms", final_time);
+        for (doc_id, score) in sorted_candidates.iter().take(10) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
             println!(
                 "{}|> {}: {} (Score: {})",
@@ -156,4 +174,3 @@ pub fn scoring_tf_idf(term_freq: u16, posting_length: u16) -> f64 {
     let idf: f64 = f64::log2(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
     tf * idf
 }
-
