@@ -15,9 +15,9 @@ pub const IDBOOK_PATH: &str = "inverted_index/id_book.txt";
 pub const BATCH_SIZE: u16 = 5000; // Define the batch size
 #[derive(Debug, Deserialize)]
 
-struct Document {
+pub struct Document {
     url: String,
-    content: String,
+    pub content: String,
     encoding: String,
 }
 
@@ -36,23 +36,38 @@ fn get_only_text_from_html(content: &str, encoding: String) -> String {
 
     let selector = scraper::Selector::parse("body")
         .unwrap_or_else(|_| scraper::Selector::parse("html").unwrap());
-
-    let better_selectors = vec!["h1", "h2", "h3", "h4", "h5", "h6", "b", "strong", "title"];
+    // Define selectors with their priority weights
+    let priority_selectors = [
+        ("title", 10),
+        ("h1", 8),
+        ("h2", 6),
+        ("h3", 5),
+        ("h4", 4),
+        ("h5", 3),
+        ("h6", 2),
+        ("strong", 2),
+        ("b", 1),
+    ];
 
     let mut combined_text = String::new();
 
+    // the body text first
     if let Some(body) = document.select(&selector).next() {
         combined_text.push_str(&body.text().collect::<String>());
-        for better_selector in &better_selectors {
-            let selector = scraper::Selector::parse(better_selector).unwrap();
-            for element in document.select(&selector) {
-                let text = element.text().collect::<String>();
-                for _ in 0..10 {
-                    combined_text.push_str(&text);
+
+        // priority-based repetition for important elements
+        for (tag, weight) in priority_selectors {
+            if let Ok(sel) = scraper::Selector::parse(tag) {
+                for element in document.select(&sel) {
+                    let text = element.text().collect::<String>();
+                    for _ in 0..weight * 5 {
+                        combined_text.push_str(&text);
+                    }
                 }
             }
         }
-        combined_text.chars().collect()
+
+        combined_text
     } else {
         String::new()
     }

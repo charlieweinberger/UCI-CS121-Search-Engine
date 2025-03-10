@@ -1,10 +1,11 @@
-use std::time;
 use std::{
     collections::HashMap,
     io::{self, Write},
 };
+use std::{fs, time};
 
 use crate::id_book::IDBookElement;
+use crate::index_builder::Document;
 use crate::{file_skip_list, tokenizer::Tokenizer};
 use std::fs::File;
 use std::sync::{Arc, Mutex};
@@ -52,7 +53,7 @@ impl SearchEngine {
         self.tokens = Tokenizer::new().tokenize(&self.query);
     }
 
-    pub fn search(&self) -> (Vec<String>, u128) {
+    pub fn search(&self) -> (Vec<(String, String)>, u128) {
         let time = time::Instant::now();
         println!("Searching for: \"{}\"", self.query);
         println!("Tokens: {:?}", self.tokens);
@@ -106,19 +107,35 @@ impl SearchEngine {
         }
 
         let mut candidates = Arc::try_unwrap(candidates).unwrap().into_inner().unwrap();
-        candidates.sort_by(|a, b| a.doc_ids.len().cmp(&b.doc_ids.len()));
-
-        let mut boolean_and_candidates: HashMap<&u16, &f64> =
-            candidates[0].doc_ids.iter().collect();
-        for candidate in candidates.iter().skip(1) {
-            boolean_and_candidates.retain(|doc_id, _| candidate.doc_ids.contains_key(doc_id));
+        if candidates.len() == 0 {
+            return (Vec::new(), 0);
         }
-        let final_time = time.elapsed().as_millis();
-        println!("Search took: {}ms", final_time);
-        let mut sorted_candidates: Vec<(&u16, &f64)> = boolean_and_candidates.into_iter().collect();
+        candidates.sort_by(|a: &Candidate, b: &Candidate| a.doc_ids.len().cmp(&b.doc_ids.len()));
+
+        let mut all_candidates: HashMap<u16, f64> = if !candidates.is_empty() {
+            candidates[0].doc_ids.clone()
+        } else {
+            HashMap::new()
+        };
+
+        // boolean AND
+        for candidate in candidates.iter().skip(1) {
+            all_candidates.retain(|doc_id, score| {
+                if let Some(candidate_score) = candidate.doc_ids.get(doc_id) {
+                    *score += candidate_score;
+                    true
+                } else {
+                    false
+                }
+            });
+        }
+
+        let mut sorted_candidates: Vec<(&u16, &f64)> = all_candidates.iter().collect();
         sorted_candidates.sort_by(|a, b| b.1.partial_cmp(a.1).unwrap());
         let mut results = Vec::new();
-        for (doc_id, score) in sorted_candidates.iter().take(5) {
+        let final_time = time.elapsed().as_millis();
+        println!("Search took: {}ms", final_time);
+        for (doc_id, score) in sorted_candidates.iter().take(10) {
             let doc = IDBookElement::get_doc_from_id(**doc_id);
             println!(
                 "{}|> {}: {} (Score: {})",
@@ -127,7 +144,10 @@ impl SearchEngine {
                 doc.path.display(),
                 score
             );
-            results.push(doc.url.clone());
+            let content: String = fs::read_to_string(&doc.path).unwrap();
+
+            let document: Document = serde_json::from_str(&content).unwrap();
+            results.push((doc.url.clone(), document.content));
         }
         (results, final_time)
     }
@@ -152,8 +172,7 @@ impl Candidate {
 }
 
 pub fn scoring_tf_idf(term_freq: u16, posting_length: u16) -> f64 {
-    let tf: f64 = f64::log2(term_freq as f64) + 1.0;
-    let idf: f64 = f64::log2(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
+    let tf: f64 = f64::log10(term_freq as f64) + 1.0;
+    let idf: f64 = f64::log10(TOTAL_DOCUMENT_COUNT as f64 / posting_length as f64);
     tf * idf
 }
-

@@ -12,141 +12,92 @@ use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use serde::{Deserialize, Serialize};
 use std::sync::{Arc, Mutex};
 
-fn main() {
-    // ! BUILD INDEX
-    // let doc_id = index_builder::main();
-    // ! MERGE BATCHES
-    // ! The following code snippet merges the batches of inverted indexes into a multiple sorted inverted index.
-    // lazy_merger::main(doc_id);
+// fn main() {
+//     // ! BUILD INDEX
+//     let doc_id: u16 = index_builder::main();
+//     // ! MERGE BATCHES
+//     // ! The following code snippet merges the batches of inverted indexes into a multiple sorted inverted index.
+//     lazy_merger::main(doc_id);
 
-    //     // ! Comes searching and ranking now
+//     println!("Welcome to the Search Engine!");
+//     let mut search_engine = query::SearchEngine::new();
+//     loop {
+//         search_engine.get_query();
+//         search_engine.search();
+//     }
+//     // TODO: Implement search and ranking logic using the query
+// }
 
-    println!("Welcome to the Search Engine!");
-    let mut search_engine = query::SearchEngine::new();
-    loop {
-        search_engine.get_query();
-        search_engine.search();
-    }
-    // TODO: Implement search and ranking logic using the query
+#[derive(Deserialize)]
+struct SearchRequest {
+    query: String,
 }
 
-// #[derive(Deserialize)]
-// struct SearchRequest {
-//     query: String,
-// }
+#[derive(Serialize)]
+struct SearchResult {
+    url: String,
+    content: String,
+}
 
-// #[derive(Serialize)]
-// struct SearchResponse {
-//     results: Vec<String>,
-//     time: u128,
-// }
+#[derive(Serialize)]
+struct SearchResponse {
+    results: Vec<SearchResult>, // Each result is an object with URL and content
+    time: u128,
+}
 
-// #[actix_web::main]
-// async fn main() -> std::io::Result<()> {
-//     println!("Welcome to the Search Engine!");
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    println!("Welcome to the Search Engine!");
 
-//     let search_engine = Arc::new(Mutex::new(query::SearchEngine::new()));
+    let search_engine = Arc::new(Mutex::new(query::SearchEngine::new()));
 
-//     HttpServer::new(move || {
-//         // Configure CORS middleware
-//         let cors = Cors::default()
-//             .allowed_origin("http://localhost:4321")
-//             .allow_any_method()
-//             .allow_any_header()
-//             .max_age(3600);
+    HttpServer::new(move || {
+        // Configure CORS middleware
+        let cors = Cors::default()
+            .allowed_origin("http://localhost:5173")
+            .allow_any_method()
+            .allow_any_header()
+            .max_age(3600);
 
-//         App::new()
-//             .wrap(cors)
-//             .app_data(web::Data::new(search_engine.clone()))
-//             .route("/", web::get().to(index))
-//             .route("/search", web::post().to(handle_search))
-//     })
-//     .bind(("127.0.0.1", 3000))?
-//     .run()
-//     .await
-// }
+        App::new()
+            .wrap(cors)
+            .app_data(web::Data::new(search_engine.clone()))
+            .route("/", web::get().to(index))
+            .route("/search", web::post().to(handle_search))
+    })
+    .bind(("127.0.0.1", 3000))?
+    .run()
+    .await
+}
 
-// async fn index() -> impl Responder {
-//     HttpResponse::Ok().body("Search Engine API")
-// }
+async fn index() -> impl Responder {
+    HttpResponse::Ok().body("Search Engine API")
+}
 
-// async fn handle_search(
-//     payload: web::Json<SearchRequest>,
-//     search_engine: web::Data<Arc<Mutex<query::SearchEngine>>>,
-// ) -> impl Responder {
-//     let mut engine = search_engine.lock().unwrap();
+async fn handle_search(
+    payload: web::Json<SearchRequest>,
+    search_engine: web::Data<Arc<Mutex<query::SearchEngine>>>,
+) -> impl Responder {
+    let mut engine = search_engine.lock().unwrap();
 
-//     // Set the query and perform search
-//     engine.set_query(payload.query.clone());
-//     let (results, time) = engine.search();
+    // Set the query and perform search
+    engine.set_query(payload.query.clone());
+    let (results, time) = engine.search();
 
-//     // Limit to 5 results
-//     let limited_results = results.into_iter().take(5).collect();
+    // Limit to 5 results
+    let limited_results = results
+        .into_iter()
+        .map(|x| SearchResult {
+            url: x.0,
+            content: x.1,
+        })
+        .collect();
 
-//     HttpResponse::Ok().json(SearchResponse {
-//         results: limited_results,
-//         time: time,
-//     })
-// }
-
-// #[derive(Deserialize)]
-// struct SearchRequest {
-//     query: String,
-// }
-
-// #[derive(Serialize)]
-// struct SearchResponse {
-//     results: Vec<String>,
-//     time: u128,
-// }
-
-// #[actix_web::main]
-// async fn main() -> std::io::Result<()> {
-//     println!("Welcome to the Search Engine!");
-
-//     let search_engine = Arc::new(Mutex::new(query::SearchEngine::new()));
-
-//     HttpServer::new(move || {
-//         // Configure CORS middleware
-//         let cors = Cors::default()
-//             .allowed_origin("http://localhost:4321")
-//             .allow_any_method()
-//             .allow_any_header()
-//             .max_age(3600);
-
-//         App::new()
-//             .wrap(cors)
-//             .app_data(web::Data::new(search_engine.clone()))
-//             .route("/", web::get().to(index))
-//             .route("/search", web::post().to(handle_search))
-//     })
-//     .bind(("127.0.0.1", 3000))?
-//     .run()
-//     .await
-// }
-
-// async fn index() -> impl Responder {
-//     HttpResponse::Ok().body("Search Engine API")
-// }
-
-// async fn handle_search(
-//     payload: web::Json<SearchRequest>,
-//     search_engine: web::Data<Arc<Mutex<query::SearchEngine>>>,
-// ) -> impl Responder {
-//     let mut engine = search_engine.lock().unwrap();
-
-//     // Set the query and perform search
-//     engine.set_query(payload.query.clone());
-//     let (results, time) = engine.search();
-
-//     // Limit to 5 results
-//     let limited_results = results.into_iter().take(5).collect();
-
-//     HttpResponse::Ok().json(SearchResponse {
-//         results: limited_results,
-//         time: time,
-//     })
-// }
+    HttpResponse::Ok().json(SearchResponse {
+        results: limited_results,
+        time: time,
+    })
+}
 
 // ? archive problems :=> Meta tags with nothing, simple txt file with minimal contents
 // ? cbcl :=> Numpy arrays, so if the path has an extension which is not really a file then maybe best to ignore it
