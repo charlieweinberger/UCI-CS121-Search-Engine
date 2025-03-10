@@ -45,8 +45,11 @@ def main():
         # Process documents sequentially
         for doc_path in current_batch:
             content = process_document(doc_path)
+
+            if content is None:
+                continue
             sim = similarity.is_duplicate_or_similar(doc_path, content)
-            if content is None or sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
+            if sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
                 continue
             # Skip invalid document
             inverted_index.add_document(content)
