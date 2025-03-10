@@ -17,6 +17,7 @@ def load_phonebook():
     if os.path.exists(PHONEBOOK_PATH):
         with open(PHONEBOOK_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
+    print("fresh")
     return {}
 
 def save_phonebook(phonebook):
@@ -37,25 +38,26 @@ def main():
     
     def process_document(document_path):
         document = download.Document(document_path)
-        return document.content
+        return [document.content, document.url]
 
     def save_inverted_index(doc_id_counter):
         # Create a new inverted index for this branch
         inverted_index = indexer.InvertedIndex(current_doc_id=doc_id_counter)
         # Process documents sequentially
         for doc_path in current_batch:
-            content = process_document(doc_path)
-
+            doc_stuff = process_document(doc_path)
+            content = doc_stuff[0]
+            url = doc_stuff[1]
             if content is None:
                 continue
             sim = similarity.is_duplicate_or_similar(doc_path, content)
             if sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
                 continue
             # Skip invalid document
-            inverted_index.add_document(content)
+            token_count = inverted_index.add_document(content)
             # Add to the phonebook
             doc_id_counter += 1
-            phonebook[str(doc_id_counter)] = doc_path
+            phonebook[str(doc_id_counter)] = [doc_path, token_count, url]
 
         save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
         save.save_inverted_index(inverted_index, save_path)
