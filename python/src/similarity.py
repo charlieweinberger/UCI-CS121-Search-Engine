@@ -11,8 +11,8 @@ def python_crc32(data: str):
     crc32_polynomial = 0x04c11db7
     # crc32_polynomial = 0x04c11db7: 0000 0100 1100 0001 0001 1101 1011 0111
     data = data.encode("utf-8")
-    if len(data) < 1024*5:
-        print("Warning: Data is too small for CRC32 calculation")
+    #if len(data) < 1024*5:
+        #print("Warning: Data is too small for CRC32 calculation")
     # crc is masked to 32 bits just incase
     crc = 0x00000000
     # Divide the data by the polynomial and the remainder is the CRC
@@ -28,7 +28,7 @@ def generate_word_ngrams(text: str, n: int) -> set[str]:
     words = text.split()
     if len(words) < n:
         return set()
-    return {' '.join(words[i:i+n]) for i in range(len(words - n + 1))}
+    return {' '.join(words[i:i+n]) for i in range(len(words) - n + 1)}
 
 def generate_fingerprint(vector: list[int], bit_size: int = SIMHASH_BIT_SIZE) -> int:
     fingerprint = 0
@@ -41,10 +41,10 @@ def simhash(text:str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
     vector = [0]*bit_size
     ngrams = generate_word_ngrams(text, WORD_NGRAM_SIZE)
     for ngram in ngrams:
-        hash_value = int(hashlib.md5(ngram.encode('utf-8')).hexdigest, 16)
+        hash_value = int(hashlib.md5(ngram.encode('utf-8')).hexdigest(), 16)
         for i in range(bit_size):
             bit = (hash_value >> i) & 1
-            vector[1] += 1 if bit == 1 else -1
+            vector[i] += 1 if bit == 1 else -1
     return generate_fingerprint(vector, bit_size)
 
 def hamming_distance(hash1: int, hash2: int) -> int:
