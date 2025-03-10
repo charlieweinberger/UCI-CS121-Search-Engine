@@ -1,6 +1,10 @@
+interface Result {
+  url: string
+  content: string
+}
+
 interface Website {
   url: string
   content: string
-  summaryIsLoaded: boolean
-  summary?: string
+  summary: string
 }
