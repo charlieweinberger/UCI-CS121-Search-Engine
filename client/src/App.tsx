@@ -59,7 +59,7 @@ export function SearchBar({ query, setQuery, handleSubmit }: {
   handleSubmit: (e: React.FormEvent) => void
 }) {
   return (
-    <form onSubmit={handleSubmit} className="w-full mb-8">
+    <form onSubmit={handleSubmit} className="w-full mb-6">
       <div className="flex flex-row items-center gap-2">
         <Input
           type="text"
@@ -76,19 +76,19 @@ export function SearchBar({ query, setQuery, handleSubmit }: {
   );
 }
 
-export function SearchResults({ query, websites }: {
-  query: string
+export function SearchResults({ websites, searchTime }: {
   websites: Website[]
+  searchTime: number
 }) {
 
-  if (!query || websites.length === 0) {
+  if (websites.length === 0) {
     return;
   }
 
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm text-muted-foreground">
-        Showing {websites.length} results for "{query}"
+        Showing {websites.length} results in {searchTime} milliseconds
       </p>
       {websites.map((website: Website) => (
         <div key={website.url} className="bg-white text-black flex flex-col gap-2 rounded-xl p-6 overflow-hidden">
@@ -119,6 +119,7 @@ export default function App() {
 
   const [ query, setQuery ] = useState("");
   const [ websites, setWebsites ] = useState<Website[]>([]);
+  const [ searchTime, setSearchTime ] = useState(0);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,6 +129,7 @@ export default function App() {
   const fetchResults = () => {
     //! Delete when done testing
     summarizeWebsites(fakeResults);
+    setSearchTime(100);
     //! Uncomment when done testing
     // fetch("http://127.0.0.1:3000/search", {
     //   method: "POST",
@@ -147,6 +149,7 @@ export default function App() {
     //   })
     //   .then(data => {
     //     summarizeWebsites(data.results);
+    //     setSearchTime(data.time);
     //   })
     //   .catch(error => {
     //     console.error(`Error while searching: ${error}`);
@@ -185,7 +188,7 @@ export default function App() {
       <h1 className="text-4xl font-bold mb-8 text-center">Search Engine</h1>
       <div className="w-full max-w-2xl">
         <SearchBar query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
-        <SearchResults query={query} websites={websites} />
+        <SearchResults websites={websites} searchTime={searchTime} />
       </div>
     </main>
   )
