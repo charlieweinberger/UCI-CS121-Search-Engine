@@ -31,13 +31,15 @@ def get_postings(token):
     return postings
 
 
-def scoring_tf_idf(term_freq: int, posting_length: int) -> float:
-    """
-    Calculate the TF-IDF score for a term in a document.
-    """
-    tf = (math.log2(term_freq) + 1.0)
+def scoring_tf_idf(term_freq: int, posting_length: int, total_term_freq: int) -> float:
+    # TF-IDF scoring: log normalization & relative frequency COMBINED https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+    tf = (math.log2(term_freq) + 1.0) * (term_freq / max(1, total_term_freq))
     idf = math.log2(TOTAL_DOCUMENT_COUNT / posting_length)
-    return tf * idf
+    length_factor = 1.0
+    # Penalize short documents
+    if total_term_freq < 125:
+        length_factor = 0.5
+    return tf * idf * length_factor
 
 
 class Candidate:
@@ -85,6 +87,7 @@ class SearchEngine:
     """
 
     def __init__(self):
+        self.phonebook = json.loads(open(PHONEBOOK, 'r').read())
         self.query = ""
         self.tokens = []
         self.time = 0
@@ -119,17 +122,16 @@ class SearchEngine:
                 doc_id = cur_doc
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
-
-                score = scoring_tf_idf(frequency, postings_len)
+                total_term_freq = self.phonebook[str(doc_id)][1]
+                score = scoring_tf_idf(
+                    frequency, postings_len, total_term_freq)
                 candidates[doc_id].update_score(token, score)
-                # candidates[doc_id].set_info(frequency, postings_len, token)
         # Filter candidates to only those that match all query tokens
         valid_candidates = get_valid_candidates(candidates, self.tokens)
         finished_time = int((time.time() - start_time) * 1000)
         self.time = finished_time
         valid_candidates.sort(key=lambda c: c.get_total_score(), reverse=True)
         # valid_candidates.sort(key=lambda c: c.get_tf_idf(), reverse=True)
-        valid_candidates = [c for c in valid_candidates if c.doc_id <= 40157]
         # Take only top 5 results if available
         valid_candidates = valid_candidates[:5]
         doc_ids = []
@@ -137,13 +139,14 @@ class SearchEngine:
             print("Matching Documents:")
             for i, candidate in enumerate(valid_candidates):
                 print(
-                    f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
+                    f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.get_total_score()}")
                 doc_ids.append(candidate.doc_id)
         else:
             return []
         print(f"Search completed in {finished_time} ms.")
-
-        return get_doc_info(doc_ids)
+        doc_ids = [(doc_id, self.phonebook[str(doc_id)]
+                    [2], self.phonebook[str(doc_id)][0]) for doc_id in doc_ids]
+        return doc_ids
 
     def get_time(self):
         return self.time
@@ -155,24 +158,3 @@ def get_valid_candidates(candidates, query_tokens):
         if c.has_all_tokens(query_tokens):
             valid_candidates.append(c)
     return valid_candidates
-
-
-def get_doc_info(doc_ids):
-    """
-    Get the document information for a given document ID.
-    Returns an array of a docID's URL and content
-    First element has the highest score. 
-    """
-    with open(PHONEBOOK, 'r') as f:
-        phonebook = json.load(f)
-
-    result = []
-
-    for doc_id in doc_ids:
-        file_path = phonebook[str(doc_id)][0]
-        print(f"File path: {file_path}")
-        with open(file_path, 'r') as doc_file:
-            doc_data = json.load(doc_file)
-            result.append((doc_data["url"], doc_data["content"]))
-
-    return result

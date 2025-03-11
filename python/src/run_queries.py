@@ -10,7 +10,7 @@ def main():
     searcher = SearchEngine()
     while True:
         searcher.get_query()
-        searcher.search()
+        print(searcher.search())
 
 
 if __name__ == "__main__":
