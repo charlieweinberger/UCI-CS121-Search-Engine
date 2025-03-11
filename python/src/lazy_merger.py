@@ -6,10 +6,10 @@ import json
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 DEV_PATH = "../developer/DEV"
-INDEXES_PATH = os.path.join(SRC_DIR, "indexes")
+INDEXES_PATH = "indexes/"
 # FINAL_INDEX = os.path.join(SRC_DIR, "final_index.txt")
-OUTPUT_DIR = os.path.join(SRC_DIR, "merged_indexes")
-PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
+OUTPUT_DIR = "merged_indexes/"
+phonebook = "phonebook.json"
 
 
 def get_file_for_word(word: str) -> str:
@@ -19,12 +19,15 @@ def get_file_for_word(word: str) -> str:
         return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
     elif first_char.isdigit():
         return os.path.join(OUTPUT_DIR, f"{first_char}.txt")
-    raise TypeError(f"Invalid input: word {word} should never start with a special character or space.")
+    raise TypeError(
+        f"Invalid input: word {word} should never start with a special character or space.")
+
 
 def list_of_needed_files(batches: List[str]) -> List[TextIOWrapper]:
     # * /indexes/batch_{number}.txt
     return [open(os.path.join(INDEXES_PATH, batch), 'r', encoding='utf-8')
             for batch in batches]
+
 
 def get_smallest_key(postings: List[Postings]) -> str:
     """Get the smallest key from a list of postings."""
@@ -33,6 +36,7 @@ def get_smallest_key(postings: List[Postings]) -> str:
         if posting.word < smallest:
             smallest = posting.word
     return smallest
+
 
 def lazy_merger():
     # * Create the output directory if it doesn't exist
@@ -80,7 +84,8 @@ def lazy_merger():
         output_file = get_file_for_word(smallest)
         # * Write the merged posting to the appropriate file
         if output_file not in file_handlers:
-            file_handlers[output_file] = open(output_file, 'a+', encoding='utf-8')
+            file_handlers[output_file] = open(
+                output_file, 'a+', encoding='utf-8')
 
         file_handlers[output_file].write(str(new_posting) + "\n")
 
@@ -90,7 +95,7 @@ def lazy_merger():
             if not lines[idx].strip():  # Reader reached end
                 readers[idx].close()
                 active_indices.remove(idx)
-    
+
     # Close all file handlers
     for handler in file_handlers.values():
         handler.close()
@@ -99,16 +104,6 @@ def lazy_merger():
     batches = []
     for root, _, files in os.walk(DEV_PATH):
         batches.extend([os.path.join(root, file) for file in files])
-
-    # Create mapping of docid to file location
-    # docid_to_file = {}
-    # for i, file_path in enumerate(sorted(batches), 1):
-    #     docid_to_file[i] = file_path
-
-    # # Write the mapping to phonebook.json
-    # with open('phonebook.json', 'w', encoding='utf-8') as f:
-    #     json.dump(docid_to_file, f, indent=2)
-
 
 if __name__ == "__main__":
     lazy_merger()

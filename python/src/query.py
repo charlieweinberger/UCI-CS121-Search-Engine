@@ -6,10 +6,10 @@ from tokenizer import Tokenizer
 import math
 import json
 
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(SRC_DIR, "merged_indexes")
-PHONEBOOK = os.path.join(SRC_DIR, "phonebook.json")
+OUTPUT_DIR = "merged_indexes/"
+PHONEBOOK = "phonebook.json"
 TOTAL_DOCUMENT_COUNT = 40157  # Replace with the actual total document count
+
 
 def get_postings(token):
     """
@@ -30,13 +30,15 @@ def get_postings(token):
                     break  # stop after finding the token
     return postings
 
+
 def scoring_tf_idf(term_freq: int, posting_length: int) -> float:
     """
     Calculate the TF-IDF score for a term in a document.
     """
-    tf = (math.log2(term_freq) + 1.0 )
+    tf = (math.log2(term_freq) + 1.0)
     idf = math.log2(TOTAL_DOCUMENT_COUNT / posting_length)
     return tf * idf
+
 
 class Candidate:
     """
@@ -45,27 +47,27 @@ class Candidate:
 
     def __init__(self, doc_id):
         self.doc_id = doc_id
-        self.tokens_matched = {}   
-        self.total_score = 0.0   
-        self.tf_idf = 0.0 
+        self.tokens_matched = {}
+        self.total_score = 0.0
+        self.tf_idf = 0.0
         self.info = {}  # frequency, posting_length, token
-    
+
     def set_info(self, frequency, posting_length, token):
         self.info[token] = (frequency, posting_length)
-    
+
     def update_score(self, token, score):
         self.tokens_matched[token] = score
         self.total_score += score
 
     def has_all_tokens(self, query_tokens):
         return all(token in self.tokens_matched for token in query_tokens)
-    
+
     def get_total_score(self):
         return self.total_score
-        
+
     def get_total_tf_idf(self):
         return self.tf_idf
-    
+
     # def compute_tf_idf(self):
     #     for token in self.info.keys():
     #         self.compute_tf_idf_for_token(token)
@@ -74,9 +76,7 @@ class Candidate:
     #         tf = (math.log2(term_freq/total_tokens_in_a_doc) + 1.0)
     #         idf = math.log2(TOTAL_DOCUMENT_COUNT / posting_length)
     #         self.tf_idf += tf * idf
-    #     return self.tf_idf        
-
-    
+    #     return self.tf_idf
 
 
 class SearchEngine:
@@ -116,20 +116,20 @@ class SearchEngine:
             postings = get_postings(token)
             postings_len = len(postings)
             for cur_doc, frequency in postings.items():
-                doc_id = cur_doc + 1
+                doc_id = cur_doc
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
-                
+
                 score = scoring_tf_idf(frequency, postings_len)
                 candidates[doc_id].update_score(token, score)
                 # candidates[doc_id].set_info(frequency, postings_len, token)
         # Filter candidates to only those that match all query tokens
         valid_candidates = get_valid_candidates(candidates, self.tokens)
         finished_time = int((time.time() - start_time) * 1000)
-        self.time = finished_time          
+        self.time = finished_time
         valid_candidates.sort(key=lambda c: c.get_total_score(), reverse=True)
         # valid_candidates.sort(key=lambda c: c.get_tf_idf(), reverse=True)
-
+        valid_candidates = [c for c in valid_candidates if c.doc_id <= 40157]
         # Take only top 5 results if available
         valid_candidates = valid_candidates[:5]
         doc_ids = []
@@ -140,13 +140,14 @@ class SearchEngine:
                     f"{i+1}. Document ID: {candidate.doc_id}, Score: {candidate.tokens_matched[token]}")
                 doc_ids.append(candidate.doc_id)
         else:
-            return [] 
+            return []
         print(f"Search completed in {finished_time} ms.")
-        
+
         return get_doc_info(doc_ids)
-        
+
     def get_time(self):
         return self.time
+
 
 def get_valid_candidates(candidates, query_tokens):
     valid_candidates = []
@@ -154,6 +155,7 @@ def get_valid_candidates(candidates, query_tokens):
         if c.has_all_tokens(query_tokens):
             valid_candidates.append(c)
     return valid_candidates
+
 
 def get_doc_info(doc_ids):
     """
@@ -163,31 +165,14 @@ def get_doc_info(doc_ids):
     """
     with open(PHONEBOOK, 'r') as f:
         phonebook = json.load(f)
-    
+
     result = []
-    
+
     for doc_id in doc_ids:
-        file_path = phonebook[str(doc_id)]
+        file_path = phonebook[str(doc_id)][0]
         print(f"File path: {file_path}")
         with open(file_path, 'r') as doc_file:
             doc_data = json.load(doc_file)
             result.append((doc_data["url"], doc_data["content"]))
-    
-    return result
 
-# def get_num_tokens_of_a_doc(doc_id):
-#     """
-#     Get the document information for a given document ID.
-#     Returns an array of a docID's URL and content
-#     First element has the highest score. 
-#     """
-#     with open(PHONEBOOK, 'r') as f:
-#         phonebook = json.load(f)
-    
-#     tokenizer = Tokenizer()    
-#     file_path = phonebook[str(doc_id)]
-#     print(f"File path: {file_path}")
-#     with open(file_path, 'r') as doc_file:
-#         doc_data = json.load(doc_file)
-#         return len(tokenizer.tokenize(doc_data["content"]))
-                
+    return result
