@@ -119,7 +119,7 @@ class SearchEngine:
             postings = get_postings(token)
             postings_len = len(postings)
             for cur_doc, frequency in postings.items():
-                doc_id = cur_doc - 1
+                doc_id = cur_doc - 9
                 if doc_id not in candidates:
                     candidates[doc_id] = Candidate(doc_id)
                 try:

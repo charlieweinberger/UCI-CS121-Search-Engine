@@ -1,1 +1,0 @@
-# potentially compressing the inverted index with something like elias gamma encoding

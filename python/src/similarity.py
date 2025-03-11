@@ -11,8 +11,8 @@ def python_crc32(data: str):
     crc32_polynomial = 0x04c11db7
     # crc32_polynomial = 0x04c11db7: 0000 0100 1100 0001 0001 1101 1011 0111
     data = data.encode("utf-8")
-    #if len(data) < 1024*5:
-        #print("Warning: Data is too small for CRC32 calculation")
+    # if len(data) < 1024*5:
+    # print("Warning: Data is too small for CRC32 calculation")
     # crc is masked to 32 bits just incase
     crc = 0x00000000
     # Divide the data by the polynomial and the remainder is the CRC
@@ -24,11 +24,13 @@ def python_crc32(data: str):
             crc = (crc >> 1) ^ (crc32_polynomial if crc & 1 else 0)
     return crc
 
+
 def generate_word_ngrams(text: str, n: int) -> set[str]:
     words = text.split()
     if len(words) < n:
         return set()
     return {' '.join(words[i:i+n]) for i in range(len(words) - n + 1)}
+
 
 def generate_fingerprint(vector: list[int], bit_size: int = SIMHASH_BIT_SIZE) -> int:
     fingerprint = 0
@@ -37,7 +39,8 @@ def generate_fingerprint(vector: list[int], bit_size: int = SIMHASH_BIT_SIZE) ->
             fingerprint |= 1 << i
     return fingerprint
 
-def simhash(text:str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
+
+def simhash(text: str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
     vector = [0]*bit_size
     ngrams = generate_word_ngrams(text, WORD_NGRAM_SIZE)
     for ngram in ngrams:
@@ -47,30 +50,33 @@ def simhash(text:str, bit_size: int = SIMHASH_BIT_SIZE) -> int:
             vector[i] += 1 if bit == 1 else -1
     return generate_fingerprint(vector, bit_size)
 
+
 def hamming_distance(hash1: int, hash2: int) -> int:
     return bin(hash1 ^ hash2).count('1')
+
 
 class SimilarityDetector:
     """
     Detect similar pages during indexing based on content
     """
+
     def __init__(self):
         self.seen_checksums = set()
         self.page_simhashes = {}
-        
-    def clean_text(self, text:str) -> str:
+
+    def clean_text(self, text: str) -> str:
         text = ' '.join(text.strip().split())
         return text.lower()
-    
+
     def calculuate_similarity(self, ngrams1: set, ngrams2: set) -> float:
         if not ngrams1 or not ngrams2:
             return 0.0
         intersection = len(ngrams1 & ngrams2)
-        union = len(ngrams1|ngrams2)
+        union = len(ngrams1 | ngrams2)
         return intersection / union if union > 0 else 0.0
-    
-    #not sure what we passin in to here
-    def is_duplicate_or_similar(self, path: str, text:str) -> tuple[bool, str]:
+
+    # not sure what we passin in to here
+    def is_duplicate_or_similar(self, path: str, text: str) -> tuple[bool, str]:
         clean_text = self.clean_text(text)
         checksum = python_crc32(clean_text)
         if checksum in self.seen_checksums:
