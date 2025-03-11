@@ -1,79 +1,111 @@
-# combining everything together
+import os
+import json
+
 import download
 import indexer
 import save
-import os
-import json
-from similarity import SimilarityDetector
+import similarity
 
+#! /developer/DEV contains the url and html content of each page
 DEV_PATH = "../developer/DEV"
+#! phonebook.json contains a dictionary with docIDs as
+#! keys and paths to files in /developer/DEV as values
+PHONEBOOK_PATH = "phonebook.json"
+#! /indexes/ contains the batches of inverted indexes
+INDEXES_PATH = "indexes"
 
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-PHONEBOOK_PATH = os.path.join(SRC_DIR, "phonebook.json")
-INDEXES_PATH = os.path.join(SRC_DIR, "indexes")
+#! The maximum number of document paths in each batch
+BATCH_SIZE = 5000
 
-def load_phonebook():
-    """Loads the phonebook.json if it exists; otherwise, returns an empty dictionary."""
+def load_phonebook() -> dict[str: str]:
+    #! Returns the contents of phonebook.json, if phonebook.json exists.
+    #! Otherwise, return an empty dictionary.
     if os.path.exists(PHONEBOOK_PATH):
         with open(PHONEBOOK_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
-    print("fresh")
     return {}
 
-def save_phonebook(phonebook):
-    """Writes the phonebook dictionary to a JSON file."""
+#! Acts as a generator for yielding document file paths in /developer/DEV
+def get_document_paths():
+    for root, _, files in os.walk(DEV_PATH):
+        for file in files:
+            yield os.path.join(root, file)
+
+def save_phonebook(phonebook: dict[str: str]) -> None:
+    #! Write the contents of `phonebook` to phonebook.json
     with open(PHONEBOOK_PATH, "w", encoding="utf-8") as f:
         json.dump(phonebook, f, indent=4)
 
-def main():
-    # * Download the documents
-    batch_size = 5000
-    batch_count = 0
+def save_inverted_index(phonebook: dict[str: str],
+                        similarity: similarity.SimilarityDetector,
+                        current_batch: list[str], batch_counter: int) -> int:
+
+    #! Create a new inverted index for this branch
+    inverted_index = indexer.InvertedIndex(current_doc_id=doc_id_counter)
+
+    #! Process each document in the current batch
+    for doc_path in current_batch:
+        #! Get the content and url from the document in /developer/DEV
+        document = download.Document(doc_path)
+        url, content = document.url, document.content
+        #! If there is no content, then return early
+        if content is None:
+            continue
+        #! If the content is too similar to previously seen pages,
+        #! or if the document is too large, then return early
+        sim = similarity.is_duplicate_or_similar(doc_path, content)
+        if sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
+            continue
+        #! Add the content to the inverted index
+        token_count = inverted_index.add_document(content)
+        #! Increment the document counter, and add the document path,
+        #! token count, and url to the phonebook
+        doc_id_counter += 1
+        phonebook[str(doc_id_counter)] = [doc_path, token_count, url] #! W rizz
+
+    #! Save the inverted index by writing it to a new file
+    save_path = f"{INDEXES_PATH}/batch_{batch_counter}.txt"
+    save.save_inverted_index(inverted_index, save_path)
+
+    #! Return the docID counter
+    return doc_id_counter
+
+def main() -> None:
+
+    #! The current batch of document paths
     current_batch: list[str] = []
-    similarity = SimilarityDetector()
+
+    #! Counters for the current batch and docID
+    batch_counter: int = 0
+    doc_id_counter: int = 0
+
+    #! TODO
+    similarity = similarity.SimilarityDetector()
+
+    #! At the beginning, `phonebook` is an empty dictionary. If we've previously
+    #! edited phonebook.json, then we load it's contents into `phonebook`.
+    #! By the end of `main()`, we save `phonebook` to phonebook.json.
     phonebook = load_phonebook()
 
-    doc_id_counter = 0  # Add a counter to track document IDs
-        
-    
-    def process_document(document_path):
-        document = download.Document(document_path)
-        return [document.content, document.url]
-
-    def save_inverted_index(doc_id_counter):
-        # Create a new inverted index for this branch
-        inverted_index = indexer.InvertedIndex(current_doc_id=doc_id_counter)
-        # Process documents sequentially
-        for doc_path in current_batch:
-            doc_stuff = process_document(doc_path)
-            content = doc_stuff[0]
-            url = doc_stuff[1]
-            if content is None:
-                continue
-            sim = similarity.is_duplicate_or_similar(doc_path, content)
-            if sim[0] or os.path.getsize(doc_path) > 5 * 1024 * 1024:
-                continue
-            # Skip invalid document
-            token_count = inverted_index.add_document(content)
-            # Add to the phonebook
-            doc_id_counter += 1
-            phonebook[str(doc_id_counter)] = [doc_path, token_count, url]
-
-        save_path = f"{INDEXES_PATH}/batch_{batch_count}.txt"
-        save.save_inverted_index(inverted_index, save_path)
-        return doc_id_counter
-    for document_path in download.generator_files(DEV_PATH):
+    #! Loop through all files within all folders within /developer/DEV
+    for document_path in get_document_paths():
+        #! Add the file path to the current batch
         current_batch.append(document_path)
-        # When batch size is reached, process and save
-        if len(current_batch) >= batch_size:
-            doc_id_counter = save_inverted_index(doc_id_counter)
+        #! When the batch size is reached...
+        if len(current_batch) >= BATCH_SIZE:
+            #! ...save the current batch as an invertex index and update `phonebook`...
+            doc_id_counter = save_inverted_index(phonebook, similarity,
+                                                 current_batch, batch_counter)
+            #! ...and then reset the current batch and increment the counter
             current_batch = []
-            batch_count += 1
+            batch_counter += 1
 
-    # Process remaining documents in the final batch
+    #! Process remaining documents in the final batch
     if current_batch:
         doc_id_counter = save_inverted_index(doc_id_counter)
+
+    #! Save the contents of `phoneboook` to phonebook.json
     save_phonebook(phonebook)
-    
+
 if __name__ == "__main__":
     main()

@@ -1,15 +1,14 @@
-# create the inverted index along with the given tokens
 import posting
 import tokenizer
-from urllib.parse import urlparse
-import os
 
-
+# Create the inverted index along with the given tokens
 class InvertedIndex:
     def __init__(self, current_doc_id: int = 1):
         self.current_doc_id: int = current_doc_id
-        # ? We want both the postings and the dictionary keys to be in the sorted order for faster retrieval, also we cannot expect 
-        # ? the hash of every word to be different so many we do something where like each dictionary points to a list of words of that alphabet alone
+        # ? We want both the postings and the dictionary keys to be in the
+        # ? sorted order for faster retrieval, also we cannot expect the hash
+        # ? of every word to be different so many we do something where like
+        # ? each dictionary points to a list of words of that alphabet alone
         self.dictionary: posting.Dictionary = posting.Dictionary()
         self.tokenizer: tokenizer.Tokenizer = tokenizer.Tokenizer()        
 
@@ -17,9 +16,6 @@ class InvertedIndex:
         tokens = self.tokenizer.tokenize(text)
         for token in tokens:
             self.dictionary.update_frequency(token, self.current_doc_id, 1)
-
         self.current_doc_id += 1
-    
-        
-
-    
+        #! W chat
+        return len(tokens)
